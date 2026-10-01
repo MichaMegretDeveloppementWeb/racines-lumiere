@@ -1,20 +1,34 @@
 @extends('layouts.web')
 
 @section('title', 'Racines & Lumière · Institut de beauté holistique à Sciez')
+@section('description', $institute->isOpen
+    ? 'Institut de beauté holistique à Sciez, en Chablais : rituels sur mesure pour le corps et le visage, massages et soins experts. Réservation en ligne.'
+    : 'Institut de beauté holistique à Sciez : rituels sur mesure pour le corps et le visage. Ouverture le 3 novembre, réservation en ligne dès maintenant.')
 
 @section('content')
-    <div class="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center gap-6 px-6 text-center">
-        <h1 class="text-4xl tracking-widest text-terracotta uppercase">Racines &amp; Lumière</h1>
+    {{-- Hero --}}
+    @include('web.home.partials.hero')
 
-        @if ($institute->isOpen)
-            <p>Sur rendez-vous, du lundi au samedi</p>
-        @else
-            <p>Ouverture le mardi 3 novembre · puis sur rendez-vous, du lundi au samedi</p>
-        @endif
+    @unless ($institute->isOpen)
+        {{-- Opening banner --}}
+        @include('web.home.partials.opening-banner')
+    @endunless
 
-        <a
-            href="{{ $institute->bookingUrl }}"
-            class="inline-flex min-h-11 items-center bg-terracotta px-6 py-3 text-cream"
-        >{{ $institute->isOpen ? 'Réserver mon rituel' : 'Réserver dès maintenant' }}</a>
-    </div>
+    {{-- Launch offer --}}
+    <x-web.institute.launch-offer class="mx-4 my-10 sm:mx-auto sm:max-w-2xl" />
+
+    {{-- Concept --}}
+    @include('web.home.partials.concept')
+
+    {{-- Treatments preview --}}
+    @include('web.home.partials.treatments-preview')
+
+    {{-- Reviews --}}
+    @include('web.home.partials.reviews')
+
+    {{-- Gift cards --}}
+    @include('web.home.partials.gift-cards')
+
+    {{-- Visit --}}
+    @include('web.home.partials.visit')
 @endsection

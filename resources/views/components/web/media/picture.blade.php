@@ -1,0 +1,20 @@
+<picture>
+    @foreach ($sourceFormats() as $format)
+        <source type="image/{{ $format }}" srcset="{{ $srcsetFor($format) }}" sizes="{{ $sizes }}">
+    @endforeach
+    <img
+        src="{{ $fallbackUrl() }}"
+        srcset="{{ $srcsetFor($fallback) }}"
+        sizes="{{ $sizes }}"
+        alt="{{ $alt }}"
+        width="{{ $width }}"
+        height="{{ $height }}"
+        @if ($isPriority)
+            fetchpriority="high"
+        @else
+            loading="lazy"
+        @endif
+        decoding="async"
+        {{ $attributes }}
+    >
+</picture>
