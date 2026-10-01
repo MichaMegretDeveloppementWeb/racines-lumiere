@@ -1,58 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Racines & Lumière · site vitrine
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Site vitrine de l'institut Racines & Lumière, à Sciez. Il présente l'univers, la carte des soins, les marques
+partenaires et les fondatrices, et renvoie vers Booksy pour toute réservation. Aucun espace d'administration :
+le contenu structuré vit dans les seeders, les textes figés dans les vues.
 
-## About Laravel
+## Pile
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- PHP 8.3 au moins (8.5 en local), Laravel 13, Blade
+- MySQL, y compris pour les tests
+- Tailwind CSS 4 et Vite 8 · Alpine.js 3 sur toutes les pages, Livewire 4 sur la seule page Contact
+- Pest, Pint, ESLint et TypeScript (contrôle des scripts, sans compilation)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Installation locale
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+composer install
+cp .env.example .env            # puis ajuster APP_ENV=local, APP_DEBUG=true, APP_URL et la base
+php artisan key:generate
+php artisan migrate --seed
+npm install
+npm run build
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+En local, le site est servi par Laravel Herd sur `https://racines-lumiere.test`.
 
-## Contributing
+**Base de test** · une base MySQL dédiée, `racines_lumiere_test`, à créer une fois. La suite refuse de démarrer sur
+toute base dont le nom ne se termine pas par `_test`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Commandes
 
-## Code of Conduct
+| Commande | Rôle |
+|---|---|
+| `npm run dev` | serveur Vite, rechargement à chaud |
+| `npm run build` | compilation des assets dans `public/build/` |
+| `npm run lint` | ESLint, puis contrôle de types des scripts |
+| `php artisan test --compact` | suite de tests, sur `racines_lumiere_test` |
+| `vendor/bin/pint --dirty` | mise en forme du PHP modifié |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Les scripts npm appellent les outils par `node` plutôt que par leurs raccourcis : sous Windows, ces raccourcis
+échouent dès que le chemin du projet contient une esperluette.
 
-## Security Vulnerabilities
+## Le build compilé est commité
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Le serveur n'a pas de Node fiable · les assets se compilent en local et `public/build/` est suivi par Git.
 
-## License
+- Recompiler (`npm run build`) avant tout commit qui touche `resources/css` ou `resources/js`.
+- Une recompilation sans changement de source ne doit rien modifier dans `public/build/` · c'est la preuve que ce
+  qui est commité correspond aux sources.
+- Le déploiement refuse un commit sans `public/build/manifest.json`.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Déploiement
+
+Connexion SSH au serveur, puis, à la racine de l'application :
+
+```bash
+./deploy.sh
+```
+
+Le script aligne le code sur `origin/main`, installe les dépendances PHP sans celles de développement, joue les
+migrations puis les seeders de contenu, reconstruit les caches et corrige les permissions. Le site passe en
+maintenance pendant l'opération, et en sort toujours, même en cas d'échec.
+
+**Première installation** · cloner le dépôt, créer le `.env` à partir de `.env.example` (aucun secret n'est versionné),
+`php artisan key:generate`, puis `./deploy.sh`. La racine web pointe sur `public/`.
+
+**Hors production** · toute réponse porte `X-Robots-Tag: noindex, nofollow` et `/robots.txt` interdit tout.
+
+## Bascule du 3 novembre
+
+Le site s'ouvre dans son état « avant ouverture ». Le jour de l'ouverture, sur le serveur de production :
+
+```bash
+# dans .env
+INSTITUTE_OPEN=true
+```
+
+puis `php artisan config:cache`. Aucun déploiement de code n'est nécessaire.
