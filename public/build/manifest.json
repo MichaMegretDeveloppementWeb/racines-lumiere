@@ -1,0 +1,17 @@
+{
+  "resources/css/web.css": {
+    "file": "assets/web-s0LH-vG_.css",
+    "name": "web",
+    "names": [
+      "web.css"
+    ],
+    "src": "resources/css/web.css",
+    "isEntry": true
+  },
+  "resources/js/web.js": {
+    "file": "assets/web-B7vHQp7s.js",
+    "name": "web",
+    "src": "resources/js/web.js",
+    "isEntry": true
+  }
+}

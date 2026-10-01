@@ -1,18 +1,28 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import { bunny } from 'laravel-vite-plugin/fonts';
+import { globSync } from 'node:fs';
 import tailwindcss from '@tailwindcss/vite';
+import laravel from 'laravel-vite-plugin';
+import { defineConfig } from 'vite';
+
+// Layout globals, page entry points and component stylesheets, discovered
+// so that a new page is picked up without touching this file. Component
+// scripts are imported by the globals, which register them before Alpine starts.
+const ENTRY_PATTERNS = [
+    'resources/css/*.css',
+    'resources/js/*.js',
+    'resources/css/**/index.css',
+    'resources/js/**/index.js',
+    'resources/css/components/**/*.css',
+];
+
+const entries = globSync(ENTRY_PATTERNS)
+    .map((path) => path.replaceAll('\\', '/'))
+    .sort();
 
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: entries,
             refresh: true,
-            fonts: [
-                bunny('Instrument Sans', {
-                    weights: [400, 500, 600],
-                }),
-            ],
         }),
         tailwindcss(),
     ],
