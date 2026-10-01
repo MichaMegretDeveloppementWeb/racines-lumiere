@@ -1,0 +1,25 @@
+import js from '@eslint/js';
+import globals from 'globals';
+
+export default [
+    js.configs.recommended,
+    {
+        files: ['resources/js/**/*.js'],
+        languageOptions: {
+            ecmaVersion: 'latest',
+            sourceType: 'module',
+            globals: globals.browser,
+        },
+        rules: {
+            eqeqeq: 'error',
+            'no-console': 'error',
+            'prefer-const': 'error',
+        },
+    },
+    {
+        files: ['*.config.js'],
+        languageOptions: {
+            globals: globals.node,
+        },
+    },
+];

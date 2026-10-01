@@ -1,0 +1,15 @@
+@import 'tailwindcss' source(none);
+
+/* Only what renders is scanned, so documentation never produces styles. */
+@source '../views';
+@source '../js';
+
+/* Brand palette. */
+@theme {
+    --color-terracotta: #733106;
+    --color-forest: #303425;
+    --color-olive: #59533d;
+    --color-cream: #fcf8ec;
+    --color-sand: #dac0a2;
+    --color-gold: #dd9b28;
+}
