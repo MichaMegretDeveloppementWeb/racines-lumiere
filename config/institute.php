@@ -37,6 +37,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Launch Offer
+    |--------------------------------------------------------------------------
+    |
+    | Shown before the opening only, and only once its discount is known.
+    |
+    */
+
+    'launch_offer' => [
+        'discount' => null,
+        'conditions' => null,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Contact
     |--------------------------------------------------------------------------
     */
@@ -58,7 +72,7 @@ return [
         'street' => '205 avenue des Charmes',
         'postal_code' => '74140',
         'city' => 'Sciez',
-        'access_note' => null,
+        'access_note' => "Derrière le Leclerc, à l'entrée de la nouvelle résidence « Rive Sud ».",
     ],
 
     'opening_hours' => [
