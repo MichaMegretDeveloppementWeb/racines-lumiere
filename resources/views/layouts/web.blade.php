@@ -17,6 +17,7 @@
         @vite(['resources/css/web.css', 'resources/js/web.js'])
     </head>
     <body class="flex min-h-screen flex-col antialiased">
+        <x-web.media.icons />
         <x-web.layout.skip-link />
         <x-web.layout.header />
 

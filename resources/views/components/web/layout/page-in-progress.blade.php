@@ -1,7 +1,8 @@
 @props(['title'])
 
-<section class="mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 py-24 text-center lg:py-32">
-    <h1 class="text-3xl text-terracotta lg:text-4xl">{{ $title }}</h1>
-    <p>Cette page est en préparation.</p>
-    <a href="{{ route('home') }}" class="inline-flex min-h-11 items-center px-3 font-semibold text-terracotta underline underline-offset-4">Revenir à l'accueil</a>
+<section class="mx-auto flex max-w-3xl flex-col items-center px-6 pt-44 pb-28 text-center lg:pt-52 lg:pb-40">
+    <x-web.media.icon name="sun" class="size-7 text-gold" />
+    <h1 class="mt-6 text-4xl leading-tight lg:text-5xl">{{ $title }}</h1>
+    <p class="mt-5 text-olive">Cette page est en préparation.</p>
+    <x-web.navigation.arrow-link :href="route('home')" class="mt-6">Revenir à l'accueil</x-web.navigation.arrow-link>
 </section>
