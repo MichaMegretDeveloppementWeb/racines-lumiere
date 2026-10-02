@@ -3,7 +3,7 @@ import Alpine from 'alpinejs';
 import { siteMenu } from './components/web/layout/site-menu.js';
 import { scrollHeader } from './web/home/alternative/header.js';
 import { reviewCarousel } from './web/home/alternative/reviews.js';
-// Temporary local comparison tool: remove its import, registration and assets before publication.
+// Temporary design comparison: remove its import, registration and assets before publication.
 import { designPreview } from './web/home/alternative/design-preview.js';
 
 Alpine.plugin(collapse);

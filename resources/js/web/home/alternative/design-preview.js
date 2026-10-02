@@ -36,7 +36,7 @@
  */
 
 /**
- * Temporary local-only comparison tool. Remove this module and its registration before publication.
+ * Temporary design comparison. Remove this module and its registration before publication.
  *
  * @param {PreviewConfig} config
  * @returns {DesignPreviewData & ThisType<DesignPreviewData & PreviewMagics>}

@@ -4,6 +4,7 @@
     </div>
     <div>
         <h2 id="brands-title" class="alt-title">Le soin de la peau,<br>avec exigence.</h2>
+        <p class="alt-brands-intro">Prendre soin de la peau, c'est aussi respecter son rythme. Notre approche du mieux-vieillir privilégie l'éclat, le confort et l'équilibre, avec des soins choisis pour votre peau et votre besoin du moment.</p>
         <div class="alt-brand-selection">
             <div>
                 <h3>Altearah Bio</h3>

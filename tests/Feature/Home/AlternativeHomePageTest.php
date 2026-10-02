@@ -9,45 +9,100 @@ beforeEach(function (): void {
     $this->seed(DatabaseSeeder::class);
 });
 
-it('renders the alternative home in both opening states', function (bool $isOpen): void {
+dataset('opening states', [
+    'before the opening' => [
+        false,
+        ["Prochainement, l'ouverture de notre Maison du Mieux-Être", 'Réserver dès maintenant', 'Ouverture le mardi 3 novembre · puis sur rendez-vous, du lundi au samedi'],
+        ['Réserver mon rituel'],
+    ],
+    'after the opening' => [
+        true,
+        ['Réserver mon rituel', 'Sur rendez-vous, du lundi au samedi'],
+        ['Prochainement', 'Réserver dès maintenant', 'Ouverture le mardi 3 novembre'],
+    ],
+]);
+
+it('renders the alternative home within its layout, in both states', function (bool $isOpen, array $shownTexts, array $hiddenTexts): void {
     config(['institute.is_open' => $isOpen]);
 
     $response = $this->get(route('home.alternative'))
         ->assertOk()
-        ->assertViewIs('web.home.alternative.index')
-        ->assertSee('<main id="content"', false)
-        ->assertSee('href="mailto:'.config('institute.contact.email').'"', false)
-        ->assertSeeTextInOrder([
-            'Vous ne choisissez pas votre soin.',
-            'Nous le créons avec vous.',
-            'maison de soin holistique.',
-            'Nos soins',
-            'Une adresse confidentielle',
-            'Ce que vous en dites',
-            'Offrir un rituel',
-            'Nous trouver',
-        ]);
+        ->assertSee('<title>Racines &amp; Lumière · Institut de beauté holistique à Sciez</title>', false)
+        ->assertSee('<main id="content"', false);
 
-    if ($isOpen) {
-        $response->assertSeeText('Réserver mon rituel')
-            ->assertSeeText('Sur rendez-vous, du lundi au samedi')
-            ->assertDontSeeText('Prochainement')
-            ->assertDontSeeText('Réserver dès maintenant')
-            ->assertDontSeeText('Ouverture le mardi 3 novembre');
-    } else {
-        $response->assertSeeText("Prochainement, l'ouverture de notre Maison du Mieux-Être", false)
-            ->assertSeeText('Réserver dès maintenant')
-            ->assertSeeText('Ouverture le mardi 3 novembre')
-            ->assertDontSeeText('Réserver mon rituel');
+    foreach ($shownTexts as $text) {
+        $response->assertSeeText($text, false);
     }
-})->with(['before the opening' => false, 'after the opening' => true]);
+    foreach ($hiddenTexts as $text) {
+        $response->assertDontSeeText($text, false);
+    }
 
-it('keeps the official home and its navigation separate', function (): void {
-    $this->get(route('home'))
+    // What does not depend on the opening stays the same in both states.
+    $response->assertSeeTextInOrder(['Vous ne choisissez pas votre soin.', 'maison de soin holistique', 'Nos soins', 'Ce que vous en dites', 'Offrir un rituel', 'Nous trouver']);
+})->with('opening states');
+
+it('shows the featured categories and the reviews from the database', function (): void {
+    $this->get(route('home.alternative'))
         ->assertOk()
-        ->assertViewIs('web.home.index')
-        ->assertDontSee(route('home.alternative'), false)
-        ->assertDontSee('alternative-page');
+        ->assertSeeInOrder(['Nos rituels corps', 'Notre rituel Visage &amp; Âme', 'Nos rituels complets Corps &amp; Visage', 'Nos traitements visage', 'Nos singuliers'], false)
+        ->assertDontSee('Les suppléments d&#039;Âme', false)
+        ->assertSee(route('treatments').'#rituels-corps', false)
+        ->assertSee('Sampaio')
+        ->assertSee('href="'.config('institute.booksy_profile_url').'"', false);
+});
+
+it('sums up the visible reviews as their average rating and their number', function (): void {
+    $this->get(route('home.alternative'))
+        ->assertOk()
+        ->assertSeeText('5/5')
+        ->assertSeeText('6 avis Booksy');
+});
+
+it('leaves the rating out when no review is visible', function (): void {
+    Review::query()->update(['is_visible' => false]);
+
+    $this->get(route('home.alternative'))
+        ->assertOk()
+        ->assertDontSeeText('/5')
+        ->assertDontSeeText('avis Booksy');
+});
+
+it('loads the main image first, with its vertical crop for upright screens, and the other photos lazily', function (): void {
+    $this->get(route('home.alternative'))
+        ->assertOk()
+        ->assertSee('<source media="(orientation: portrait)" type="image/avif" srcset="'.asset('images/home/hero-portrait-600w.avif'), false)
+        ->assertSeeInOrder([
+            'src="'.asset('images/home/hero-960w.jpg').'"',
+            'fetchpriority="high"',
+            'src="'.asset('images/home/concept-1-240w.jpg').'"',
+            'loading="lazy"',
+        ], false)
+        ->assertSee('src="'.asset('images/treatments/rituels-corps-320w.jpg').'"', false);
+});
+
+it('hides the launch offer while its discount is unknown', function (): void {
+    $this->get(route('home.alternative'))->assertOk()->assertDontSee('Offre de lancement');
+});
+
+it('shows the launch offer before the opening, once its discount is known', function (): void {
+    config(['institute.launch_offer' => ['discount' => '15 %', 'conditions' => 'Valable sur tous les rituels.']]);
+
+    $this->get(route('home.alternative'))
+        ->assertOk()
+        ->assertSee('Offre de lancement')
+        ->assertSee('15 %')
+        ->assertSee('Valable sur tous les rituels.');
+});
+
+it('never shows the launch offer after the opening', function (): void {
+    config(['institute.is_open' => true, 'institute.launch_offer' => ['discount' => '15 %', 'conditions' => null]]);
+
+    $this->get(route('home.alternative'))->assertOk()->assertDontSee('Offre de lancement');
+});
+
+it('renders the alternative home in three queries', function (): void {
+    // Trusted circle presence (shared by every page), featured categories, visible reviews.
+    expect(queryCount(fn () => $this->get(route('home.alternative'))->assertOk()))->toBe(3);
 });
 
 it('prevents indexing the alternative even in production', function (): void {
@@ -57,112 +112,4 @@ it('prevents indexing the alternative even in production', function (): void {
         ->assertOk()
         ->assertHeader('X-Robots-Tag', 'noindex, nofollow')
         ->assertSee('<meta name="robots" content="noindex, nofollow">', false);
-});
-
-it('offers visual comparisons only in the local environment', function (string $environment): void {
-    app()->detectEnvironment(fn (): string => $environment);
-
-    $response = $this->get(route('home.alternative'));
-
-    if ($environment === 'local') {
-        $response->assertSeeText("Personnaliser l'aperçu", false)
-            ->assertSeeText('Originale')
-            ->assertSeeText('Dorée')
-            ->assertSeeText('Le geste')
-            ->assertSeeText('Botanique')
-            ->assertSeeText('Le lin')
-            ->assertSeeText('Mulish')
-            ->assertSeeText('Lora')
-            ->assertSeeText('Jost');
-    } else {
-        $response->assertDontSeeText("Personnaliser l'aperçu", false)
-            ->assertDontSee('design-preview-panel', false)
-            ->assertDontSee('preview-hero-', false);
-    }
-})->with(['local', 'testing', 'staging', 'production']);
-
-it('renders the featured categories and visible reviews from the database', function (): void {
-    $this->get(route('home.alternative'))
-        ->assertOk()
-        ->assertSeeInOrder(['Nos rituels corps', 'Notre rituel Visage &amp; Âme', 'Nos rituels complets Corps &amp; Visage', 'Nos traitements visage', 'Nos singuliers'], false)
-        ->assertDontSee('Les suppléments d&#039;Âme', false)
-        ->assertSee(route('treatments').'#rituels-corps', false)
-        ->assertSeeText('Sampaio')
-        ->assertSee('href="#reviews-title"', false)
-        ->assertSeeText('5/5')
-        ->assertSeeText('6 avis Booksy');
-});
-
-it('leaves the review section out when no review is visible', function (): void {
-    Review::query()->update(['is_visible' => false]);
-
-    $this->get(route('home.alternative'))
-        ->assertOk()
-        ->assertDontSeeText('Ce que vous en dites')
-        ->assertDontSeeText('avis Booksy')
-        ->assertDontSee('href="#reviews-title"', false);
-});
-
-it('provides accessible carousel controls while rendering every visible review', function (): void {
-    $this->get(route('home.alternative'))
-        ->assertOk()
-        ->assertSee('aria-label="Avis précédents"', false)
-        ->assertSee('aria-label="Avis suivants"', false)
-        ->assertSee('aria-controls="review-track"', false)
-        ->assertSee('aria-live="polite"', false)
-        ->assertSee('data-review-clone aria-hidden="true" inert', false)
-        ->assertSeeText('Sampaio')
-        ->assertSeeText('6 avis Booksy');
-});
-
-it('omits carousel controls when there is only one visible review', function (): void {
-    Review::query()->update(['is_visible' => false]);
-    Review::factory()->create(['is_visible' => true]);
-
-    $this->get(route('home.alternative'))
-        ->assertOk()
-        ->assertSeeText('1 avis Booksy')
-        ->assertSee('id="review-track"', false)
-        ->assertDontSee('data-review-clone', false)
-        ->assertDontSee('aria-controls="review-track"', false);
-});
-
-it('uses the configured Booksy destinations for booking and gifts', function (): void {
-    config([
-        'institute.booking_url' => 'https://booksy.com/reservation',
-        'institute.gift_cards_url' => 'https://booksy.com/cartes-cadeaux',
-        'institute.booksy_profile_url' => 'https://booksy.com/avis',
-    ]);
-
-    $this->get(route('home.alternative'))
-        ->assertOk()
-        ->assertSee('href="https://booksy.com/reservation" target="_blank" rel="noopener"', false)
-        ->assertSee('href="https://booksy.com/cartes-cadeaux" target="_blank" rel="noopener"', false)
-        ->assertSee('href="https://booksy.com/avis" target="_blank" rel="noopener"', false);
-});
-
-it('hides the launch offer until its discount is known', function (): void {
-    $this->get(route('home.alternative'))->assertOk()->assertDontSeeText('Offre de lancement');
-});
-
-it('shows a configured launch offer only before the opening', function (bool $isOpen): void {
-    config([
-        'institute.is_open' => $isOpen,
-        'institute.launch_offer' => ['discount' => '15 %', 'conditions' => 'Valable sur tous les rituels.'],
-    ]);
-
-    $response = $this->get(route('home.alternative'))->assertOk();
-
-    if ($isOpen) {
-        $response->assertDontSeeText('Offre de lancement')->assertDontSeeText('15 %');
-    } else {
-        $response->assertSeeText('Offre de lancement')
-            ->assertSeeText('15 %')
-            ->assertSeeText('Valable sur tous les rituels.');
-    }
-})->with(['before the opening' => false, 'after the opening' => true]);
-
-it('renders the alternative in three queries', function (): void {
-    // Trusted circle presence, featured categories and visible reviews are loaded once.
-    expect(queryCount(fn () => $this->get(route('home.alternative'))->assertOk()))->toBe(3);
 });

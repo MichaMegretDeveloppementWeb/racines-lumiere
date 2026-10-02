@@ -16,6 +16,13 @@
     margin-top: 2rem;
 }
 
+.alt-brands-intro {
+    margin-top: 1.25rem;
+    color: var(--color-olive);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+}
+
 .alt-brand-selection > div {
     padding-block: 1.5rem;
     border-top: 1px solid var(--color-sand);

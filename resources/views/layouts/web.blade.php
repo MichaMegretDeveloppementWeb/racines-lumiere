@@ -3,6 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        @if (request()->routeIs('home.alternative'))
+            <meta name="robots" content="noindex, nofollow">
+        @endif
 
         <title>@yield('title')</title>
         <meta name="description" content="@yield('description')">
@@ -15,6 +18,7 @@
 
         <link rel="preload" href="{{ Vite::asset('resources/fonts/cinzel-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
         @vite(['resources/css/web.css', 'resources/js/web.js'])
+        @vite('resources/css/components/web/layout/home-version-switch.css')
     </head>
     <body class="flex min-h-screen flex-col antialiased">
         <x-web.media.icons />
@@ -26,5 +30,6 @@
         </main>
 
         <x-web.layout.footer />
+        <x-web.layout.home-version-switch :current="request()->routeIs('home.alternative') ? 'alternative' : null" />
     </body>
 </html>

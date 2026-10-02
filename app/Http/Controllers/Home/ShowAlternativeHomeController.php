@@ -15,7 +15,7 @@ class ShowAlternativeHomeController extends Controller
     {
         $reviews = $reviewService->visibleReviews();
 
-        return response()->view('web.home.alternative.index', [
+        return response()->view('web.home.index', [
             'featuredCategories' => $menu->featuredCategories(),
             'reviews' => $reviews,
             'reviewSummary' => $reviewService->summaryOf($reviews),

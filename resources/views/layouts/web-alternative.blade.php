@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noindex, nofollow">
         <title>@yield('title')</title>
         <meta name="description" content="@yield('description')">
         <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -13,6 +12,7 @@
         <meta name="theme-color" content="#FCF8EC">
         <link rel="preload" href="{{ Vite::asset('resources/fonts/cinzel-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
         @vite(['resources/css/web.css', 'resources/js/web-alternative.js'])
+        @vite('resources/css/components/web/layout/home-version-switch.css')
         @yield('styles')
     </head>
     <body class="alternative-page antialiased">
@@ -25,5 +25,6 @@
         </main>
 
         @yield('footer')
+        <x-web.layout.home-version-switch current="home" />
     </body>
 </html>

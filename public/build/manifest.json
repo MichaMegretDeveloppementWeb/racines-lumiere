@@ -3,6 +3,15 @@
     "file": "assets/site-menu-CAyMZ0ug.js",
     "name": "site-menu"
   },
+  "resources/css/components/web/layout/home-version-switch.css": {
+    "file": "assets/home-version-switch-DVfdHM7f.css",
+    "name": "home-version-switch",
+    "names": [
+      "home-version-switch.css"
+    ],
+    "src": "resources/css/components/web/layout/home-version-switch.css",
+    "isEntry": true
+  },
   "resources/css/web.css": {
     "file": "assets/web-Ck5nzwL-.css",
     "name": "web",
@@ -17,7 +26,7 @@
     ]
   },
   "resources/css/web/home/alternative/index.css": {
-    "file": "assets/index-DErHwGH6.css",
+    "file": "assets/index-9LmbEWaY.css",
     "name": "index",
     "names": [
       "index.css"

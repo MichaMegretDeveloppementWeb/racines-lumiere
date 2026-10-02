@@ -1,6 +1,6 @@
 <header class="alt-header" x-data="scrollHeader" :data-enhanced="true" :data-scrolled="isScrolled">
     <div class="alt-header-inner">
-        <a href="{{ route('home.alternative') }}" class="alt-brand" aria-label="Racines & Lumière, accueil">
+        <a href="{{ route('home') }}" class="alt-brand" aria-label="Racines & Lumière, accueil">
             <x-web.media.picture name="brand/monogram-gold" :widths="[96, 192]" sizes="(min-width: 48rem) 72px, 56px" alt="" :width="96" :height="96" fallback="webp" class="alt-brand-mark" />
             <span>
                 <span class="alt-brand-name">Racines &amp; Lumière</span>

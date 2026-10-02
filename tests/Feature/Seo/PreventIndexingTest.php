@@ -10,5 +10,7 @@ it('asks crawlers not to index any response outside production', function (): vo
 it('lets crawlers index in production', function (): void {
     app()->detectEnvironment(fn (): string => 'production');
 
-    $this->get(route('home'))->assertHeaderMissing('X-Robots-Tag');
+    $this->get(route('home'))
+        ->assertHeaderMissing('X-Robots-Tag')
+        ->assertDontSee('<meta name="robots" content="noindex, nofollow">', false);
 });

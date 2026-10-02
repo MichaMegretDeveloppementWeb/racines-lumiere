@@ -5,7 +5,7 @@
     <div class="alt-opening-intro">
         <div>
             <h2 id="opening-title">Prochainement, l'ouverture de notre Maison du Mieux-Être&nbsp;!</h2>
-            <p>Racines &amp; Lumière est sur la fin des préparatifs pour pouvoir vous accueillir à partir du mardi 3 novembre&nbsp;!</p>
+            <p>Notre Maison du Mieux-Être ouvre ses portes à Sciez le mardi 3 novembre 2026. Vous pouvez réserver votre rituel dès maintenant.</p>
         </div>
         <time datetime="2026-11-03" class="alt-opening-date"><span>3</span><span>novembre<br>2026</span></time>
     </div>

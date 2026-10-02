@@ -1,4 +1,4 @@
-/* Temporary local comparison tool. Remove this file and the preview fonts before publication. */
+/* Temporary design comparison. Remove this file and the preview fonts before publication. */
 @font-face {
     font-family: 'Lora';
     font-style: normal;
@@ -195,6 +195,16 @@
 @media (width < 64rem) {
     .alt-preview-height {
         display: none;
+    }
+}
+
+@media (width < 40rem) {
+    .alt-preview {
+        bottom: calc(max(var(--alt-edge), env(safe-area-inset-bottom)) + 4.125rem);
+    }
+
+    .alt-preview-panel {
+        max-height: calc(100dvh - 12rem);
     }
 }
 

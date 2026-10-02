@@ -8,12 +8,12 @@
         <div>
             <h3>Aurore</h3>
             <p class="alt-founder-role">Co-fondatrice</p>
-            <p>Racines &amp; Lumière est née de cette envie&nbsp;: créer un lieu où l'exigence du spa de luxe rencontre la profondeur du soin holistique, pour des rituels vraiment faits pour vous.</p>
+            <p>Mon parcours dans les spas de luxe m'a appris l'exigence du geste et les petites attentions. Avec Racines &amp; Lumière, je souhaite réunir cette expérience et la profondeur du soin holistique pour créer des rituels vraiment faits pour vous.</p>
         </div>
         <div>
             <h3>Lorie</h3>
             <p class="alt-founder-role">Co-fondatrice</p>
-            <p>C'est au spa, où nous avons travaillé ensemble plusieurs années, qu'Aurore et moi nous sommes rencontrées et que notre amitié est née. Nous partagions la même vision du soin, mais le cadre d'un institut classique ne nous permettait pas de la vivre pleinement. L'idée de Racines &amp; Lumière est venue tout naturellement&nbsp;: créer un lieu qui nous ressemble, où nous sommes libres d'imaginer des moments qui vous correspondent, là où vous en êtes.</p>
+            <p>Mon parcours m'a menée vers une approche globale du soin, nourrie par l'art du toucher, l'écoute et l'intuition. Avec Aurore, je souhaite créer des rituels qui considèrent la personne dans son ensemble, selon ses besoins et ses émotions du moment.</p>
         </div>
     </div>
 </section>

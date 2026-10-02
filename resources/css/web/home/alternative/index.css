@@ -8,10 +8,11 @@
 @import './quote.css';
 @import './founders.css';
 @import './reviews.css';
+@import './faq.css';
 @import './gift-cards.css';
 @import './visit.css';
 @import './footer.css';
-/* Temporary local comparison tool: remove this import and its assets before publication. */
+/* Temporary design comparison: remove this import and its assets before publication. */
 @import './design-preview.css';
 
 .alternative-page {
@@ -115,6 +116,11 @@
 }
 
 .alt-opening + .alt-concept {
+    padding-top: 0;
+}
+
+.alt-founders + .alt-faq,
+.alt-reviews + .alt-faq {
     padding-top: 0;
 }
 

@@ -27,14 +27,15 @@
     @if ($reviewSummary !== null)
         @include('web.home.alternative.partials.reviews')
     @endif
+    @include('web.home.alternative.partials.faq')
     @include('web.home.alternative.partials.gift-cards')
     @include('web.home.alternative.partials.visit')
 @endsection
 
 @section('footer')
     @include('web.home.alternative.partials.footer')
-    {{-- Temporary local comparison tool: remove its view, CSS, JS, preview fonts and unused images before publication. --}}
-    @env('local')
+    {{-- Temporary design comparison: remove its view, CSS, JS, preview fonts and unused images before publication. --}}
+    @if (config('preview.enabled'))
         @include('web.home.alternative.partials.design-preview')
-    @endenv
+    @endif
 @endsection

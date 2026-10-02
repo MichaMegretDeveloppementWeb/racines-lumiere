@@ -1,7 +1,7 @@
 <footer class="alt-panel alt-panel-wide alt-footer">
     <div class="alt-wrap">
         <div class="alt-footer-main">
-            <a href="{{ route('home.alternative') }}" class="alt-footer-brand">
+            <a href="{{ route('home') }}" class="alt-footer-brand">
                 <x-web.media.picture name="brand/logo-gold" :widths="[280, 560]" sizes="210px" alt="Racines & Lumière, rituels bien-être, beauté vivante, accueil" :width="280" :height="313" fallback="webp" />
             </a>
             <div class="alt-footer-address">

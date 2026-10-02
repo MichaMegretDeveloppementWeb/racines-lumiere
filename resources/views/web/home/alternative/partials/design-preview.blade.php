@@ -1,4 +1,4 @@
-{{-- Temporary local-only design comparison. Remove this partial and its matching assets before publication. --}}
+{{-- Temporary design comparison. Remove this partial and its matching assets before publication. --}}
 @php
     $previewImages = [
         ['id' => 'original', 'label' => 'Originale', 'name' => 'hero-v3', 'widths' => [480, 960, 1440]],
