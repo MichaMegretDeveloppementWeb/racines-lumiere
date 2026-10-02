@@ -11,11 +11,14 @@ use Illuminate\Contracts\View\View;
 
 class ShowHomeController extends Controller
 {
-    public function __invoke(TreatmentMenuService $menu, ReviewService $reviews): View
+    public function __invoke(TreatmentMenuService $menu, ReviewService $reviewService): View
     {
+        $reviews = $reviewService->visibleReviews();
+
         return view('web.home.index', [
             'featuredCategories' => $menu->featuredCategories(),
-            'reviews' => $reviews->visibleReviews(),
+            'reviews' => $reviews,
+            'reviewSummary' => $reviewService->summaryOf($reviews),
         ]);
     }
 }

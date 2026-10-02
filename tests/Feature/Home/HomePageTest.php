@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Review;
 use Database\Seeders\DatabaseSeeder;
 
 beforeEach(function (): void {
@@ -30,14 +31,14 @@ it('renders the home page within its layout, in both states', function (bool $is
         ->assertSee('<main id="content"', false);
 
     foreach ($shownTexts as $text) {
-        $response->assertSee($text, false);
+        $response->assertSeeText($text, false);
     }
     foreach ($hiddenTexts as $text) {
-        $response->assertDontSee($text, false);
+        $response->assertDontSeeText($text, false);
     }
 
     // What does not depend on the opening stays the same in both states.
-    $response->assertSeeInOrder(['Vous ne choisissez pas votre soin.', 'maison de soin holistique', 'Nos soins', 'Ce que vous en dites', 'Offrir un rituel', 'Nous trouver'], false);
+    $response->assertSeeTextInOrder(['Vous ne choisissez pas votre soin.', 'maison de soin holistique', 'Nos soins', 'Ce que vous en dites', 'Offrir un rituel', 'Nous trouver']);
 })->with('opening states');
 
 it('shows the featured categories and the reviews from the database', function (): void {
@@ -48,6 +49,22 @@ it('shows the featured categories and the reviews from the database', function (
         ->assertSee(route('treatments').'#rituels-corps', false)
         ->assertSee('Sampaio')
         ->assertSee('href="'.config('institute.booksy_profile_url').'"', false);
+});
+
+it('sums up the visible reviews as their average rating and their number', function (): void {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSeeText('5/5')
+        ->assertSeeText('6 avis Booksy');
+});
+
+it('leaves the rating out when no review is visible', function (): void {
+    Review::query()->update(['is_visible' => false]);
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertDontSeeText('/5')
+        ->assertDontSeeText('avis Booksy');
 });
 
 it('hides the launch offer while its discount is unknown', function (): void {

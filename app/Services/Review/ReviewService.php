@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\Review;
 
 use App\Data\Review\ReviewData;
+use App\Data\Review\ReviewSummaryData;
 use App\Models\Review;
 use App\Services\Typography\TypographyService;
 
@@ -32,5 +33,24 @@ class ReviewService
             ))
             ->values()
             ->all();
+    }
+
+    /**
+     * The average rating and the number of the given reviews, or null when there are none.
+     *
+     * @param  list<ReviewData>  $reviews
+     */
+    public function summaryOf(array $reviews): ?ReviewSummaryData
+    {
+        if ($reviews === []) {
+            return null;
+        }
+
+        $ratings = array_map(fn (ReviewData $review): int => $review->rating, $reviews);
+
+        return new ReviewSummaryData(
+            averageRating: array_sum($ratings) / count($ratings),
+            count: count($ratings),
+        );
     }
 }

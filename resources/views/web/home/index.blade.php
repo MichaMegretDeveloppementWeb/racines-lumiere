@@ -14,14 +14,20 @@
         @include('web.home.partials.opening-banner')
     @endunless
 
-    {{-- Launch offer --}}
-    <x-web.institute.launch-offer class="mx-4 my-10 sm:mx-auto sm:max-w-2xl" />
-
     {{-- Concept --}}
     @include('web.home.partials.concept')
 
+    {{-- Ribbons --}}
+    @include('web.home.partials.ribbons')
+
     {{-- Treatments preview --}}
     @include('web.home.partials.treatments-preview')
+
+    {{-- House --}}
+    @include('web.home.partials.house')
+
+    {{-- Quote --}}
+    @include('web.home.partials.quote')
 
     {{-- Reviews --}}
     @include('web.home.partials.reviews')
