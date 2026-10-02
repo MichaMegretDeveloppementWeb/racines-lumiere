@@ -1,0 +1,46 @@
+.alt-brands {
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    align-items: center;
+    gap: clamp(3rem, 7.5vw, 7rem);
+}
+
+.alt-brands-image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: var(--color-sand);
+}
+
+.alt-brand-selection {
+    margin-top: 2rem;
+}
+
+.alt-brand-selection > div {
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--color-sand);
+}
+
+.alt-brand-selection h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.alt-brand-selection p {
+    color: var(--color-olive);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+@media (width < 48rem) {
+    .alt-brands {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .alt-brands-image {
+        width: 100%;
+        max-height: 25rem;
+    }
+}

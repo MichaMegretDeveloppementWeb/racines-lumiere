@@ -1,0 +1,124 @@
+.alt-treatments {
+    padding-block: clamp(3rem, 5.5vw, 5rem);
+    background: color-mix(in srgb, var(--color-sand) 20%, var(--color-cream));
+}
+
+.alt-care-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 2.75rem 1.75rem;
+    margin-top: 2.75rem;
+}
+
+.alt-care {
+    grid-column: span 2;
+}
+
+.alt-care a {
+    display: block;
+    height: 100%;
+    border-radius: 1rem;
+}
+
+.alt-care-image {
+    display: block;
+    aspect-ratio: 1.3;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--color-sand);
+}
+
+.alt-care-image img {
+    object-position: center 44%;
+}
+
+.alt-care-copy {
+    display: block;
+    padding-top: 1.5rem;
+}
+
+.alt-care-title {
+    display: block;
+    max-width: 24ch;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    line-height: 1.4;
+    text-wrap: balance;
+}
+
+.alt-care-subtitle {
+    display: block;
+    margin-top: 0.625rem;
+    color: var(--color-olive);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+}
+
+.alt-care a:hover .alt-care-title {
+    color: var(--color-terracotta);
+}
+
+.alt-care:nth-child(n + 4) {
+    grid-column: span 3;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-sand);
+}
+
+.alt-care:nth-child(n + 4) a {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    align-items: center;
+    gap: 1.75rem;
+}
+
+.alt-care:nth-child(n + 4) .alt-care-image {
+    aspect-ratio: 1;
+}
+
+.alt-care:nth-child(n + 4) .alt-care-copy {
+    padding: 0;
+}
+
+@media (width < 64rem) {
+    .alt-care-grid {
+        gap: 2rem 1.25rem;
+    }
+
+    .alt-care-title {
+        font-size: 1.125rem;
+    }
+
+    .alt-care:nth-child(n + 4) a {
+        grid-template-columns: 5rem 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (width < 48rem) {
+    .alt-care-grid {
+        grid-template-columns: 1fr;
+        gap: 2.25rem;
+        margin-top: 2rem;
+    }
+
+    .alt-care,
+    .alt-care:nth-child(n + 4) {
+        grid-column: auto;
+    }
+
+    .alt-care-copy {
+        padding-top: 1.25rem;
+    }
+
+    .alt-care-title {
+        font-size: 1.25rem;
+    }
+
+    .alt-care:nth-child(n + 4) {
+        padding-top: 1.75rem;
+    }
+
+    .alt-care:nth-child(n + 4) a {
+        grid-template-columns: 5.25rem 1fr;
+    }
+}

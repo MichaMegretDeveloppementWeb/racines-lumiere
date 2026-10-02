@@ -1,0 +1,112 @@
+.alt-opening {
+    position: relative;
+    isolation: isolate;
+    margin-block: var(--alt-opening-space);
+    padding: 3rem clamp(2rem, 4vw, 3.5rem);
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: color-mix(in srgb, var(--color-sand) 25%, var(--color-cream));
+}
+
+.alt-opening-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.alt-opening-texture img {
+    object-position: center 60%;
+}
+
+.alt-opening-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 11rem;
+    align-items: center;
+    gap: 4rem;
+}
+
+.alt-opening h2 {
+    max-width: 34ch;
+    margin-bottom: 1rem;
+    color: var(--color-terracotta);
+    font-size: clamp(1.5rem, 2.3vw, 1.875rem);
+    line-height: 1.4;
+    letter-spacing: 0;
+    text-wrap: balance;
+}
+
+.alt-opening p {
+    max-width: 62ch;
+    color: var(--color-forest);
+    line-height: 1.8;
+}
+
+.alt-opening-date {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-left: 2rem;
+    border-left: 1px solid color-mix(in srgb, var(--color-terracotta) 25%, transparent);
+    color: var(--color-terracotta);
+}
+
+.alt-opening-date span:first-child {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    line-height: 1;
+}
+
+.alt-opening-date span:last-child {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.alt-launch-offer {
+    margin-top: 2rem;
+    padding: 1.75rem;
+    border-radius: 1rem;
+    background: var(--color-cream);
+}
+
+.alt-launch-offer h3 {
+    margin-bottom: 0.75rem;
+    color: var(--color-terracotta);
+    font-size: 1.375rem;
+}
+
+.alt-launch-offer p {
+    max-width: none;
+}
+
+@media (width < 64rem) and (width >= 48rem) {
+    .alt-opening + .alt-concept {
+        align-items: start;
+    }
+}
+
+@media (width < 48rem) {
+    .alt-opening {
+        padding: 2rem 1.5rem;
+    }
+
+    .alt-opening-intro {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .alt-opening h2 {
+        font-size: 1.375rem;
+    }
+
+    .alt-opening-date {
+        padding: 1.25rem 0 0;
+        border-top: 1px solid color-mix(in srgb, var(--color-terracotta) 25%, transparent);
+        border-left: 0;
+    }
+
+    .alt-opening-date span:first-child {
+        font-size: 3.5rem;
+    }
+}

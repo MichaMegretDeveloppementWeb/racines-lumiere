@@ -1,0 +1,60 @@
+.alt-founders {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: clamp(3rem, 7.5vw, 7rem);
+}
+
+.alt-founders.alt-section {
+    padding-bottom: 0;
+}
+
+.alt-founders-intro .alt-title {
+    font-size: clamp(1.875rem, 2.65vw, 2.375rem);
+}
+
+.alt-founders-intro p {
+    max-width: 40ch;
+    margin-top: 1.5rem;
+    color: var(--color-olive);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+}
+
+.alt-founders-intro .alt-text-link {
+    margin-top: 1.25rem;
+}
+
+.alt-founder-stories {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.alt-founder-stories > div {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-sand);
+}
+
+.alt-founder-stories h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+.alt-founder-stories .alt-founder-role {
+    margin-top: 0.375rem;
+    color: var(--color-terracotta);
+    font-size: 0.8125rem;
+}
+
+.alt-founder-stories p:last-child {
+    margin-top: 1.25rem;
+    color: var(--color-olive);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+@media (width < 48rem) {
+    .alt-founders {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
