@@ -11,20 +11,6 @@
     line-height: 1.35;
 }
 
-.alt-ritual-time {
-    max-width: 31ch;
-    margin-top: 2rem;
-    padding-left: 1.25rem;
-    border-left: 2px solid var(--color-terracotta);
-    color: var(--color-terracotta);
-    font-size: 1.0625rem;
-    line-height: 1.8;
-}
-
-.alt-ritual-time strong {
-    font-weight: 600;
-}
-
 .alt-ritual-steps > div {
     padding-block: 1.75rem;
     border-top: 1px solid var(--color-sand);
@@ -46,9 +32,5 @@
     .alt-ritual {
         grid-template-columns: 1fr;
         gap: 2rem;
-    }
-
-    .alt-ritual-time {
-        margin-top: 1.5rem;
     }
 }

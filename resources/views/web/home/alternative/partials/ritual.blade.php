@@ -1,7 +1,6 @@
 <section aria-labelledby="ritual-title" class="alt-wrap alt-ritual">
     <div class="alt-ritual-intro">
         <h2 id="ritual-title" class="alt-title">Chez nous, un soin commence bien avant la cabine et se termine bien après.</h2>
-        <p class="alt-ritual-time">Pour nos rituels signature, prévoyez <strong>30&nbsp;minutes en plus du temps de soin</strong>&nbsp;: un accueil pour vous écouter et un moment pour prolonger le rituel.</p>
     </div>
     <div class="alt-ritual-steps">
         <div>
