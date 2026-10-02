@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -17,16 +18,17 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique('reviews_slug_unique');
             $table->string('author_name');
-            $table->rawColumn(
-                'rating',
-                'tinyint unsigned constraint reviews_rating_between_1_and_5 check (rating between 1 and 5)'
-            );
+            $table->unsignedTinyInteger('rating');
             $table->text('body');
             $table->date('reviewed_on');
             $table->string('treatment_label')->nullable();
             $table->unsignedSmallInteger('position');
             $table->boolean('is_visible')->default(true);
         });
+
+        DB::statement(
+            'ALTER TABLE reviews ADD CONSTRAINT reviews_rating_between_1_and_5 CHECK (rating BETWEEN 1 AND 5)'
+        );
     }
 
     /**
