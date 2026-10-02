@@ -1,8 +1,8 @@
 import collapse from '@alpinejs/collapse';
-import focus from '@alpinejs/focus';
 import Alpine from 'alpinejs';
+import { siteMenu } from './components/web/layout/site-menu.js';
 
-Alpine.plugin(focus);
 Alpine.plugin(collapse);
+Alpine.data('siteMenu', siteMenu);
 
 Alpine.start();

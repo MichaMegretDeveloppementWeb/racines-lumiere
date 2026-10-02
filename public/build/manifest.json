@@ -1,15 +1,27 @@
 {
   "resources/css/web.css": {
-    "file": "assets/web-s0LH-vG_.css",
+    "file": "assets/web-YPNaEV76.css",
     "name": "web",
     "names": [
       "web.css"
     ],
     "src": "resources/css/web.css",
-    "isEntry": true
+    "isEntry": true,
+    "assets": [
+      "assets/cinzel-latin-DMUuCU8H.woff2",
+      "assets/mulish-latin-WL5YNY-W.woff2"
+    ]
+  },
+  "resources/fonts/cinzel-latin.woff2": {
+    "file": "assets/cinzel-latin-DMUuCU8H.woff2",
+    "src": "resources/fonts/cinzel-latin.woff2"
+  },
+  "resources/fonts/mulish-latin.woff2": {
+    "file": "assets/mulish-latin-WL5YNY-W.woff2",
+    "src": "resources/fonts/mulish-latin.woff2"
   },
   "resources/js/web.js": {
-    "file": "assets/web-B7vHQp7s.js",
+    "file": "assets/web-D8eCnDj7.js",
     "name": "web",
     "src": "resources/js/web.js",
     "isEntry": true

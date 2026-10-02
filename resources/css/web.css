@@ -3,8 +3,26 @@
 /* Only what renders is scanned, so documentation never produces styles. */
 @source '../views';
 @source '../js';
+@source '../../app/View/Components';
 
-/* Brand palette. */
+/* Served by the site itself: no third-party request, latin subset, variable weight. */
+@font-face {
+    font-family: 'Cinzel';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('../fonts/cinzel-latin.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url('../fonts/mulish-latin.woff2') format('woff2');
+}
+
+/* Brand palette and typefaces. */
 @theme {
     --color-terracotta: #733106;
     --color-forest: #303425;
@@ -12,4 +30,52 @@
     --color-cream: #fcf8ec;
     --color-sand: #dac0a2;
     --color-gold: #dd9b28;
+    --color-paper: #f5ede0;
+    --color-honey: #f3d9a6;
+
+    --font-display: 'Cinzel', 'Times New Roman', serif;
+    --font-sans: 'Mulish', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+    :root {
+        /* The focus ring colour, switched to gold inside dark sections. */
+        --color-focus: var(--color-terracotta);
+    }
+
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /* A faint paper grain, tiled from a small noise pattern the browser draws once. */
+    body {
+        background-color: var(--color-cream);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .19 0 0 0 0 .2 0 0 0 0 .15 .1 0 0 0 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+        color: var(--color-forest);
+        font-family: var(--font-sans);
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        letter-spacing: 0.01em;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-focus);
+        outline-offset: 3px;
+    }
+
+    button:not(:disabled),
+    [role='button']:not(:disabled) {
+        cursor: pointer;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
 }
