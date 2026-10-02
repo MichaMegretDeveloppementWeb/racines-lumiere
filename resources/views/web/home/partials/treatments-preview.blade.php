@@ -13,6 +13,7 @@
                 <li class="w-[64%] shrink-0 snap-start sm:w-[40%] lg:w-auto">
                     <a href="{{ route('treatments') }}#{{ $category->slug }}" class="group block">
                         <span class="relative block aspect-[3/4.4] overflow-hidden rounded-t-full rounded-b-md bg-linear-to-b from-honey to-sand">
+                            <x-web.media.picture :name="'treatments/'.$category->slug" :widths="[320, 640]" sizes="(min-width: 64rem) 210px, 64vw" alt="" :width="320" :height="469" class="absolute inset-0 size-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
                             <span class="absolute bottom-4 left-1/2 -translate-x-1/2 font-display text-[0.6875rem] tracking-[0.3em] text-cream">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                         </span>
                         <span class="mt-5 block font-display text-base leading-snug tracking-[0.04em] text-forest transition-colors group-hover:text-terracotta lg:text-[1.03rem]">{{ $category->name }}</span>

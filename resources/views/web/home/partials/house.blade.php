@@ -5,8 +5,12 @@
                 <ellipse cx="240" cy="300" rx="236" ry="296" stroke="currentColor" transform="rotate(-8 240 300)" />
                 <use href="#icon-sun" x="458" y="110" width="20" height="20" class="text-gold" />
             </svg>
-            <div class="absolute top-2.5 left-1.5 h-[23rem] w-[17rem] rounded-[50%] bg-linear-to-br from-honey via-sand to-paper lg:top-5 lg:left-[1.875rem] lg:h-[35rem] lg:w-[26.25rem]"></div>
-            <div class="absolute bottom-0 left-[11.5rem] size-[9.5rem] rounded-full border-[7px] border-paper bg-linear-to-br from-sand to-honey lg:left-[20.625rem] lg:size-[13.125rem] lg:border-[9px]"></div>
+            <div class="absolute top-2.5 left-1.5 h-[23rem] w-[17rem] overflow-hidden rounded-[50%] bg-linear-to-br from-honey via-sand to-paper lg:top-5 lg:left-[1.875rem] lg:h-[35rem] lg:w-[26.25rem]">
+                <x-web.media.picture name="home/house-1" :widths="[440, 880]" sizes="(min-width: 64rem) 420px, 272px" alt="" :width="440" :height="587" class="size-full object-cover" />
+            </div>
+            <div class="absolute bottom-0 left-[11.5rem] size-[9.5rem] overflow-hidden rounded-full border-[7px] border-paper bg-linear-to-br from-sand to-honey lg:left-[20.625rem] lg:size-[13.125rem] lg:border-[9px]">
+                <x-web.media.picture name="home/house-2" :widths="[240, 420]" sizes="(min-width: 64rem) 210px, 152px" alt="" :width="240" :height="240" class="size-full object-cover" />
+            </div>
         </div>
 
         <div>

@@ -1,6 +1,11 @@
 <picture>
+    @if ($portraitName !== null)
+        @foreach ($portraitFormats() as $format)
+            <source media="(orientation: portrait)" type="{{ $mediaTypeOf($format) }}" srcset="{{ $srcsetFor($format, true) }}" sizes="100vw">
+        @endforeach
+    @endif
     @foreach ($sourceFormats() as $format)
-        <source type="image/{{ $format }}" srcset="{{ $srcsetFor($format) }}" sizes="{{ $sizes }}">
+        <source type="{{ $mediaTypeOf($format) }}" srcset="{{ $srcsetFor($format) }}" sizes="{{ $sizes }}">
     @endforeach
     <img
         src="{{ $fallbackUrl() }}"

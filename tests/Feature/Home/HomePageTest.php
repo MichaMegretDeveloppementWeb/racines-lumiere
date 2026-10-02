@@ -67,6 +67,19 @@ it('leaves the rating out when no review is visible', function (): void {
         ->assertDontSeeText('avis Booksy');
 });
 
+it('loads the main image first, with its vertical crop for upright screens, and the other photos lazily', function (): void {
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('<source media="(orientation: portrait)" type="image/avif" srcset="'.asset('images/home/hero-portrait-600w.avif'), false)
+        ->assertSeeInOrder([
+            'src="'.asset('images/home/hero-960w.jpg').'"',
+            'fetchpriority="high"',
+            'src="'.asset('images/home/concept-1-240w.jpg').'"',
+            'loading="lazy"',
+        ], false)
+        ->assertSee('src="'.asset('images/treatments/rituels-corps-320w.jpg').'"', false);
+});
+
 it('hides the launch offer while its discount is unknown', function (): void {
     $this->get(route('home'))->assertOk()->assertDontSee('Offre de lancement');
 });

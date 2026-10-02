@@ -25,7 +25,9 @@
         </div>
 
         <div aria-hidden="true" class="relative">
-            <div class="aspect-[4/5] rounded-t-full rounded-b-[1.75rem] bg-[radial-gradient(ellipse_at_62%_42%,var(--color-honey)_0%,var(--color-sand)_45%,var(--color-olive)_120%)]"></div>
+            <div class="aspect-[4/5] overflow-hidden rounded-t-full rounded-b-[1.75rem] bg-[radial-gradient(ellipse_at_62%_42%,var(--color-honey)_0%,var(--color-sand)_45%,var(--color-olive)_120%)]">
+                <x-web.media.picture name="home/visit" :widths="[480, 960]" sizes="(min-width: 64rem) 40vw, 100vw" alt="" :width="480" :height="600" class="size-full object-cover" />
+            </div>
             <svg viewBox="0 0 132 132" class="absolute -bottom-7 -left-2.5 size-28 rounded-full bg-cream shadow-[0_24px_50px_-24px_rgb(60_40_20/0.45)] lg:bottom-[4.375rem] lg:-left-14 lg:size-[8.25rem]">
                 <defs>
                     <path id="visit-seal-ring" d="M66 66m-47 0a47 47 0 1 1 94 0a47 47 0 1 1-94 0" />

@@ -13,10 +13,18 @@
         </ul>
 
         <div aria-hidden="true">
-            <div class="absolute top-[15.5rem] left-[6%] h-[14.5rem] w-[52%] -rotate-3 rounded bg-linear-to-br from-sand to-honey shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-0 lg:left-[4%] lg:h-[16.875rem] lg:w-[13.125rem] lg:-rotate-4"></div>
-            <div class="absolute top-[27.5rem] left-[36%] z-10 size-24 rotate-3 rounded bg-linear-to-br from-honey to-paper shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-[12.5rem] lg:left-[21%] lg:size-40"></div>
-            <div class="absolute hidden -rotate-2 rounded bg-linear-to-br from-paper to-sand shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-[11.875rem] lg:right-[20%] lg:block lg:h-[13.75rem] lg:w-[10.9375rem]"></div>
-            <div class="absolute top-[19.5rem] right-[6%] h-[12.5rem] w-[42%] rotate-3 rounded bg-linear-to-br from-honey to-sand shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-4 lg:right-[3%] lg:h-[18.75rem] lg:w-60 lg:rotate-4"></div>
+            <div class="absolute overflow-hidden top-[15.5rem] left-[6%] h-[14.5rem] w-[52%] -rotate-3 rounded bg-linear-to-br from-sand to-honey shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-0 lg:left-[4%] lg:h-[16.875rem] lg:w-[13.125rem] lg:-rotate-4">
+                <x-web.media.picture name="home/concept-1" :widths="[240, 480]" sizes="(min-width: 64rem) 210px, 52vw" alt="" :width="240" :height="300" class="size-full object-cover" />
+            </div>
+            <div class="absolute overflow-hidden top-[27.5rem] left-[36%] z-10 size-24 rotate-3 rounded bg-linear-to-br from-honey to-paper shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-[12.5rem] lg:left-[21%] lg:size-40">
+                <x-web.media.picture name="home/concept-2" :widths="[192, 320]" sizes="(min-width: 64rem) 160px, 96px" alt="" :width="192" :height="192" class="size-full object-cover" />
+            </div>
+            <div class="absolute overflow-hidden hidden -rotate-2 rounded bg-linear-to-br from-paper to-sand shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-[11.875rem] lg:right-[20%] lg:block lg:h-[13.75rem] lg:w-[10.9375rem]">
+                <x-web.media.picture name="home/concept-3" :widths="[200, 400]" sizes="175px" alt="" :width="200" :height="250" class="size-full object-cover" />
+            </div>
+            <div class="absolute overflow-hidden top-[19.5rem] right-[6%] h-[12.5rem] w-[42%] rotate-3 rounded bg-linear-to-br from-honey to-sand shadow-[0_34px_60px_-34px_rgb(60_40_20/0.55)] lg:top-4 lg:right-[3%] lg:h-[18.75rem] lg:w-60 lg:rotate-4">
+                <x-web.media.picture name="home/concept-4" :widths="[280, 560]" sizes="(min-width: 64rem) 240px, 42vw" alt="" :width="280" :height="350" class="size-full object-cover" />
+            </div>
         </div>
     </div>
 </section>

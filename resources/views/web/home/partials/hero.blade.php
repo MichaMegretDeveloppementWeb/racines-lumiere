@@ -1,5 +1,17 @@
 <section aria-labelledby="hero-title" class="relative isolate mx-2 mt-2 flex min-h-[max(44rem,calc(100svh-1rem))] flex-col overflow-hidden rounded-3xl lg:mx-3.5 lg:mt-3.5 lg:min-h-[max(45rem,calc(100svh-1.75rem))] lg:rounded-[2rem]">
-    <div aria-hidden="true" class="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_72%_32%,var(--color-cream)_0%,var(--color-honey)_26%,var(--color-sand)_62%,#c9a47c_100%)]"></div>
+    <div aria-hidden="true" class="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_72%_32%,var(--color-cream)_0%,var(--color-honey)_26%,var(--color-sand)_100%)]"></div>
+    <x-web.media.picture
+        name="home/hero"
+        :widths="[960, 1440, 1920]"
+        sizes="100vw"
+        portrait-name="home/hero-portrait"
+        :portrait-widths="[600, 900, 1200]"
+        alt=""
+        :width="1920"
+        :height="1280"
+        is-priority
+        class="absolute inset-0 -z-20 size-full object-cover object-[74%_38%] portrait:object-[50%_24%]"
+    />
     <div aria-hidden="true" class="absolute inset-0 -z-10 bg-linear-to-t from-paper from-10% via-paper/90 via-45% to-paper/0 to-80% lg:bg-linear-to-r lg:from-paper/95 lg:from-0% lg:via-paper/80 lg:via-35% lg:to-paper/0 lg:to-65%"></div>
 
     <div class="flex flex-1 flex-col justify-end px-6 pt-32 pb-28 lg:max-w-[45rem] lg:justify-center lg:px-[4.5rem] lg:pt-32 lg:pb-32">
