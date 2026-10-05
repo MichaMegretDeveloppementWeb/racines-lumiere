@@ -1,0 +1,72 @@
+/* Their names, framed by two arches, one higher than the other. */
+.rl-story-opening .rl-page-intro-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.45fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding-block: 9rem 4.5rem;
+}
+
+.rl-story-opening-arch {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 999px 999px 1.25rem 1.25rem;
+    background: var(--color-sand);
+    box-shadow: 0 1.5rem 3rem -1.5rem color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+}
+
+.rl-story-opening-arch:first-child {
+    transform: translateY(-1.75rem);
+}
+
+.rl-story-opening-arch:last-child {
+    transform: translateY(1.75rem);
+}
+
+.rl-story-opening-title {
+    text-align: center;
+}
+
+.rl-story-opening h1 {
+    font-size: clamp(2.75rem, 5.6vw, 5rem);
+    line-height: 1.05;
+}
+
+.rl-story-opening-eyebrow {
+    display: block;
+    margin-bottom: 1.25rem;
+    color: var(--color-olive);
+    font-size: 0.875rem;
+    letter-spacing: 0.22em;
+}
+
+.rl-story-opening-ampersand {
+    color: var(--color-gold);
+}
+
+.rl-story-opening .rl-page-intro-lead {
+    max-width: 22ch;
+    margin: 1.5rem auto 0;
+}
+
+@media (width < 64rem) {
+    .rl-story-opening .rl-page-intro-inner {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+        row-gap: 2.5rem;
+        padding-block: 8rem 4.5rem;
+    }
+
+    .rl-story-opening-title {
+        grid-column: 1 / -1;
+        order: -1;
+    }
+
+    .rl-story-opening-arch:first-child {
+        transform: none;
+    }
+
+    .rl-story-opening-arch:last-child {
+        transform: translateY(2rem);
+    }
+}

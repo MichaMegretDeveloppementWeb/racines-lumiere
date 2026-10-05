@@ -1,0 +1,89 @@
+/* The meeting told on the textured green, the warm photograph fading into it from the right, without a seam. */
+.rl-meeting {
+    --color-focus: var(--color-gold);
+    position: relative;
+    isolation: isolate;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+    color: var(--color-cream);
+    background: var(--color-forest);
+}
+
+.rl-meeting .rl-texture {
+    z-index: -3;
+}
+
+.rl-meeting-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    width: 60%;
+    mask-image: linear-gradient(90deg, transparent 0%, rgb(0 0 0 / 0.55) 22%, #000 48%);
+}
+
+.rl-meeting-image img {
+    object-position: 58% 50%;
+}
+
+.rl-meeting-inner {
+    display: flex;
+    min-height: clamp(36rem, 46vw, 42rem);
+    align-items: center;
+    padding-block: clamp(4.5rem, 7vw, 6rem);
+}
+
+.rl-meeting-text {
+    max-width: 30rem;
+}
+
+.rl-meeting h2 {
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    line-height: 1.15;
+}
+
+.rl-meeting-text > p:not(.rl-meeting-signature) {
+    margin-top: 1.5rem;
+    color: color-mix(in srgb, var(--color-cream) 88%, transparent);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+}
+
+.rl-meeting-signature {
+    margin-top: 2rem;
+    color: var(--color-gold);
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 2.8vw, 2.375rem);
+    line-height: 1.2;
+}
+
+.rl-meeting-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.75rem;
+    margin-top: 2.25rem;
+}
+
+.rl-meeting .rl-text-link {
+    color: var(--color-cream);
+    text-decoration-color: color-mix(in srgb, var(--color-cream) 45%, transparent);
+}
+
+/* On a narrower screen, the photograph on top, fading into the green the text sits on. */
+@media (width < 64rem) {
+    .rl-meeting-image {
+        bottom: auto;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        max-height: 34rem;
+        mask-image: linear-gradient(180deg, #000 45%, rgb(0 0 0 / 0.45) 75%, transparent 100%);
+    }
+
+    .rl-meeting-inner {
+        align-items: end;
+        min-height: 0;
+        padding-block: min(110vw, 31rem) 3.5rem;
+    }
+}

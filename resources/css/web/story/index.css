@@ -1,7 +1,7 @@
 @import '../../components/web/layout/page-intro.css';
 @import '../../components/web/media/texture.css';
+@import './opening.css';
 @import './welcome.css';
-@import './place.css';
 @import './name.css';
 @import './founders.css';
-@import './signature.css';
+@import './meeting.css';
