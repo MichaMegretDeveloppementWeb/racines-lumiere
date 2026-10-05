@@ -68,8 +68,8 @@ it('seeds the treatment menu of annex B', function (): void {
     ])
         ->and(Treatment::query()->count())->toBe(43)
         ->and(TreatmentVariant::query()->count())->toBe(45)
-        ->and(visibleVariantCount())->toBe(19)
-        ->and(Treatment::query()->where('is_visible', true)->count())->toBe(17);
+        ->and(visibleVariantCount())->toBe(45)
+        ->and(Treatment::query()->where('is_visible', true)->count())->toBe(43);
 });
 
 it('gives every signature ritual exactly thirty more minutes than its care time', function (): void {
@@ -87,22 +87,22 @@ it('gives every signature ritual exactly thirty more minutes than its care time'
     )->toBe(30));
 });
 
-it('keeps every waxing treatment hidden', function (): void {
+it('shows every waxing treatment in its group', function (): void {
     $this->seed(TreatmentMenuSeeder::class);
 
     $waxingCategoryId = TreatmentCategory::query()->where('slug', 'epilation')->value('id');
     $waxing = Treatment::query()->where('treatment_category_id', $waxingCategoryId)->get();
 
     expect($waxing)->toHaveCount(26)
-        ->and($waxing->where('is_visible', true))->toBeEmpty()
-        ->and($waxing->countBy('group_label')->all())->toBe(['Femmes' => 12, 'Forfaits femmes' => 7, 'Hommes' => 7])
+        ->and($waxing->where('is_visible', false))->toBeEmpty()
+        ->and($waxing->countBy('group_label')->all())->toBe(['Épilations femmes' => 12, 'Forfaits femmes' => 7, 'Épilations hommes' => 7])
         ->and(TreatmentCategory::query()->where('slug', 'epilation')->value('is_visible'))->toBeTrue();
 });
 
-it('describes every visible treatment', function (): void {
+it('describes every visible treatment outside a group', function (): void {
     $this->seed(TreatmentMenuSeeder::class);
 
-    $undescribed = Treatment::query()->where('is_visible', true)->whereNull('description')->pluck('slug');
+    $undescribed = Treatment::query()->where('is_visible', true)->whereNull('group_label')->whereNull('description')->pluck('slug');
 
     expect($undescribed->all())->toBe([]);
 });

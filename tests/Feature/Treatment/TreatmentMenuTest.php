@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Data\Treatment\TreatmentCategoryData;
 use App\Data\Treatment\TreatmentData;
+use App\Data\Treatment\TreatmentGroupData;
 use App\Data\Treatment\TreatmentMenuData;
 use App\Data\Treatment\TreatmentVariantData;
 use App\Models\Treatment;
@@ -64,6 +65,22 @@ it('shows only the treatments and price lines that are visible, in their order',
 
     expect(array_map(fn (TreatmentData $treatment): string => $treatment->name, $treatments))->toBe(['First', 'Second', 'Kobido'])
         ->and(array_map(fn (TreatmentVariantData $variant): ?string => $variant->label, $treatments[2]->variants))->toBe([null, 'avec soin visage']);
+});
+
+it('groups the treatments of a category by their group label, in their order', function (): void {
+    $grouped = TreatmentCategory::factory()->create(['position' => 10]);
+    foreach ([['Épilations femmes', 'Sourcils', 10], ['Épilations femmes', 'Lèvres', 20], ['Épilations hommes', 'Dos', 30]] as [$group, $name, $position]) {
+        $treatment = treatmentWithPrice($grouped, $name, $position);
+        Treatment::query()->whereKey($treatment->id)->update(['group_label' => $group]);
+    }
+    treatmentWithPrice(TreatmentCategory::factory()->create(['position' => 20]), 'Kobido', 10);
+
+    [$groupedCategory, $plainCategory] = app(TreatmentMenuService::class)->visibleMenu()->additionalCategories;
+
+    expect(array_map(fn (TreatmentGroupData $group): ?string => $group->label, $groupedCategory->treatmentGroups))->toBe(['Épilations femmes', 'Épilations hommes'])
+        ->and(array_map(fn (TreatmentData $treatment): string => $treatment->name, $groupedCategory->treatmentGroups[0]->treatments))->toBe(['Sourcils', 'Lèvres'])
+        ->and(array_map(fn (TreatmentData $treatment): string => $treatment->name, $groupedCategory->treatments))->toBe(['Sourcils', 'Lèvres', 'Dos'])
+        ->and($plainCategory->treatmentGroups)->toBe([]);
 });
 
 it('keeps a category that has no visible treatment, its description split into paragraphs', function (): void {

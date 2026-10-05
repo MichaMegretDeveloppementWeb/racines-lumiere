@@ -13,6 +13,7 @@ final readonly class TreatmentData
         public string $name,
         public ?string $subtitle,
         public ?string $description,
+        public ?string $groupLabel,
         public array $variants,
     ) {}
 }

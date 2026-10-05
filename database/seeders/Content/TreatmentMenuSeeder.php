@@ -187,25 +187,25 @@ class TreatmentMenuSeeder extends Seeder
     }
 
     /**
-     * Every waxing stays hidden until its prices are checked again on Booksy.
+     * The waxing, grouped as the menu folds it: women, women's packages, men.
      *
      * @return list<TreatmentRow>
      */
     private function waxingTreatments(): array
     {
         $waxing = [
-            ['Femmes', 10, 'epilation-femme-creation-ligne-sourcil', 'Création de la ligne du sourcil', 20, 2400],
-            ['Femmes', 20, 'epilation-femme-sourcils', 'Sourcils', 15, 1800],
-            ['Femmes', 30, 'epilation-femme-levres', 'Lèvres', 10, 1200],
-            ['Femmes', 40, 'epilation-femme-visage-complet', 'Visage complet', 20, 2500],
-            ['Femmes', 50, 'epilation-femme-aisselles', 'Aisselles', 10, 1500],
-            ['Femmes', 60, 'epilation-femme-maillot-simple', 'Maillot simple', 15, 1800],
-            ['Femmes', 70, 'epilation-femme-maillot-bresilien', 'Maillot brésilien', 20, 2400],
-            ['Femmes', 80, 'epilation-femme-maillot-semi-integral', 'Maillot semi-intégral', 25, 3000],
-            ['Femmes', 90, 'epilation-femme-maillot-integral', 'Maillot intégral', 30, 3600],
-            ['Femmes', 100, 'epilation-femme-demi-jambes', 'Demi-jambes', 20, 2500],
-            ['Femmes', 110, 'epilation-femme-cuisses', 'Cuisses', 15, 1800],
-            ['Femmes', 120, 'epilation-femme-jambes-completes', 'Jambes complètes', 35, 4200],
+            ['Épilations femmes', 10, 'epilation-femme-creation-ligne-sourcil', 'Création de la ligne du sourcil', 20, 2400],
+            ['Épilations femmes', 20, 'epilation-femme-sourcils', 'Sourcils', 15, 1800],
+            ['Épilations femmes', 30, 'epilation-femme-levres', 'Lèvres', 10, 1200],
+            ['Épilations femmes', 40, 'epilation-femme-visage-complet', 'Visage complet', 20, 2500],
+            ['Épilations femmes', 50, 'epilation-femme-aisselles', 'Aisselles', 10, 1500],
+            ['Épilations femmes', 60, 'epilation-femme-maillot-simple', 'Maillot simple', 15, 1800],
+            ['Épilations femmes', 70, 'epilation-femme-maillot-bresilien', 'Maillot brésilien', 20, 2400],
+            ['Épilations femmes', 80, 'epilation-femme-maillot-semi-integral', 'Maillot semi-intégral', 25, 3000],
+            ['Épilations femmes', 90, 'epilation-femme-maillot-integral', 'Maillot intégral', 30, 3600],
+            ['Épilations femmes', 100, 'epilation-femme-demi-jambes', 'Demi-jambes', 20, 2500],
+            ['Épilations femmes', 110, 'epilation-femme-cuisses', 'Cuisses', 15, 1800],
+            ['Épilations femmes', 120, 'epilation-femme-jambes-completes', 'Jambes complètes', 35, 4200],
             ['Forfaits femmes', 130, 'forfait-aisselles-ou-sourcils-levres', 'Aisselles ou sourcils, et lèvres', null, 2000],
             ['Forfaits femmes', 140, 'forfait-supplement-sourcils-ou-aisselles', 'Supplément sourcils ou aisselles', null, 1200],
             ['Forfaits femmes', 150, 'forfait-supplement-jambes-completes', 'Supplément jambes complètes', null, 1800],
@@ -213,13 +213,13 @@ class TreatmentMenuSeeder extends Seeder
             ['Forfaits femmes', 170, 'forfait-demi-jambes-maillot-bresilien', 'Aisselles ou sourcils, demi-jambes et maillot brésilien', null, 5800],
             ['Forfaits femmes', 180, 'forfait-demi-jambes-maillot-semi-integral', 'Aisselles ou sourcils, demi-jambes et maillot semi-intégral', null, 7100],
             ['Forfaits femmes', 190, 'forfait-demi-jambes-maillot-integral', 'Aisselles ou sourcils, demi-jambes et maillot intégral', null, 7800],
-            ['Hommes', 200, 'epilation-homme-sourcils', 'Sourcils', 15, 1800],
-            ['Hommes', 210, 'epilation-homme-creation-ligne-sourcil', 'Création de la ligne du sourcil', 20, 2000],
-            ['Hommes', 220, 'epilation-homme-aisselles', 'Aisselles', 10, 1800],
-            ['Hommes', 230, 'epilation-homme-demi-jambes', 'Demi-jambes', 20, 2500],
-            ['Hommes', 240, 'epilation-homme-jambes-completes', 'Jambes complètes', 45, 5000],
-            ['Hommes', 250, 'epilation-homme-dos', 'Dos', 25, 2600],
-            ['Hommes', 260, 'epilation-homme-torse', 'Torse', 25, 2600],
+            ['Épilations hommes', 200, 'epilation-homme-sourcils', 'Sourcils', 15, 1800],
+            ['Épilations hommes', 210, 'epilation-homme-creation-ligne-sourcil', 'Création de la ligne du sourcil', 20, 2000],
+            ['Épilations hommes', 220, 'epilation-homme-aisselles', 'Aisselles', 10, 1800],
+            ['Épilations hommes', 230, 'epilation-homme-demi-jambes', 'Demi-jambes', 20, 2500],
+            ['Épilations hommes', 240, 'epilation-homme-jambes-completes', 'Jambes complètes', 45, 5000],
+            ['Épilations hommes', 250, 'epilation-homme-dos', 'Dos', 25, 2600],
+            ['Épilations hommes', 260, 'epilation-homme-torse', 'Torse', 25, 2600],
         ];
 
         return array_map(
@@ -230,7 +230,6 @@ class TreatmentMenuSeeder extends Seeder
                 $line[3],
                 [$this->variant(10, $line[5], $line[4])],
                 groupLabel: $line[0],
-                isVisible: false,
             ),
             $waxing,
         );
@@ -274,7 +273,6 @@ class TreatmentMenuSeeder extends Seeder
         ?string $subtitle = null,
         ?string $description = null,
         ?string $groupLabel = null,
-        bool $isVisible = true,
     ): array {
         return [
             'category' => $category,
@@ -284,7 +282,7 @@ class TreatmentMenuSeeder extends Seeder
             'description' => $description,
             'group_label' => $groupLabel,
             'position' => $position,
-            'is_visible' => $isVisible,
+            'is_visible' => true,
             'variants' => $variants,
         ];
     }

@@ -1,5 +1,5 @@
 <li class="rl-treatment">
-    <h3>{{ $treatment->name }}</h3>
+    <{{ $headingLevel ?? 'h3' }} class="rl-treatment-name">{{ $treatment->name }}</{{ $headingLevel ?? 'h3' }}>
     @if ($treatment->subtitle !== null)
         <p class="rl-treatment-subtitle">{{ $treatment->subtitle }}</p>
     @endif

@@ -72,18 +72,21 @@ it('never marks up the reviews', function (): void {
 
 it('marks up every treatment and price line of the menu, and nothing hidden', function (): void {
     $this->seed(DatabaseSeeder::class);
+    $hidden = Treatment::factory()->create(['treatment_category_id' => TreatmentCategory::query()->value('id'), 'name' => 'Soin masqué', 'is_visible' => false]);
+    TreatmentVariant::factory()->create(['treatment_id' => $hidden->id]);
 
     $graph = structuredGraph($this->get(route('treatments'))->assertOk());
     $services = nodesOfType($graph, 'Service');
     $offers = array_merge(...array_map(fn (array $service): array => $service['offers'], $services));
     [$pause] = array_values(array_filter($services, fn (array $service): bool => $service['name'] === 'Pause essentielle'));
 
-    expect($services)->toHaveCount(17)
-        ->and($offers)->toHaveCount(19)
+    expect($services)->toHaveCount(43)
+        ->and($offers)->toHaveCount(45)
         ->and($pause['provider'])->toBe(['@id' => 'https://racines-lumiere.fr/#institute'])
         ->and($pause['category'])->toBe('Nos rituels corps')
         ->and($pause['offers'][0])->toMatchArray(['@type' => 'Offer', 'price' => '95.00', 'priceCurrency' => 'EUR'])
-        ->and(array_column($services, 'name'))->not->toContain('Maillot brésilien');
+        ->and(array_column($services, 'name'))->toContain('Maillot brésilien')
+        ->and(array_column($services, 'name'))->not->toContain('Soin masqué');
 });
 
 it('places the menu under the home page in the breadcrumb trail', function (): void {

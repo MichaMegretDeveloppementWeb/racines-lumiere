@@ -37,7 +37,7 @@ it('writes each price line with its total duration first, the care time within i
         ->assertSeeInOrder(['Kobido', '1h', "120\u{00A0}€", '1h30', 'avec soin visage', "150\u{00A0}€"])
         ->assertSeeInOrder(['Yeux', "10\u{00A0}€"]);
 
-    expect(substr_count($response->getContent(), '<li class="rl-variant">'))->toBe(19);
+    expect(substr_count($response->getContent(), '<li class="rl-variant">'))->toBe(45);
 });
 
 it('anchors every category, and lists them all at the top of the page', function (): void {
@@ -48,11 +48,12 @@ it('anchors every category, and lists them all at the top of the page', function
     }
 });
 
-it('points to online booking for waxing, without listing the hidden waxing prices', function (): void {
-    $this->get(route('treatments'))
-        ->assertOk()
-        ->assertSeeText('Retrouvez toutes nos épilations et leurs tarifs directement sur notre page de réservation en ligne.')
-        ->assertDontSee('Maillot brésilien');
+it('lists the waxing prices in three folded groups, present in the page from the start', function (): void {
+    $response = $this->get(route('treatments'))->assertOk();
+
+    expect(substr_count($response->getContent(), '<details class="rl-treatment-group">'))->toBe(3);
+    $response->assertSeeText('Retrouvez toutes nos épilations et leurs tarifs directement sur notre page de réservation en ligne.')
+        ->assertSeeInOrder(['Épilations femmes', 'Maillot brésilien', "20\u{00A0}min", "24\u{00A0}€", 'Forfaits femmes', 'Épilations hommes', 'Torse']);
 });
 
 it('opens Booksy in a new tab from every category', function (): void {
