@@ -1,9 +1,9 @@
-@extends('layouts.web')
-
-@section('title', 'Racines & Lumière · Institut de beauté holistique à Sciez')
-@section('description', $institute->isOpen
-    ? 'Institut de beauté holistique à Sciez, en Chablais : rituels sur mesure pour le corps et le visage, massages et soins experts. Réservation en ligne.'
-    : 'Institut de beauté holistique à Sciez : rituels sur mesure pour le corps et le visage. Ouverture le 3 novembre, réservation en ligne dès maintenant.')
+@extends('layouts.web', [
+    'title' => 'Racines & Lumière · Institut de beauté holistique à Sciez',
+    'description' => $institute->isOpen
+        ? 'Institut de beauté holistique à Sciez, en Chablais : rituels sur mesure pour le corps et le visage, massages et soins experts. Réservation en ligne.'
+        : 'Institut de beauté holistique à Sciez : rituels sur mesure pour le corps et le visage. Ouverture le 3 novembre, réservation en ligne dès maintenant.',
+])
 
 @section('styles')
     @vite('resources/css/web/home/index.css')

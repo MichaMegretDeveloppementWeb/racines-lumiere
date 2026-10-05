@@ -1,1 +1,3 @@
-<script type="application/ld+json">{!! $json() !!}</script>
+<script type="application/ld+json">
+{!! $json() !!}
+</script>

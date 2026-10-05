@@ -9,11 +9,12 @@ it('forbids every crawler outside production', function (): void {
     expect($response->getContent())->toBe("User-agent: *\nDisallow: /\n");
 });
 
-it('allows every crawler in production', function (): void {
+it('allows every crawler in production, and points them to the sitemap', function (): void {
+    config(['app.url' => 'https://racines-lumiere.fr']);
     app()->detectEnvironment(fn (): string => 'production');
 
-    $response = $this->get(route('robots'));
+    $response = $this->get('http://www.example.test/robots.txt');
 
     $response->assertOk()->assertHeader('Content-Type', 'text/plain; charset=UTF-8');
-    expect($response->getContent())->toBe("User-agent: *\nAllow: /\n");
+    expect($response->getContent())->toBe("User-agent: *\nAllow: /\n\nSitemap: https://racines-lumiere.fr/sitemap.xml\n");
 });

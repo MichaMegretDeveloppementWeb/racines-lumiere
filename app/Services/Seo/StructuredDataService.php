@@ -5,39 +5,100 @@ declare(strict_types=1);
 namespace App\Services\Seo;
 
 use App\Data\Institute\InstituteData;
-use App\Data\Treatment\TreatmentData;
-use App\Data\Treatment\TreatmentMenuData;
-use App\Data\Treatment\TreatmentVariantData;
-use Illuminate\Contracts\Config\Repository;
+use App\Data\Seo\WebPageData;
 
 /**
- * The schema.org nodes the pages publish: only what they display, or what is certain.
+ * The schema.org graph of a page: only what the pages display, or what is certain.
  */
 class StructuredDataService
 {
     private const string NAME = 'Racines & Lumière';
 
+    private const string ALTERNATE_NAME = 'Racines et Lumière';
+
     private const string DESCRIPTION = 'Institut de beauté holistique à Sciez, en Chablais : rituels sur mesure pour le corps et le visage, massages et soins experts.';
+
+    private const string LANGUAGE = 'fr-FR';
 
     private const array SERVED_TOWNS = ['Sciez', 'Thonon-les-Bains', 'Évian-les-Bains', 'Douvaine'];
 
-    public function __construct(private readonly Repository $config) {}
+    public function __construct(private readonly SiteUrlService $siteUrl) {}
 
     /**
-     * The institute, published on every page.
+     * The single graph of a page: the site, the institute and the page itself, then the nodes the page adds.
+     *
+     * @param  list<array<string, mixed>>  $pageNodes
+     * @return array{'@context': string, '@graph': list<array<string, mixed>>}
+     */
+    public function graph(InstituteData $institute, WebPageData $page, array $pageNodes): array
+    {
+        $url = $this->siteUrl->urlFor($page->path);
+        $trail = $page->breadcrumbName === null ? [] : [$this->breadcrumbNode($url, $page->breadcrumbName)];
+
+        return [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                $this->websiteNode(),
+                $this->instituteNode($institute),
+                $this->webPageNode($url, $page, $trail === [] ? null : ['@id' => $trail[0]['@id']]),
+                ...$trail,
+                ...$pageNodes,
+            ],
+        ];
+    }
+
+    /**
+     * A reference to the institute, for the nodes it provides.
+     *
+     * @return array{'@id': string}
+     */
+    public function instituteReference(): array
+    {
+        return ['@id' => $this->siteUrl->urlFor('/#institute')];
+    }
+
+    /**
+     * A reference to the page at the given address, for the node it is mainly about.
+     *
+     * @return array{'@id': string}
+     */
+    public function pageReference(string $pageUrl): array
+    {
+        return ['@id' => $pageUrl.'#webpage'];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function websiteNode(): array
+    {
+        return [
+            '@type' => 'WebSite',
+            '@id' => $this->siteUrl->urlFor('/#website'),
+            'url' => $this->siteUrl->urlFor('/'),
+            'name' => self::NAME,
+            'alternateName' => self::ALTERNATE_NAME,
+            'inLanguage' => self::LANGUAGE,
+            'publisher' => $this->instituteReference(),
+        ];
+    }
+
+    /**
+     * The institute, the main subject of the home page.
      *
      * @return array<string, mixed>
      */
-    public function instituteNode(InstituteData $institute): array
+    private function instituteNode(InstituteData $institute): array
     {
         return array_filter([
             '@type' => 'BeautySalon',
-            '@id' => $this->instituteId(),
+            ...$this->instituteReference(),
             'name' => self::NAME,
             'description' => self::DESCRIPTION,
-            'url' => $this->absoluteUrl('/'),
-            'logo' => $this->absoluteUrl('/images/brand/logo-gold-560w.webp'),
-            'image' => $this->absoluteUrl('/images/home/hero-1440w.jpg'),
+            'url' => $this->siteUrl->urlFor('/'),
+            'mainEntityOfPage' => $this->pageReference($this->siteUrl->urlFor('/')),
+            'logo' => $this->siteUrl->urlFor('/images/brand/logo-gold-560w.webp'),
+            'image' => $this->siteUrl->urlFor('/images/home/hero-1440w.jpg'),
             'address' => [
                 '@type' => 'PostalAddress',
                 'streetAddress' => $institute->street,
@@ -45,6 +106,7 @@ class StructuredDataService
                 'addressLocality' => $institute->city,
                 'addressCountry' => 'FR',
             ],
+            'email' => $institute->email,
             'telephone' => $institute->phone === null ? null : '+33 '.substr($institute->phone, 1),
             'priceRange' => '€€',
             'areaServed' => [
@@ -56,79 +118,37 @@ class StructuredDataService
     }
 
     /**
-     * The trail from the home page down to an inner page.
-     *
+     * @param  array{'@id': string}|null  $trail
      * @return array<string, mixed>
      */
-    public function breadcrumbNode(string $pageName, string $routeName): array
+    private function webPageNode(string $url, WebPageData $page, ?array $trail): array
+    {
+        return array_filter([
+            '@type' => 'WebPage',
+            ...$this->pageReference($url),
+            'url' => $url,
+            'name' => $page->title,
+            'description' => $page->description,
+            'isPartOf' => ['@id' => $this->siteUrl->urlFor('/#website')],
+            'inLanguage' => self::LANGUAGE,
+            'breadcrumb' => $trail,
+        ], fn (mixed $value): bool => $value !== null);
+    }
+
+    /**
+     * The trail from the home page down to an inner page.
+     *
+     * @return array{'@type': string, '@id': string, itemListElement: list<array<string, mixed>>}
+     */
+    private function breadcrumbNode(string $url, string $pageName): array
     {
         return [
             '@type' => 'BreadcrumbList',
+            '@id' => $url.'#breadcrumb',
             'itemListElement' => [
-                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => $this->absoluteUrl('/')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => $pageName, 'item' => $this->absoluteUrl(route($routeName, absolute: false))],
+                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => $this->siteUrl->urlFor('/')],
+                ['@type' => 'ListItem', 'position' => 2, 'name' => $pageName, 'item' => $url],
             ],
         ];
-    }
-
-    /**
-     * One service per treatment of the menu, one offer per price line, all provided by the institute.
-     *
-     * @return list<array<string, mixed>>
-     */
-    public function menuNodes(TreatmentMenuData $menu): array
-    {
-        $nodes = [];
-
-        foreach ($menu->categories() as $category) {
-            foreach ($category->treatments as $treatment) {
-                $nodes[] = $this->serviceNode($treatment, $category->name);
-            }
-        }
-
-        return $nodes;
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function serviceNode(TreatmentData $treatment, string $categoryName): array
-    {
-        return array_filter([
-            '@type' => 'Service',
-            'name' => $treatment->name,
-            'description' => $treatment->description,
-            'category' => $categoryName,
-            'provider' => ['@id' => $this->instituteId()],
-            'offers' => array_map($this->offerNode(...), $treatment->variants),
-        ], fn (mixed $value): bool => $value !== null);
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function offerNode(TreatmentVariantData $variant): array
-    {
-        $summary = trim(implode(' ', [$variant->totalDuration?->label() ?? '', $variant->label ?? '']));
-
-        return array_filter([
-            '@type' => 'Offer',
-            'description' => $summary === '' ? null : $summary,
-            'price' => $variant->price->decimalAmount(),
-            'priceCurrency' => 'EUR',
-        ], fn (mixed $value): bool => $value !== null);
-    }
-
-    private function instituteId(): string
-    {
-        return $this->absoluteUrl('/#institute');
-    }
-
-    /**
-     * An address on the configured site, never on the host the request came through.
-     */
-    private function absoluteUrl(string $path): string
-    {
-        return rtrim((string) $this->config->get('app.url'), '/').$path;
     }
 }

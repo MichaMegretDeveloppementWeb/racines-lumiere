@@ -1,0 +1,3 @@
+<head>
+{!! $lines($slot) !!}
+    </head>

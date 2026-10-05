@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Home\ShowHomeController;
 use App\Http\Controllers\Partner\ShowTrustedCircleController;
 use App\Http\Controllers\Seo\ShowRobotsController;
+use App\Http\Controllers\Seo\ShowSitemapController;
 use App\Http\Controllers\Treatment\ShowTreatmentMenuController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,3 +19,4 @@ Route::view('/mentions-legales', 'web.legal.notice.index')->name('legal.notice')
 Route::view('/politique-de-confidentialite', 'web.legal.privacy.index')->name('legal.privacy');
 
 Route::get('/robots.txt', ShowRobotsController::class)->name('robots');
+Route::get('/sitemap.xml', ShowSitemapController::class)->name('sitemap');
