@@ -35,19 +35,28 @@ function nodesOfType(array $graph, string $type): array
 }
 
 /**
- * The treatments of the menu's catalogue, with the name of the category that lists each of them.
+ * The treatments of a catalogue, however deep, with the name of the catalogue that lists each of them.
+ *
+ * @param  array<string, mixed>  $catalog
+ * @return list<array<string, mixed>>
+ */
+function catalogEntries(array $catalog): array
+{
+    return array_merge(...array_map(
+        fn (array $entry): array => $entry['@type'] === 'OfferCatalog' ? catalogEntries($entry) : [[...$entry, 'listedUnder' => $catalog['name']]],
+        $catalog['itemListElement'],
+    ));
+}
+
+/**
+ * The treatments of the menu's catalogue, with the name of the category or group that lists each of them.
  *
  * @param  list<array<string, mixed>>  $graph
  * @return list<array<string, mixed>>
  */
 function catalogServices(array $graph): array
 {
-    [$catalog] = nodesOfType($graph, 'OfferCatalog');
-
-    return array_merge(...array_map(
-        fn (array $category): array => array_map(fn (array $service): array => [...$service, 'listedUnder' => $category['name']], $category['itemListElement']),
-        $catalog['itemListElement'],
-    ));
+    return catalogEntries(nodesOfType($graph, 'OfferCatalog')[0]);
 }
 
 beforeEach(function (): void {
@@ -179,6 +188,20 @@ it('marks up the menu as a catalogue of its categories, treatments and price lin
         ->and(array_column($kobido['offers'], 'description'))->toBe(['1h', '1h30 avec soin visage'])
         ->and(array_column($services, 'name'))->toContain('Maillot brésilien')
         ->and(array_column($services, 'name'))->not->toContain('Soin masqué');
+});
+
+it('lists the waxing in its groups, as the menu folds them', function (): void {
+    $this->seed(DatabaseSeeder::class);
+
+    $graph = structuredGraph($this->get(route('treatments'))->assertOk());
+    [$catalog] = nodesOfType($graph, 'OfferCatalog');
+    [$waxing] = array_values(array_filter($catalog['itemListElement'], fn (array $category): bool => $category['name'] === "L'art de l'épilation"));
+    $underarms = array_values(array_filter(catalogServices($graph), fn (array $service): bool => $service['name'] === 'Aisselles'));
+
+    expect(array_column($waxing['itemListElement'], '@type'))->toBe(['OfferCatalog', 'OfferCatalog', 'OfferCatalog'])
+        ->and(array_column($waxing['itemListElement'], 'name'))->toBe(['Épilations femmes', 'Forfaits femmes', 'Épilations hommes'])
+        ->and(array_map(fn (array $service): array => [$service['listedUnder'], $service['offers'][0]['price']], $underarms))
+        ->toBe([['Épilations femmes', '15.00'], ['Épilations hommes', '18.00']]);
 });
 
 it('leaves out of the catalogue a category that has no visible treatment', function (): void {
