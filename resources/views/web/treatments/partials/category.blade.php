@@ -10,9 +10,7 @@
             <span class="rl-category-number">{{ sprintf('%02d', $category->number) }}</span>
         </div>
     @elseif ($category->treatmentGroups !== [])
-        <div class="rl-texture" aria-hidden="true">
-            <x-web.media.picture name="home/linen" :widths="[480, 960]" sizes="(min-width: 80rem) 1216px, 90vw" alt="" :width="480" :height="320" class="size-full object-cover" />
-        </div>
+        <x-web.media.texture sizes="(min-width: 80rem) 1216px, 90vw" />
     @endif
     <div class="rl-category-body">
         <header class="rl-category-header">

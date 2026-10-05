@@ -57,4 +57,4 @@ it('writes one element per line in the head of every page, its structured data i
         ->and($jsonLines[0])->toBe('            {')
         ->and(array_filter($jsonLines, fn (string $line): bool => ! str_starts_with($line, '            ')))->toBe([])
         ->and(json_decode(implode("\n", $jsonLines), true, flags: JSON_THROW_ON_ERROR)['@context'])->toBe('https://schema.org');
-})->with(['home' => ['home'], 'treatment menu' => ['treatments'], 'a page in preparation' => ['story']]);
+})->with(['home' => ['home'], 'treatment menu' => ['treatments'], 'story' => ['story'], 'a page in preparation' => ['contact']]);

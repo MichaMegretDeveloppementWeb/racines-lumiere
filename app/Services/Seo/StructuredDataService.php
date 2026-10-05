@@ -22,6 +22,8 @@ class StructuredDataService
 
     private const array SERVED_TOWNS = ['Sciez', 'Thonon-les-Bains', 'Évian-les-Bains', 'Douvaine'];
 
+    private const array FOUNDERS = ['Aurore', 'Lorie'];
+
     public function __construct(private readonly SiteUrlService $siteUrl) {}
 
     /**
@@ -108,6 +110,7 @@ class StructuredDataService
             ],
             'email' => $institute->email,
             'telephone' => $institute->phone === null ? null : '+33 '.substr($institute->phone, 1),
+            'founder' => array_map(fn (string $name): array => ['@type' => 'Person', 'name' => $name, 'jobTitle' => 'Co-fondatrice'], self::FOUNDERS),
             'priceRange' => '€€',
             'areaServed' => [
                 ...array_map(fn (string $town): array => ['@type' => 'City', 'name' => $town], self::SERVED_TOWNS),
@@ -124,7 +127,7 @@ class StructuredDataService
     private function webPageNode(string $url, WebPageData $page, ?array $trail): array
     {
         return array_filter([
-            '@type' => 'WebPage',
+            '@type' => $page->type,
             ...$this->pageReference($url),
             'url' => $url,
             'name' => $page->title,

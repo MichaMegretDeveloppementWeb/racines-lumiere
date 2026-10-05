@@ -1,0 +1,30 @@
+.rl-welcome {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: clamp(3rem, 7.5vw, 7rem);
+}
+
+.rl-welcome .rl-title {
+    font-size: clamp(1.875rem, 2.65vw, 2.375rem);
+}
+
+.rl-welcome-statement {
+    color: var(--color-forest);
+    font-size: clamp(1.25rem, 1.75vw, 1.5rem);
+    line-height: 1.6;
+}
+
+.rl-welcome .rl-prose {
+    margin-top: 2rem;
+}
+
+@media (width < 48rem) {
+    .rl-welcome {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+
+    .rl-welcome .rl-prose {
+        margin-top: 1.5rem;
+    }
+}

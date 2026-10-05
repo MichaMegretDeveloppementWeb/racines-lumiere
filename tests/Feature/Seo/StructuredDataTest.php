@@ -35,6 +35,21 @@ function nodesOfType(array $graph, string $type): array
 }
 
 /**
+ * The node that describes the page itself, whatever its type.
+ *
+ * @param  list<array<string, mixed>>  $graph
+ * @return array<string, mixed>
+ */
+function pageNode(array $graph): array
+{
+    $pages = array_values(array_filter($graph, fn (array $node): bool => str_ends_with((string) ($node['@id'] ?? ''), '#webpage')));
+
+    expect($pages)->toHaveCount(1);
+
+    return $pages[0];
+}
+
+/**
  * The treatments of a catalogue, however deep, with the name of the catalogue that lists each of them.
  *
  * @param  array<string, mixed>  $catalog
@@ -73,10 +88,14 @@ it('describes the institute on every page, from the configured address of the si
         ->and($institute['mainEntityOfPage'])->toBe(['@id' => 'https://racines-lumiere.fr/#webpage'])
         ->and($institute['name'])->toBe('Racines & Lumière')
         ->and($institute['email'])->toBe(config('institute.contact.email'))
+        ->and($institute['founder'])->toBe([
+            ['@type' => 'Person', 'name' => 'Aurore', 'jobTitle' => 'Co-fondatrice'],
+            ['@type' => 'Person', 'name' => 'Lorie', 'jobTitle' => 'Co-fondatrice'],
+        ])
         ->and($institute['address'])->toMatchArray(['streetAddress' => '205 avenue des Charmes', 'postalCode' => '74140', 'addressLocality' => 'Sciez', 'addressCountry' => 'FR'])
         ->and($institute['potentialAction'])->toMatchArray(['@type' => 'ReserveAction', 'target' => config('institute.booking_url')])
         ->and($institute)->not->toHaveKeys(['openingHoursSpecification', 'geo', 'sameAs']);
-})->with(['home' => ['home'], 'treatment menu' => ['treatments'], 'a page in preparation' => ['story']]);
+})->with(['home' => ['home'], 'treatment menu' => ['treatments'], 'story' => ['story'], 'a page in preparation' => ['contact']]);
 
 it('names the site on every page, published by the institute', function (string $route): void {
     [$site] = nodesOfType(structuredGraph($this->get(route($route))->assertOk()), 'WebSite');
@@ -92,10 +111,11 @@ it('names the site on every page, published by the institute', function (string 
     ]);
 })->with(['home' => ['home'], 'a page in preparation' => ['legal.notice']]);
 
-it('describes each page as a page of the site, with its title and description', function (string $route, string $url, string $title): void {
-    [$page] = nodesOfType(structuredGraph($this->get('http://www.example.test'.route($route, absolute: false))->assertOk()), 'WebPage');
+it('describes each page as a page of the site, of its kind, with its title and description', function (string $route, string $type, string $url, string $title): void {
+    $page = pageNode(structuredGraph($this->get('http://www.example.test'.route($route, absolute: false))->assertOk()));
 
     expect($page)->toMatchArray([
+        '@type' => $type,
         '@id' => $url.'#webpage',
         'url' => $url,
         'name' => $title,
@@ -103,9 +123,10 @@ it('describes each page as a page of the site, with its title and description', 
         'inLanguage' => 'fr-FR',
     ])->and($page['description'])->toBeString()->not->toBeEmpty();
 })->with([
-    'home' => ['home', 'https://racines-lumiere.fr/', 'Racines & Lumière · Institut de beauté holistique à Sciez'],
-    'treatment menu' => ['treatments', 'https://racines-lumiere.fr/nos-soins', 'Carte des soins et tarifs à Sciez · Racines & Lumière'],
-    'story' => ['story', 'https://racines-lumiere.fr/notre-histoire', 'Aurore et Lorie, notre Maison du Mieux-Être · Racines & Lumière'],
+    'home' => ['home', 'WebPage', 'https://racines-lumiere.fr/', 'Racines & Lumière · Institut de beauté holistique à Sciez'],
+    'treatment menu' => ['treatments', 'WebPage', 'https://racines-lumiere.fr/nos-soins', 'Carte des soins et tarifs à Sciez · Racines & Lumière'],
+    'story' => ['story', 'AboutPage', 'https://racines-lumiere.fr/notre-histoire', 'Aurore et Lorie, notre Maison du Mieux-Être · Racines & Lumière'],
+    'a page in preparation' => ['contact', 'WebPage', 'https://racines-lumiere.fr/contact', 'Nous trouver et nous écrire à Sciez · Racines & Lumière'],
 ]);
 
 it('places every inner page under the home page in the breadcrumb trail', function (string $route, string $name): void {
@@ -114,7 +135,7 @@ it('places every inner page under the home page in the breadcrumb trail', functi
 
     $graph = structuredGraph($this->get(route($route))->assertOk());
     [$trail] = nodesOfType($graph, 'BreadcrumbList');
-    [$page] = nodesOfType($graph, 'WebPage');
+    $page = pageNode($graph);
 
     expect($trail['@id'])->toBe($url.'#breadcrumb')
         ->and($page['breadcrumb'])->toBe(['@id' => $url.'#breadcrumb'])

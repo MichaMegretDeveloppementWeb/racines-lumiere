@@ -1,0 +1,76 @@
+.rl-portraits-intro {
+    max-width: 46rem;
+}
+
+.rl-portraits-intro p {
+    margin-top: 1.25rem;
+    color: var(--color-olive);
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+/* A portrait: an arched picture beside the text, which stays in view while the text is read. */
+.rl-portrait {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(3rem, 7.5vw, 7rem);
+    margin-top: clamp(4rem, 7vw, 6.5rem);
+}
+
+.rl-portrait-reversed {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+}
+
+.rl-portrait-reversed .rl-portrait-image {
+    order: 2;
+}
+
+.rl-portrait-image {
+    position: sticky;
+    top: 7.5rem;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 999px 999px 1.25rem 1.25rem;
+    background: var(--color-sand);
+}
+
+.rl-portrait h3 {
+    font-size: clamp(2rem, 3vw, 2.625rem);
+    line-height: 1.2;
+}
+
+.rl-portrait-role {
+    margin-top: 0.5rem;
+    color: var(--color-terracotta);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.rl-portrait .rl-prose {
+    margin-top: 2rem;
+}
+
+@media (width < 48rem) {
+    .rl-portrait,
+    .rl-portrait-reversed {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 3.5rem;
+    }
+
+    .rl-portrait-reversed .rl-portrait-image {
+        order: 0;
+    }
+
+    .rl-portrait-image {
+        position: static;
+    }
+
+    .rl-portrait .rl-prose {
+        margin-top: 1.5rem;
+        font-size: 1rem;
+    }
+}

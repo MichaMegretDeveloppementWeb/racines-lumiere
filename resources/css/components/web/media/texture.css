@@ -1,0 +1,14 @@
+/* The linen of the opening, turned mid grey and overlaid on a dark ground: its folds lighten and darken alike, so
+   the ground keeps its colour and the contrast of its text. Its parent sets the position and the stacking. */
+.rl-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.55;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+}
+
+.rl-texture img {
+    filter: grayscale(1) brightness(0.55) contrast(1.8);
+}

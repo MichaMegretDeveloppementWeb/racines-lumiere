@@ -1,47 +1,3 @@
-.rl-menu-intro {
-    position: relative;
-    isolation: isolate;
-    margin: var(--rl-edge);
-    background: var(--color-cream);
-}
-
-.rl-menu-intro-texture {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    opacity: 0.55;
-    pointer-events: none;
-}
-
-.rl-menu-intro::after {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: var(--rl-grain), linear-gradient(180deg, color-mix(in srgb, var(--color-cream) 70%, transparent), color-mix(in srgb, var(--color-cream) 35%, transparent));
-    background-size: 160px 160px, cover;
-    content: '';
-    pointer-events: none;
-}
-
-.rl-menu-intro-inner {
-    padding-block: 9.5rem 3.5rem;
-}
-
-.rl-menu-intro h1 {
-    color: var(--color-terracotta);
-    font-size: clamp(2.5rem, 4.4vw, 3.75rem);
-    line-height: 1.1;
-    letter-spacing: -0.015em;
-}
-
-.rl-menu-intro-signature {
-    max-width: 34ch;
-    margin-top: 1.25rem;
-    font-family: var(--font-display);
-    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-    line-height: 1.5;
-}
-
 .rl-menu-index {
     margin-top: 3.25rem;
 }
@@ -82,10 +38,6 @@
 }
 
 @media (width < 48rem) {
-    .rl-menu-intro-inner {
-        padding-block: 7.5rem 2.5rem;
-    }
-
     .rl-menu-index {
         margin-top: 2.25rem;
     }

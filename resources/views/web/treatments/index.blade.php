@@ -21,9 +21,7 @@
 
     @if ($menu->featuredCategories !== [])
         <div class="rl-panel rl-category-panel">
-            <div class="rl-texture" aria-hidden="true">
-                <x-web.media.picture name="home/linen" :widths="[480, 960]" sizes="100vw" alt="" :width="480" :height="320" class="size-full object-cover" />
-            </div>
+            <x-web.media.texture />
             <div class="rl-wrap rl-category-group">
                 @foreach ($menu->featuredCategories as $category)
                     @include('web.treatments.partials.category', ['category' => $category, 'isOnDarkGround' => true])

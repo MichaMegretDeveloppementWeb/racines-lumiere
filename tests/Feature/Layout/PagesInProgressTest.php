@@ -11,7 +11,6 @@ it('renders each page still in preparation within the layout', function (string 
         ->assertSee('Cette page est en préparation.');
 })->with([
     'partner brands' => ['brands', 'Nos marques partenaires'],
-    'story' => ['story', 'Notre histoire'],
     'contact' => ['contact', 'Contact'],
     'legal notice' => ['legal.notice', 'Mentions légales'],
     'privacy policy' => ['legal.privacy', 'Politique de confidentialité'],

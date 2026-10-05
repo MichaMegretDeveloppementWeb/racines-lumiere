@@ -1,3 +1,5 @@
+@import '../../components/web/layout/page-intro.css';
+@import '../../components/web/media/texture.css';
 @import '../../components/web/institute/launch-offer.css';
 @import './intro.css';
 @import './signature.css';
@@ -54,19 +56,4 @@
 
 .rl-category-panel .rl-variant + .rl-variant {
     border-top-color: color-mix(in srgb, var(--color-sand) 22%, transparent);
-}
-
-/* The linen of the opening, turned mid grey and overlaid: its folds lighten and darken alike, so a dark ground
-   keeps its colour and the contrast of its text. */
-.rl-texture {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    opacity: 0.55;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-}
-
-.rl-texture img {
-    filter: grayscale(1) brightness(0.55) contrast(1.8);
 }

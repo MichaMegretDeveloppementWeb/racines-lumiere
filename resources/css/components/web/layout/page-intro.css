@@ -1,0 +1,51 @@
+/* The opening of an inner page: a cream panel over the linen of the home, its title in terracotta. */
+.rl-page-intro {
+    position: relative;
+    isolation: isolate;
+    margin: var(--rl-edge);
+    background: var(--color-cream);
+}
+
+.rl-page-intro-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.rl-page-intro::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--rl-grain), linear-gradient(180deg, color-mix(in srgb, var(--color-cream) 70%, transparent), color-mix(in srgb, var(--color-cream) 35%, transparent));
+    background-size: 160px 160px, cover;
+    content: '';
+    pointer-events: none;
+}
+
+.rl-page-intro-inner {
+    padding-block: 9.5rem 3.5rem;
+}
+
+.rl-page-intro h1 {
+    color: var(--color-terracotta);
+    font-size: clamp(2.5rem, 4.4vw, 3.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+}
+
+.rl-page-intro-lead {
+    max-width: 34ch;
+    margin-top: 1.25rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.5;
+    text-wrap: balance;
+}
+
+@media (width < 48rem) {
+    .rl-page-intro-inner {
+        padding-block: 7.5rem 2.5rem;
+    }
+}

@@ -1,0 +1,66 @@
+.rl-place.rl-section {
+    padding-top: 0;
+}
+
+.rl-place-heading {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    align-items: baseline;
+    gap: clamp(3rem, 7.5vw, 7rem);
+}
+
+.rl-place-heading .rl-title {
+    font-size: clamp(1.875rem, 2.65vw, 2.375rem);
+}
+
+.rl-place-heading p {
+    max-width: 46ch;
+    color: var(--color-olive);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+}
+
+/* Every other material steps down, so the row reads as a gathering rather than a grid. */
+.rl-place-materials {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.75rem);
+    margin-top: clamp(2.5rem, 4.5vw, 4rem);
+    padding-bottom: 3rem;
+}
+
+.rl-place-materials li:nth-child(even) {
+    transform: translateY(3rem);
+}
+
+.rl-place-image {
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: var(--color-sand);
+}
+
+.rl-place-materials figcaption {
+    margin-top: 1rem;
+    color: var(--color-terracotta);
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    letter-spacing: 0.06em;
+}
+
+@media (width < 48rem) {
+    .rl-place-heading {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .rl-place-materials {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 1.75rem;
+        padding-bottom: 2rem;
+    }
+
+    .rl-place-materials li:nth-child(even) {
+        transform: translateY(2rem);
+    }
+}
