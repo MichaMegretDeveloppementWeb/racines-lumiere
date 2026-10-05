@@ -1,0 +1,60 @@
+.rl-founders {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: clamp(3rem, 7.5vw, 7rem);
+}
+
+.rl-founders.rl-section {
+    padding-bottom: 0;
+}
+
+.rl-founders-intro .rl-title {
+    font-size: clamp(1.875rem, 2.65vw, 2.375rem);
+}
+
+.rl-founders-intro p {
+    max-width: 40ch;
+    margin-top: 1.5rem;
+    color: var(--color-olive);
+    font-size: 1.0625rem;
+    line-height: 1.85;
+}
+
+.rl-founders-intro .rl-text-link {
+    margin-top: 1.25rem;
+}
+
+.rl-founder-stories {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.rl-founder-stories > div {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-sand);
+}
+
+.rl-founder-stories h3 {
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+.rl-founder-stories .rl-founder-role {
+    margin-top: 0.375rem;
+    color: var(--color-terracotta);
+    font-size: 0.8125rem;
+}
+
+.rl-founder-stories p:last-child {
+    margin-top: 1.25rem;
+    color: var(--color-olive);
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+@media (width < 48rem) {
+    .rl-founders {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}

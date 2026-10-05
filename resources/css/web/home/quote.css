@@ -1,0 +1,40 @@
+.rl-quote {
+    --color-focus: var(--color-gold);
+    position: relative;
+    margin-top: 1.5rem;
+    color: var(--color-cream);
+    background: var(--color-forest);
+}
+
+.rl-quote-shade {
+    position: absolute;
+    inset: 0;
+    background: rgb(48 52 37 / 78%);
+}
+
+.rl-quote .rl-wrap {
+    position: relative;
+    padding-block: 7.5rem;
+}
+
+.rl-quote h2 {
+    max-width: 27ch;
+    font-size: clamp(2rem, 3.7vw, 3.25rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+}
+
+@media (width < 48rem) {
+    .rl-quote {
+        margin-top: 0.75rem;
+    }
+
+    .rl-quote .rl-wrap {
+        padding-block: 4.5rem;
+    }
+
+    .rl-quote h2 {
+        font-size: 1.875rem;
+    }
+}

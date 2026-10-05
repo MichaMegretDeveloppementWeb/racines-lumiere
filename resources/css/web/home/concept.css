@@ -1,0 +1,51 @@
+.rl-concept {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    align-items: center;
+    gap: clamp(3rem, 7.5vw, 7rem);
+}
+
+.rl-concept-image {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background: var(--color-sand);
+}
+
+.rl-concept-copy .rl-title {
+    font-size: clamp(1.875rem, 2.65vw, 2.375rem);
+}
+
+.rl-concept-copy .rl-prose {
+    margin-top: 2rem;
+}
+
+.rl-concept-copy .rl-text-link {
+    margin-top: 1.5rem;
+}
+
+@media (width < 64rem) {
+    .rl-concept {
+        gap: 2.5rem;
+    }
+
+    .rl-concept .rl-prose {
+        font-size: 1rem;
+    }
+}
+
+@media (width < 48rem) {
+    .rl-concept {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .rl-concept-image {
+        width: 100%;
+        max-height: 27rem;
+    }
+
+    .rl-concept-copy .rl-prose {
+        margin-top: 1.5rem;
+    }
+}

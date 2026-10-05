@@ -1,0 +1,114 @@
+.rl-treatments {
+    padding-block: clamp(3rem, 5.5vw, 5rem);
+    background: color-mix(in srgb, var(--color-sand) 20%, var(--color-cream));
+}
+
+.rl-arches {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.75rem;
+}
+
+.rl-arch a {
+    display: block;
+    height: 100%;
+    padding-bottom: 0.5rem;
+    container-type: inline-size;
+    border-radius: 0.5rem;
+}
+
+.rl-arch-image {
+    position: relative;
+    display: block;
+    aspect-ratio: 320 / 469;
+    overflow: hidden;
+    border-radius: 50cqi 50cqi 0.5rem 0.5rem;
+    background: linear-gradient(var(--color-cream), var(--color-sand));
+}
+
+.rl-arch-image img {
+    transition: transform 700ms ease;
+}
+
+.rl-arch a:hover .rl-arch-image img {
+    transform: scale(1.03);
+}
+
+.rl-arch-image::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0;
+    height: 35%;
+    background: linear-gradient(transparent, color-mix(in srgb, var(--color-forest) 45%, transparent));
+}
+
+.rl-arch-number {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    z-index: 1;
+    translate: -50% 0;
+    color: var(--color-cream);
+    font-family: var(--font-display);
+    font-size: 0.6875rem;
+    letter-spacing: 0.3em;
+}
+
+.rl-arch-name {
+    margin-top: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.45;
+    letter-spacing: 0.02em;
+    text-wrap: balance;
+    transition: color 160ms ease;
+}
+
+.rl-arch a:hover .rl-arch-name {
+    color: var(--color-terracotta);
+}
+
+.rl-arch-subtitle {
+    display: block;
+    margin-top: 0.375rem;
+    color: var(--color-olive);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+@media (width < 64rem) {
+    .rl-arches {
+        display: flex;
+        gap: 1rem;
+        margin-inline: calc(-1 * var(--rl-gutter));
+        padding-inline: var(--rl-gutter);
+        padding-bottom: 0.75rem;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--rl-gutter);
+        scrollbar-color: var(--color-sand) transparent;
+        scrollbar-width: thin;
+    }
+
+    .rl-arch {
+        flex: 0 0 40%;
+        scroll-snap-align: start;
+    }
+}
+
+@media (width < 40rem) {
+    .rl-arches {
+        margin-top: 2rem;
+    }
+
+    .rl-arch {
+        flex-basis: 64%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rl-arch-image img,
+    .rl-arch-name {
+        transition: none;
+    }
+}

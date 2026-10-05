@@ -1,3 +1,3 @@
-@props(['label' => 'Réserver', 'href' => null, 'tone' => 'terracotta', 'size' => 'regular', 'hasArrow' => true])
+@props(['href' => null, 'tone' => 'terracotta'])
 
-<x-web.navigation.pill-link :href="$href ?? $institute->bookingUrl" :tone="$tone" :size="$size" :has-arrow="$hasArrow" is-external {{ $attributes }}>{{ $label }}</x-web.navigation.pill-link>
+<a href="{{ $href ?? $institute->bookingUrl }}" target="_blank" rel="noopener" {{ $attributes->class(['rl-button', 'rl-button-'.$tone]) }}>{{ $slot }}<span class="sr-only"> sur Booksy (nouvel onglet)</span></a>

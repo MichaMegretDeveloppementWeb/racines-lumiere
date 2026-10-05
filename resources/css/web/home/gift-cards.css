@@ -1,0 +1,71 @@
+.rl-gift-cards {
+    --color-focus: var(--color-gold);
+    display: grid;
+    grid-template-columns: 0.8fr 1fr;
+    color: var(--color-cream);
+    background: var(--color-terracotta);
+}
+
+.rl-gift-image {
+    position: relative;
+    min-height: 28rem;
+    background: var(--color-gold);
+}
+
+.rl-gift-image img {
+    position: absolute;
+    inset: 0;
+}
+
+.rl-gift-copy {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem clamp(2.5rem, 5vw, 5rem);
+    background: var(--color-terracotta);
+}
+
+.rl-gift-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+}
+
+.rl-gift-texture img {
+    object-position: center 65%;
+}
+
+.rl-gift-copy p {
+    max-width: 36ch;
+    margin-top: 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+.rl-gift-copy .rl-button {
+    margin-top: 2rem;
+}
+
+@media (width < 48rem) {
+    .rl-gift-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .rl-gift-image {
+        min-height: 12rem;
+    }
+
+    .rl-gift-copy {
+        padding: 2.75rem 1.5rem 3rem;
+    }
+
+    .rl-gift-copy p {
+        font-size: 1rem;
+    }
+}

@@ -14,7 +14,7 @@ it('renders the main home in both opening states', function (bool $isOpen): void
 
     $response = $this->get(route('home'))
         ->assertOk()
-        ->assertViewIs('web.home.alternative.index')
+        ->assertViewIs('web.home.index')
         ->assertSee('<main id="content"', false)
         ->assertSee('href="mailto:'.config('institute.contact.email').'"', false)
         ->assertSeeTextInOrder([
@@ -43,51 +43,6 @@ it('renders the main home in both opening states', function (bool $isOpen): void
     }
 })->with(['before the opening' => false, 'after the opening' => true]);
 
-it('keeps the original home design available for comparison', function (): void {
-    $this->get(route('home.alternative'))
-        ->assertOk()
-        ->assertViewIs('web.home.index')
-        ->assertDontSee('alternative-page');
-});
-
-it('offers personalisation in every deployment environment', function (string $environment): void {
-    app()->detectEnvironment(fn (): string => $environment);
-
-    $this->get(route('home'))
-        ->assertSeeText("Personnaliser l'aperçu", false)
-        ->assertSeeText('Originale')
-        ->assertSeeText('Dorée')
-        ->assertSeeText('Le geste')
-        ->assertSeeText('Botanique')
-        ->assertSeeText('Le lin')
-        ->assertSeeText('Mulish')
-        ->assertSeeText('Lora')
-        ->assertSeeText('Jost');
-})->with(['local', 'testing', 'staging', 'production']);
-
-it('lets the client switch home versions in production and identifies the current one', function (string $homeRoute): void {
-    app()->detectEnvironment(fn (): string => 'production');
-    $switchContent = ['aria-label="Comparer les accueils"', 'href="'.route('home').'"'];
-    if ($homeRoute === 'home') {
-        $switchContent[] = 'aria-current="page"';
-    }
-    $switchContent[] = 'href="'.route('home.alternative').'"';
-    if ($homeRoute === 'home.alternative') {
-        $switchContent[] = 'aria-current="page"';
-    }
-
-    $this->get(route($homeRoute))
-        ->assertSeeInOrder($switchContent, false);
-})->with(['home', 'home.alternative']);
-
-it('hides comparison tools when the design preview is disabled', function (string $homeRoute): void {
-    config(['preview.enabled' => false]);
-
-    $this->get(route($homeRoute))
-        ->assertDontSee('aria-label="Comparer les accueils"', false)
-        ->assertDontSee('design-preview-panel', false);
-})->with(['home', 'home.alternative']);
-
 it('renders the featured categories and visible reviews from the database', function (): void {
     $this->get(route('home'))
         ->assertOk()
@@ -98,6 +53,20 @@ it('renders the featured categories and visible reviews from the database', func
         ->assertSee('href="#reviews-title"', false)
         ->assertSeeText('5/5')
         ->assertSeeText('6 avis Booksy');
+});
+
+it('presents the featured categories as aligned arches, each with its photo and its anchor', function (): void {
+    $slugs = ['rituels-corps', 'rituel-visage-et-ame', 'rituels-complets', 'traitements-visage', 'singuliers'];
+    $expected = [];
+    foreach ($slugs as $slug) {
+        $expected[] = 'href="'.route('treatments').'#'.$slug.'"';
+        $expected[] = 'src="'.asset("images/treatments/{$slug}-320w.jpg").'"';
+    }
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertSee('class="rl-arches"', false)
+        ->assertSeeInOrder($expected, false);
 });
 
 it('leaves the review section out when no review is visible', function (): void {

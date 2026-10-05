@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Home\ShowAlternativeHomeController;
 use App\Http\Controllers\Home\ShowHomeController;
 use App\Http\Controllers\Partner\ShowTrustedCircleController;
 use App\Http\Controllers\Seo\ShowRobotsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', ShowHomeController::class)->name('home');
-Route::get('/accueil-alternatif', ShowAlternativeHomeController::class)->name('home.alternative');
 Route::view('/nos-soins', 'web.treatments.index')->name('treatments');
 Route::view('/nos-marques-partenaires', 'web.brands.index')->name('brands');
 Route::view('/notre-histoire', 'web.story.index')->name('story');

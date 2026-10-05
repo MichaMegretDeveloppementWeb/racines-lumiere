@@ -20,7 +20,9 @@ it('links the main pages from the menu', function (): void {
     $this->get(route('story'))
         ->assertOk()
         ->assertSeeInOrder([route('treatments'), route('brands'), route('story'), route('contact')], false)
-        ->assertSee('aria-current="page"', false);
+        ->assertSee('aria-current="page"', false)
+        ->assertSeeText('Nos marques partenaires')
+        ->assertDontSee('>Nos marques<', false);
 });
 
 it('gives the footer its contact details and legal links', function (): void {

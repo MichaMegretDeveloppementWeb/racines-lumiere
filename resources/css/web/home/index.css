@@ -1,0 +1,18 @@
+@import './hero.css';
+@import './opening.css';
+@import './concept.css';
+@import './ritual.css';
+@import './treatments.css';
+@import './brands.css';
+@import './quote.css';
+@import './founders.css';
+@import './reviews.css';
+@import './faq.css';
+@import './gift-cards.css';
+@import './visit.css';
+
+.rl-opening + .rl-concept,
+.rl-founders + .rl-faq,
+.rl-reviews + .rl-faq {
+    padding-top: 0;
+}
