@@ -1,0 +1,83 @@
+.rl-treatment-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 clamp(2rem, 4vw, 3.5rem);
+    margin-top: 2rem;
+}
+
+.rl-treatment {
+    display: flex;
+    flex-direction: column;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--color-sand);
+}
+
+.rl-treatment h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+}
+
+.rl-treatment-subtitle {
+    margin-top: 0.25rem;
+    color: var(--color-terracotta);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+}
+
+.rl-treatment-description {
+    margin-top: 0.75rem;
+    color: var(--color-olive);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+}
+
+/* The price lines sit at the foot of each card, so that the prices of a row align */
+.rl-variants {
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.rl-variant {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.375rem;
+}
+
+.rl-variant + .rl-variant {
+    border-top: 1px dashed color-mix(in srgb, var(--color-sand) 80%, transparent);
+}
+
+.rl-variant-meta {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.625rem;
+    font-size: 0.9375rem;
+}
+
+.rl-variant-meta strong {
+    color: var(--color-forest);
+    font-size: 1.0625rem;
+    font-weight: 600;
+}
+
+.rl-variant-care {
+    color: var(--color-olive);
+    font-size: 0.875rem;
+}
+
+.rl-variant-price {
+    flex-shrink: 0;
+    color: var(--color-terracotta);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    white-space: nowrap;
+}
+
+@media (width < 64rem) {
+    .rl-treatment-list {
+        grid-template-columns: 1fr;
+    }
+}

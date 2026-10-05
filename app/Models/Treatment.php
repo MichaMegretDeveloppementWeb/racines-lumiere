@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\TreatmentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Treatment extends Model
 {
@@ -23,5 +24,13 @@ class Treatment extends Model
         return [
             'is_visible' => 'boolean',
         ];
+    }
+
+    /**
+     * @return HasMany<TreatmentVariant, $this>
+     */
+    public function variants(): HasMany
+    {
+        return $this->hasMany(TreatmentVariant::class);
     }
 }

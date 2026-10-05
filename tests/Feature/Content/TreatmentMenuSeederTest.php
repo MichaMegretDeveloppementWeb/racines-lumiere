@@ -99,6 +99,14 @@ it('keeps every waxing treatment hidden', function (): void {
         ->and(TreatmentCategory::query()->where('slug', 'epilation')->value('is_visible'))->toBeTrue();
 });
 
+it('describes every visible treatment', function (): void {
+    $this->seed(TreatmentMenuSeeder::class);
+
+    $undescribed = Treatment::query()->where('is_visible', true)->whereNull('description')->pluck('slug');
+
+    expect($undescribed->all())->toBe([]);
+});
+
 it('records the two price lines of the Kobido', function (): void {
     $this->seed(TreatmentMenuSeeder::class);
 

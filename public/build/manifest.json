@@ -1,4 +1,13 @@
 {
+  "resources/css/components/web/institute/launch-offer.css": {
+    "file": "assets/launch-offer-BkBQXGcF.css",
+    "name": "launch-offer",
+    "names": [
+      "launch-offer.css"
+    ],
+    "src": "resources/css/components/web/institute/launch-offer.css",
+    "isEntry": true
+  },
   "resources/css/components/web/layout/footer.css": {
     "file": "assets/footer-VIsPzAgd.css",
     "name": "footer",
@@ -31,12 +40,21 @@
     ]
   },
   "resources/css/web/home/index.css": {
-    "file": "assets/index-DvY2aEeu.css",
+    "file": "assets/index-x2xB1XDY.css",
     "name": "index",
     "names": [
       "index.css"
     ],
     "src": "resources/css/web/home/index.css",
+    "isEntry": true
+  },
+  "resources/css/web/treatments/index.css": {
+    "file": "assets/index-rLYWjhSJ.css",
+    "name": "index",
+    "names": [
+      "index.css"
+    ],
+    "src": "resources/css/web/treatments/index.css",
     "isEntry": true
   },
   "resources/fonts/cinzel-latin.woff2": {

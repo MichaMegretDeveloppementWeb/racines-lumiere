@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\TreatmentCategoryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TreatmentCategory extends Model
 {
@@ -25,5 +26,13 @@ class TreatmentCategory extends Model
             'is_featured' => 'boolean',
             'is_visible' => 'boolean',
         ];
+    }
+
+    /**
+     * @return HasMany<Treatment, $this>
+     */
+    public function treatments(): HasMany
+    {
+        return $this->hasMany(Treatment::class);
     }
 }

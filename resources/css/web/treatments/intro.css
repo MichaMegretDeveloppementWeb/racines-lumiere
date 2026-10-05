@@ -1,0 +1,107 @@
+.rl-menu-intro {
+    position: relative;
+    isolation: isolate;
+    margin: var(--rl-edge);
+    background: var(--color-cream);
+}
+
+.rl-menu-intro-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+.rl-menu-intro::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--rl-grain), linear-gradient(180deg, color-mix(in srgb, var(--color-cream) 70%, transparent), color-mix(in srgb, var(--color-cream) 35%, transparent));
+    background-size: 160px 160px, cover;
+    content: '';
+    pointer-events: none;
+}
+
+.rl-menu-intro-inner {
+    padding-block: 9.5rem 3.5rem;
+}
+
+.rl-menu-intro h1 {
+    color: var(--color-terracotta);
+    font-size: clamp(2.5rem, 4.4vw, 3.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+}
+
+.rl-menu-intro-signature {
+    max-width: 34ch;
+    margin-top: 1.25rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
+    line-height: 1.5;
+}
+
+.rl-menu-index {
+    margin-top: 3.25rem;
+}
+
+.rl-menu-index ol {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 2rem;
+}
+
+.rl-menu-index a {
+    display: flex;
+    min-height: 3.5rem;
+    align-items: baseline;
+    gap: 0.875rem;
+    padding-block: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-terracotta) 22%, transparent);
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    transition: color 160ms ease;
+}
+
+.rl-menu-index a span {
+    color: var(--color-terracotta);
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    letter-spacing: 0.12em;
+}
+
+.rl-menu-index a:hover {
+    color: var(--color-terracotta);
+}
+
+@media (width < 64rem) {
+    .rl-menu-index ol {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (width < 48rem) {
+    .rl-menu-intro-inner {
+        padding-block: 7.5rem 2.5rem;
+    }
+
+    .rl-menu-index {
+        margin-top: 2.25rem;
+    }
+
+    .rl-menu-index ol {
+        grid-template-columns: 1fr;
+    }
+
+    .rl-menu-index a {
+        min-height: 3rem;
+        padding-block: 0.75rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rl-menu-index a {
+        transition: none;
+    }
+}

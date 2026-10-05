@@ -10,7 +10,6 @@ it('renders each page still in preparation within the layout', function (string 
         ->assertSee($title)
         ->assertSee('Cette page est en préparation.');
 })->with([
-    'treatment menu' => ['treatments', 'Nos soins'],
     'partner brands' => ['brands', 'Nos marques partenaires'],
     'story' => ['story', 'Notre histoire'],
     'contact' => ['contact', 'Contact'],

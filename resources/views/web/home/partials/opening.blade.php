@@ -9,13 +9,5 @@
         </div>
         <time datetime="2026-11-03" class="rl-opening-date"><span>3</span><span>novembre<br>2026</span></time>
     </div>
-    @if ($institute->launchOffer !== null)
-        <div class="rl-launch-offer">
-            <h3>Offre de lancement</h3>
-            <p>Réservez dès maintenant votre soin du mois de novembre et bénéficiez de {{ $institute->launchOffer->discount }} de remise.</p>
-            @if ($institute->launchOffer->conditions !== null)
-                <p>{{ $institute->launchOffer->conditions }}</p>
-            @endif
-        </div>
-    @endif
+    <x-web.institute.launch-offer />
 </section>

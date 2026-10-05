@@ -6,6 +6,7 @@
 
         <title>@yield('title')</title>
         <meta name="description" content="@yield('description')">
+        <x-web.seo.canonical />
 
         <link rel="icon" href="/favicon.ico" sizes="32x32">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -16,6 +17,7 @@
         <link rel="preload" href="{{ Vite::asset('resources/fonts/cinzel-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
         @vite(['resources/css/web.css', 'resources/css/components/web/layout/header.css', 'resources/css/components/web/layout/footer.css', 'resources/js/web.js'])
         @yield('styles')
+        <x-web.seo.structured-data :nodes="$pageStructuredData ?? []" />
     </head>
     <body class="antialiased">
         <x-web.media.icons />

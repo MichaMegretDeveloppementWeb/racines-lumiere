@@ -160,18 +160,18 @@ class TreatmentMenuSeeder extends Seeder
     private function treatments(): array
     {
         return [
-            $this->treatment('rituels-corps', 10, 'pause-essentielle', 'Pause essentielle', [$this->variant(10, 9500, 75, 45)]),
-            $this->treatment('rituels-corps', 20, 'reconnexion-profonde', 'Reconnexion profonde', [$this->variant(10, 12000, 90, 60)]),
-            $this->treatment('rituels-corps', 30, 'lacher-prise-integral', 'Lâcher-prise intégral', [$this->variant(10, 16000, 120, 90)]),
-            $this->treatment('rituel-visage-et-ame', 10, 'aura-botanica', 'Aura Botanica', [$this->variant(10, 15000, 105, 75)]),
-            $this->treatment('rituel-visage-et-ame', 20, 'aura-botanica-lumina', 'Aura Botanica Lumina', [$this->variant(10, 18000, 135, 105)]),
-            $this->treatment('rituels-complets', 10, 'l-absolu', 'L\'absolu', [$this->variant(10, 21000, 150, 120)]),
-            $this->treatment('rituels-complets', 20, 'l-absolu-profond', 'L\'absolu Profond', [$this->variant(10, 26000, 180, 150)]),
-            $this->treatment('rituels-complets', 30, 'l-absolu-infini', 'L\'absolu Infini', [$this->variant(10, 29000, 210, 180)]),
+            $this->treatment('rituels-corps', 10, 'pause-essentielle', 'Pause essentielle', [$this->variant(10, 9500, 75, 45)], description: "Une parenthèse pour relâcher les tensions et revenir à soi, le temps d'un massage enveloppant."),
+            $this->treatment('rituels-corps', 20, 'reconnexion-profonde', 'Reconnexion profonde', [$this->variant(10, 12000, 90, 60)], description: 'Une heure de soin pour délier le corps en profondeur et retrouver un souffle apaisé.'),
+            $this->treatment('rituels-corps', 30, 'lacher-prise-integral', 'Lâcher-prise intégral', [$this->variant(10, 16000, 120, 90)], description: "Le plus ample de nos rituels corps : une heure et demie de soin pour tout déposer, du corps à l'esprit."),
+            $this->treatment('rituel-visage-et-ame', 10, 'aura-botanica', 'Aura Botanica', [$this->variant(10, 15000, 105, 75)], description: "Un soin du visage sur mesure aux plantes, pour révéler l'éclat de la peau et apaiser l'esprit."),
+            $this->treatment('rituel-visage-et-ame', 20, 'aura-botanica-lumina', 'Aura Botanica Lumina', [$this->variant(10, 18000, 135, 105)], description: 'Aura Botanica dans sa version la plus généreuse, avec une demi-heure de soin en plus.'),
+            $this->treatment('rituels-complets', 10, 'l-absolu', 'L\'absolu', [$this->variant(10, 21000, 150, 120)], description: 'Le corps et le visage réunis dans un même rituel, composé avec vous le jour même.'),
+            $this->treatment('rituels-complets', 20, 'l-absolu-profond', 'L\'absolu Profond', [$this->variant(10, 26000, 180, 150)], description: 'Un rituel complet plus ample, pour aller plus loin dans le soin du corps comme du visage.'),
+            $this->treatment('rituels-complets', 30, 'l-absolu-infini', 'L\'absolu Infini', [$this->variant(10, 29000, 210, 180)], description: "Le plus long de nos rituels : trois heures de soin, du corps jusqu'au visage."),
             $this->treatment('traitements-visage', 10, 'the-joy-of-beauty', 'The Joy of Beauty', [
                 $this->variant(10, 12500, 60),
                 $this->variant(20, 16000, 90),
-            ]),
+            ], description: 'Un soin visage by Comfort Zone composé selon le diagnostic de votre peau.'),
             $this->treatment('singuliers', 10, 'kobido', 'Kobido', [
                 $this->variant(10, 12000, 60),
                 $this->variant(20, 15000, 90, label: 'avec soin visage'),

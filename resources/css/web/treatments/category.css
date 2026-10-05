@@ -1,0 +1,189 @@
+.rl-category-name {
+    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+    line-height: 1.25;
+    letter-spacing: 0;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.rl-category-subtitle {
+    margin-top: 0.5rem;
+    color: var(--color-terracotta);
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    letter-spacing: 0.04em;
+}
+
+.rl-category-description {
+    max-width: 62ch;
+    margin-top: 1.25rem;
+    color: var(--color-olive);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.rl-category-description p + p {
+    margin-top: 1rem;
+}
+
+.rl-category-booking {
+    margin-top: 1.5rem;
+}
+
+/* A featured category, beside its arch */
+.rl-category-pictured {
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(3rem, 6vw, 6rem);
+}
+
+.rl-category-picture {
+    position: relative;
+    aspect-ratio: 320 / 469;
+    overflow: hidden;
+    container-type: inline-size;
+    border-radius: 50cqi 50cqi 0.5rem 0.5rem;
+    background: linear-gradient(var(--color-cream), var(--color-sand));
+}
+
+.rl-category-picture::after {
+    position: absolute;
+    inset: auto 0 0;
+    height: 35%;
+    background: linear-gradient(transparent, color-mix(in srgb, var(--color-forest) 45%, transparent));
+    content: '';
+}
+
+.rl-category-number {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    z-index: 1;
+    translate: -50% 0;
+    color: var(--color-cream);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+}
+
+/* A category without a picture: each line carries its price beside its name */
+.rl-category-compact .rl-treatment {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: start;
+    align-items: baseline;
+    column-gap: 1.5rem;
+}
+
+.rl-category-compact .rl-treatment h3 {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.rl-category-compact .rl-variants {
+    grid-row: 1;
+    grid-column: 2;
+    margin: 0;
+    padding: 0;
+}
+
+.rl-category-compact .rl-variant {
+    padding: 0;
+}
+
+.rl-category-compact .rl-treatment-description {
+    grid-row: 2;
+    grid-column: 1 / -1;
+}
+
+/* A category whose treatments are booked online only: a note on an olive ground */
+.rl-category-note {
+    --color-focus: var(--color-gold);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(2rem, 4vw, 3.5rem);
+    border-radius: 1.25rem;
+    color: var(--color-cream);
+    background: var(--color-olive);
+}
+
+.rl-category-note .rl-category-body {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 1.5rem clamp(2.5rem, 5vw, 5rem);
+}
+
+.rl-category-note .rl-category-description {
+    grid-row: span 2;
+    margin-top: 0;
+    color: var(--color-cream);
+}
+
+.rl-category-note .rl-category-booking {
+    margin-top: 0;
+}
+
+@media (width < 64rem) {
+    .rl-category-pictured {
+        grid-template-columns: 11rem minmax(0, 1fr);
+        gap: 3rem;
+    }
+}
+
+@media (width < 48rem) {
+    .rl-category-name {
+        font-size: 1.5rem;
+    }
+
+    .rl-category-pictured {
+        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
+        align-items: center;
+        gap: 0 1.5rem;
+    }
+
+    .rl-category-pictured .rl-category-body {
+        display: contents;
+    }
+
+    .rl-category-pictured .rl-category-header {
+        grid-row: 1;
+        grid-column: 2;
+    }
+
+    .rl-category-pictured .rl-category-description,
+    .rl-category-pictured .rl-treatment-list,
+    .rl-category-pictured .rl-category-booking {
+        grid-column: 1 / -1;
+    }
+
+    .rl-category-number {
+        display: none;
+    }
+
+    .rl-category-note {
+        padding: 2rem 1.5rem;
+    }
+
+    .rl-category-note .rl-category-body {
+        grid-template-columns: 1fr;
+    }
+
+    .rl-category-note .rl-category-description {
+        grid-row: auto;
+    }
+}
+
+@media (width < 25rem) {
+    .rl-category-pictured {
+        grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+        gap: 0 1.25rem;
+    }
+
+    .rl-category-name {
+        font-size: 1.25rem;
+    }
+}

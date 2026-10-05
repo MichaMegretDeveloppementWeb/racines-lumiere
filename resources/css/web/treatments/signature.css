@@ -1,0 +1,89 @@
+.rl-signature {
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    gap: clamp(3rem, 7.5vw, 7rem);
+    padding-block: clamp(5rem, 8.5vw, 8rem) clamp(3rem, 5vw, 4.5rem);
+}
+
+.rl-signature-intro {
+    position: sticky;
+    top: 7.5rem;
+    align-self: start;
+}
+
+.rl-signature-intro .rl-title span {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--color-terracotta);
+    font-size: 0.6em;
+    letter-spacing: 0.04em;
+}
+
+.rl-signature-time {
+    --color-focus: var(--color-gold);
+    max-width: 30ch;
+    margin-top: 2.5rem;
+    padding: 1.75rem 2rem;
+    border-radius: 1rem;
+    color: var(--color-cream);
+    background: var(--color-forest);
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    line-height: 1.55;
+}
+
+.rl-signature-time strong {
+    color: var(--color-gold);
+    font-weight: 400;
+}
+
+.rl-signature-lead {
+    margin-bottom: 1.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.375rem, 2vw, 1.75rem);
+    line-height: 1.45;
+    text-wrap: balance;
+}
+
+.rl-signature-text .rl-prose a {
+    color: var(--color-terracotta);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--color-terracotta) 35%, transparent);
+    text-underline-offset: 0.3rem;
+}
+
+.rl-signature-text .rl-prose a:hover {
+    text-decoration-color: currentColor;
+}
+
+.rl-signature-closing {
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-sand);
+    color: var(--color-terracotta);
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    line-height: 1.55;
+    text-wrap: balance;
+}
+
+@media (width < 48rem) {
+    .rl-signature {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .rl-signature-intro {
+        position: static;
+    }
+
+    .rl-signature-time {
+        margin-top: 1.5rem;
+    }
+}
+
+@media (width < 40.625rem) {
+    .rl-signature-time {
+        max-width: none;
+    }
+}
