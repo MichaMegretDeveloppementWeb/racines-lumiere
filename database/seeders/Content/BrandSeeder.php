@@ -141,7 +141,7 @@ class BrandSeeder extends Seeder
             'long_text' => $longText,
             'short_text' => $shortText,
             'role_text' => $roleText,
-            'logo_path' => null,
+            'logo_path' => 'images/brands/'.$slug.($slug === 'comfort-zone' ? '.svg' : '.webp'),
             'products_url' => null,
             'position' => $position,
             'is_visible' => true,

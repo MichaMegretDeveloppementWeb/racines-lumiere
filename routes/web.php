@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Brand\ShowBrandsController;
 use App\Http\Controllers\Home\ShowHomeController;
 use App\Http\Controllers\Partner\ShowTrustedCircleController;
 use App\Http\Controllers\Seo\ShowRobotsController;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', ShowHomeController::class)->name('home');
 Route::get('/nos-soins', ShowTreatmentMenuController::class)->name('treatments');
-Route::view('/nos-marques-partenaires', 'web.brands.index')->name('brands');
+Route::get('/nos-marques-partenaires', ShowBrandsController::class)->name('brands');
 Route::view('/notre-histoire', 'web.story.index')->name('story');
 Route::get('/cercle-de-confiance', ShowTrustedCircleController::class)->name('trusted-circle');
 Route::view('/contact', 'web.contact.index')->name('contact');

@@ -1,4 +1,8 @@
 {
+  "_module.esm-0CgQOXf3.js": {
+    "file": "assets/module.esm-0CgQOXf3.js",
+    "name": "module.esm"
+  },
   "_site-menu-5Cs2E_8Z.js": {
     "file": "assets/site-menu-5Cs2E_8Z.js",
     "name": "site-menu"
@@ -49,7 +53,7 @@
     "isEntry": true
   },
   "resources/css/web.css": {
-    "file": "assets/web-D_mp1NAy.css",
+    "file": "assets/web-BNjXNS5H.css",
     "name": "web",
     "names": [
       "web.css"
@@ -60,6 +64,15 @@
       "assets/cinzel-latin-DMUuCU8H.woff2",
       "assets/nunito-latin-BzFMHfZw.woff2"
     ]
+  },
+  "resources/css/web/brands/index.css": {
+    "file": "assets/index-CT3nD82U.css",
+    "name": "index",
+    "names": [
+      "index.css"
+    ],
+    "src": "resources/css/web/brands/index.css",
+    "isEntry": true
   },
   "resources/css/web/contact/index.css": {
     "file": "assets/index-DTG46XUp.css",
@@ -106,11 +119,22 @@
     "src": "resources/fonts/nunito-latin.woff2"
   },
   "resources/js/web.js": {
-    "file": "assets/web-B33hJtO4.js",
+    "file": "assets/web-BzsZi3VY.js",
     "name": "web",
     "src": "resources/js/web.js",
     "isEntry": true,
     "imports": [
+      "_module.esm-0CgQOXf3.js",
+      "_site-menu-5Cs2E_8Z.js"
+    ]
+  },
+  "resources/js/web/brands/index.js": {
+    "file": "assets/index-C8L01gCk.js",
+    "name": "index",
+    "src": "resources/js/web/brands/index.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm-0CgQOXf3.js",
       "_site-menu-5Cs2E_8Z.js"
     ]
   },

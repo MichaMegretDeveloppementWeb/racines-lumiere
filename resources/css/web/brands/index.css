@@ -1,0 +1,12 @@
+@import '../../components/web/layout/page-intro.css';
+@import '../../components/web/media/texture.css';
+@import './partials/opening.css';
+@import './partials/gallery.css';
+@import './partials/brand.css';
+
+.rl-brands-eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--color-terracotta);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}

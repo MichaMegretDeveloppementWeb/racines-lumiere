@@ -1,0 +1,123 @@
+.rl-brands-gallery {
+    padding-block: clamp(4rem, 7vw, 7rem) clamp(5rem, 8vw, 8rem);
+}
+
+.rl-brands-introduction {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.rl-brands-introduction > p {
+    max-width: 46ch;
+    justify-self: end;
+}
+
+.rl-brands-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 0 2.75rem;
+    margin-bottom: -4.5rem;
+}
+
+.rl-brands-grid > * {
+    margin-bottom: 4.5rem;
+}
+
+.rl-brands-invitation {
+    --color-focus: var(--color-gold);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    grid-column: span 2;
+    grid-row: span 6;
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 4vw, 3.75rem);
+    border-radius: 1.25rem;
+    background: var(--color-forest);
+    color: var(--color-cream);
+}
+
+.rl-brands-invitation .rl-brands-eyebrow {
+    color: var(--color-sand);
+}
+
+.rl-brands-invitation h2 {
+    font-size: clamp(1.875rem, 3vw, 2.625rem);
+    line-height: 1.25;
+}
+
+.rl-brands-invitation h2 span {
+    color: var(--color-gold);
+}
+
+.rl-brands-invitation > p:not(.rl-brands-eyebrow) {
+    max-width: 48ch;
+    margin-top: 1.75rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+.rl-brands-invitation-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem 2rem;
+    margin-top: 2rem;
+}
+
+.rl-brands-invitation .rl-text-link {
+    color: var(--color-cream);
+}
+
+@media (width < 64rem) {
+    .rl-brands-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 2rem;
+    }
+
+    .rl-brands-invitation {
+        grid-column: auto;
+    }
+
+    .rl-brands-introduction {
+        gap: 2rem;
+    }
+}
+
+@media (width < 600px) {
+    .rl-brands-introduction,
+    .rl-brands-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .rl-brands-grid {
+        row-gap: 3.5rem;
+        margin-bottom: 0;
+    }
+
+    .rl-brands-grid > * {
+        margin-bottom: 0;
+    }
+
+    .rl-brands-introduction {
+        gap: 1.5rem;
+        margin-bottom: 2.75rem;
+        padding-inline: 0.75rem;
+    }
+
+    .rl-brands-introduction > p {
+        justify-self: start;
+    }
+
+    .rl-brands-invitation {
+        padding: 2.5rem 1.5rem;
+        grid-row: auto;
+    }
+}

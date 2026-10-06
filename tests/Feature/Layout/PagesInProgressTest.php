@@ -11,7 +11,7 @@ it('renders each page within the layout and reflects its preparation status', fu
 
     $isPreparing ? $response->assertSee('Cette page est en préparation.') : $response->assertDontSee('Cette page est en préparation.');
 })->with([
-    'partner brands' => ['brands', 'Nos marques partenaires', true],
+    'partner brands' => ['brands', 'Nos marques partenaires', false],
     'contact' => ['contact', 'Contact', false],
     'legal notice' => ['legal.notice', 'Mentions légales', true],
     'privacy policy' => ['legal.privacy', 'Politique de confidentialité', true],
