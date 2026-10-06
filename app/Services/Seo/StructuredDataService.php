@@ -111,6 +111,8 @@ class StructuredDataService
             ],
             'email' => $institute->email,
             'telephone' => $institute->phone === null ? null : '+33 '.substr($institute->phone, 1),
+            'contactPoint' => $this->contactPointNode($institute),
+            'geo' => $this->coordinatesNode($institute),
             'founder' => array_map(fn (string $name): array => ['@type' => 'Person', 'name' => $name, 'jobTitle' => 'Co-fondatrice'], self::FOUNDERS),
             'priceRange' => '€€',
             'areaServed' => [
@@ -119,6 +121,42 @@ class StructuredDataService
             ],
             'potentialAction' => ['@type' => 'ReserveAction', 'target' => $institute->bookingUrl],
         ], fn (mixed $value): bool => $value !== null);
+    }
+
+    /**
+     * The public contact details, shared with the page and never the private form recipient.
+     *
+     * @return array<string, mixed>
+     */
+    private function contactPointNode(InstituteData $institute): array
+    {
+        return array_filter([
+            '@type' => 'ContactPoint',
+            '@id' => $this->siteUrl->urlFor('/#contact-point'),
+            'url' => $this->siteUrl->urlFor('/contact'),
+            'contactType' => 'Renseignements sur les soins',
+            'email' => $institute->email,
+            'telephone' => $institute->phone === null ? null : '+33 '.substr($institute->phone, 1),
+            'availableLanguage' => 'fr',
+        ], fn (mixed $value): bool => $value !== null);
+    }
+
+    /**
+     * The verified address coordinates used by the contact map, only when both are known.
+     *
+     * @return array{'@type': string, latitude: float, longitude: float}|null
+     */
+    private function coordinatesNode(InstituteData $institute): ?array
+    {
+        if ($institute->latitude === null || $institute->longitude === null) {
+            return null;
+        }
+
+        return [
+            '@type' => 'GeoCoordinates',
+            'latitude' => $institute->latitude,
+            'longitude' => $institute->longitude,
+        ];
     }
 
     /**
@@ -134,6 +172,7 @@ class StructuredDataService
             'name' => $page->title,
             'description' => $page->description,
             'about' => $page->type === 'AboutPage' ? $this->instituteReference() : null,
+            'mainEntity' => $page->type === 'ContactPage' ? $this->instituteReference() : null,
             'isPartOf' => ['@id' => $this->siteUrl->urlFor('/#website')],
             'inLanguage' => self::LANGUAGE,
             'breadcrumb' => $trail,

@@ -93,7 +93,8 @@ it('describes the institute on every page, from the configured address of the si
         ])
         ->and($institute['address'])->toMatchArray(['streetAddress' => '205 avenue des Charmes', 'postalCode' => '74140', 'addressLocality' => 'Sciez', 'addressCountry' => 'FR'])
         ->and($institute['potentialAction'])->toMatchArray(['@type' => 'ReserveAction', 'target' => config('institute.booking_url')])
-        ->and($institute)->not->toHaveKeys(['openingHoursSpecification', 'geo', 'sameAs']);
+        ->and($institute['geo'])->toBe(['@type' => 'GeoCoordinates', 'latitude' => 46.330093, 'longitude' => 6.375758])
+        ->and($institute)->not->toHaveKeys(['openingHoursSpecification', 'sameAs']);
 })->with(['home' => ['home'], 'treatment menu' => ['treatments'], 'story' => ['story'], 'a page in preparation' => ['contact']]);
 
 it('links the institute to the home page only when that page is described in the graph', function (string $route, bool $isHome): void {
@@ -119,6 +120,47 @@ it('identifies the institute described in the graph as the subject of the story'
 
     expect($page['about'])->toBe(['@id' => $institute['@id']]);
 });
+
+it('connects the contact page to the institute and its visible contact details', function (?string $phone): void {
+    config([
+        'institute.contact.email' => 'bonjour@example.com',
+        'institute.contact.form_recipient' => 'private@example.com',
+        'institute.contact.phone' => $phone,
+    ]);
+    $response = $this->get(route('contact'))->assertOk();
+    $graph = structuredGraph($response);
+    [$institute] = nodesOfType($graph, 'BeautySalon');
+    [$page] = nodesOfType($graph, 'ContactPage');
+
+    expect($page['mainEntity'])->toBe(['@id' => $institute['@id']]);
+    expect($page)->not->toHaveKeys(['email', 'telephone', 'contactPoint']);
+    expect($institute['contactPoint'])->toMatchArray([
+        '@type' => 'ContactPoint',
+        '@id' => 'https://racines-lumiere.fr/#contact-point',
+        'url' => 'https://racines-lumiere.fr/contact',
+        'email' => 'bonjour@example.com',
+        'contactType' => 'Renseignements sur les soins',
+        'availableLanguage' => 'fr',
+    ]);
+    $response->assertSee('href="mailto:bonjour@example.com"', false)->assertDontSee('private@example.com');
+
+    if ($phone === null) {
+        expect($institute)->not->toHaveKey('telephone');
+        expect($institute['contactPoint'])->not->toHaveKey('telephone');
+        $response->assertDontSee('href="tel:', false);
+    } else {
+        expect($institute['telephone'])->toBe('+33 4 50 00 00 00');
+        expect($institute['contactPoint']['telephone'])->toBe('+33 4 50 00 00 00');
+        $response->assertSee('href="tel:0450000000"', false);
+    }
+})->with(['no confirmed telephone' => [null], 'confirmed telephone' => ['04 50 00 00 00']]);
+
+it('omits geographic coordinates when the address location is incomplete', function (?float $latitude, ?float $longitude): void {
+    config(['institute.geo.latitude' => $latitude, 'institute.geo.longitude' => $longitude]);
+    [$institute] = nodesOfType(structuredGraph($this->get(route('story'))->assertOk()), 'BeautySalon');
+
+    expect($institute)->not->toHaveKey('geo');
+})->with([[null, null], [46.330093, null], [null, 6.375758]]);
 
 it('names the site on every page, published by the institute', function (string $route): void {
     [$site] = nodesOfType(structuredGraph($this->get(route($route))->assertOk()), 'WebSite');
