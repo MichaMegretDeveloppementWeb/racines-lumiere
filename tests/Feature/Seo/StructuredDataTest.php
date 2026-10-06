@@ -85,7 +85,6 @@ it('describes the institute on every page, from the configured address of the si
 
     expect($institute['@id'])->toBe('https://racines-lumiere.fr/#institute')
         ->and($institute['url'])->toBe('https://racines-lumiere.fr/')
-        ->and($institute['mainEntityOfPage'])->toBe(['@id' => 'https://racines-lumiere.fr/#webpage'])
         ->and($institute['name'])->toBe('Racines & Lumière')
         ->and($institute['email'])->toBe(config('institute.contact.email'))
         ->and($institute['founder'])->toBe([
@@ -96,6 +95,30 @@ it('describes the institute on every page, from the configured address of the si
         ->and($institute['potentialAction'])->toMatchArray(['@type' => 'ReserveAction', 'target' => config('institute.booking_url')])
         ->and($institute)->not->toHaveKeys(['openingHoursSpecification', 'geo', 'sameAs']);
 })->with(['home' => ['home'], 'treatment menu' => ['treatments'], 'story' => ['story'], 'a page in preparation' => ['contact']]);
+
+it('links the institute to the home page only when that page is described in the graph', function (string $route, bool $isHome): void {
+    $graph = structuredGraph($this->get(route($route))->assertOk());
+    [$institute] = nodesOfType($graph, 'BeautySalon');
+
+    if ($isHome) {
+        expect($institute['mainEntityOfPage'])->toBe(['@id' => pageNode($graph)['@id']]);
+    } else {
+        expect($institute)->not->toHaveKey('mainEntityOfPage');
+    }
+})->with([
+    'home' => ['home', true],
+    'treatment menu' => ['treatments', false],
+    'story' => ['story', false],
+    'a page in preparation' => ['contact', false],
+]);
+
+it('identifies the institute described in the graph as the subject of the story', function (): void {
+    $graph = structuredGraph($this->get(route('story'))->assertOk());
+    [$institute] = nodesOfType($graph, 'BeautySalon');
+    [$page] = nodesOfType($graph, 'AboutPage');
+
+    expect($page['about'])->toBe(['@id' => $institute['@id']]);
+});
 
 it('names the site on every page, published by the institute', function (string $route): void {
     [$site] = nodesOfType(structuredGraph($this->get(route($route))->assertOk()), 'WebSite');
@@ -122,6 +145,10 @@ it('describes each page as a page of the site, of its kind, with its title and d
         'isPartOf' => ['@id' => 'https://racines-lumiere.fr/#website'],
         'inLanguage' => 'fr-FR',
     ])->and($page['description'])->toBeString()->not->toBeEmpty();
+
+    if ($type !== 'AboutPage') {
+        expect($page)->not->toHaveKey('about');
+    }
 })->with([
     'home' => ['home', 'WebPage', 'https://racines-lumiere.fr/', 'Racines & Lumière · Institut de beauté holistique à Sciez'],
     'treatment menu' => ['treatments', 'WebPage', 'https://racines-lumiere.fr/nos-soins', 'Carte des soins et tarifs à Sciez · Racines & Lumière'],

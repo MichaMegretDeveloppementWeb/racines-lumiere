@@ -41,7 +41,7 @@ class StructuredDataService
             '@context' => 'https://schema.org',
             '@graph' => [
                 $this->websiteNode(),
-                $this->instituteNode($institute),
+                $this->instituteNode($institute, $page->path === '/' ? $this->pageReference($url) : null),
                 $this->webPageNode($url, $page, $trail === [] ? null : ['@id' => $trail[0]['@id']]),
                 ...$trail,
                 ...$pageNodes,
@@ -88,9 +88,10 @@ class StructuredDataService
     /**
      * The institute, the main subject of the home page.
      *
+     * @param  array{'@id': string}|null  $mainPage
      * @return array<string, mixed>
      */
-    private function instituteNode(InstituteData $institute): array
+    private function instituteNode(InstituteData $institute, ?array $mainPage): array
     {
         return array_filter([
             '@type' => 'BeautySalon',
@@ -98,7 +99,7 @@ class StructuredDataService
             'name' => self::NAME,
             'description' => self::DESCRIPTION,
             'url' => $this->siteUrl->urlFor('/'),
-            'mainEntityOfPage' => $this->pageReference($this->siteUrl->urlFor('/')),
+            'mainEntityOfPage' => $mainPage,
             'logo' => $this->siteUrl->urlFor('/images/brand/logo-gold-560w.webp'),
             'image' => $this->siteUrl->urlFor('/images/home/hero-1440w.jpg'),
             'address' => [
@@ -132,6 +133,7 @@ class StructuredDataService
             'url' => $url,
             'name' => $page->title,
             'description' => $page->description,
+            'about' => $page->type === 'AboutPage' ? $this->instituteReference() : null,
             'isPartOf' => ['@id' => $this->siteUrl->urlFor('/#website')],
             'inLanguage' => self::LANGUAGE,
             'breadcrumb' => $trail,
