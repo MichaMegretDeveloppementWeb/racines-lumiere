@@ -83,7 +83,7 @@ it('carries the atmosphere of the house through its pictures, with no section li
         ->assertDontSee('Le béton ciré')
         ->assertDontSee('/images/story/place-', false);
 
-    foreach (['aurore-480w', 'lorie-480w', 'meeting-1280w'] as $picture) {
+    foreach (['hero-1280w', 'aurore-480w', 'lorie-480w', 'meeting-1280w'] as $picture) {
         $response->assertSee('/images/story/'.$picture.'.jpg', false);
         expect(public_path('images/story/'.$picture.'.jpg'))->toBeFile();
     }
@@ -92,7 +92,7 @@ it('carries the atmosphere of the house through its pictures, with no section li
 it('presents no picture as a portrait of the founders', function (): void {
     preg_match_all('#<img\s+src="[^"]*/images/story/[^"]+"[^>]*alt="([^"]*)"#', $this->get(route('story'))->assertOk()->getContent(), $pictures);
 
-    expect($pictures[1])->toHaveCount(3)->each->toBe('');
+    expect($pictures[1])->toHaveCount(4)->each->toBe('');
 });
 
 it('renders the story in one query', function (): void {

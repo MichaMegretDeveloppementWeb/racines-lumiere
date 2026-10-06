@@ -13,25 +13,23 @@
 .rl-category-group {
     display: grid;
     gap: clamp(4rem, 7vw, 6.5rem);
-    padding-block: clamp(3rem, 5vw, 4.5rem) clamp(5rem, 8.5vw, 8rem);
+    padding-block: clamp(4rem, 6vw, 6rem) clamp(5rem, 8.5vw, 8rem);
 }
 
 .rl-category-group-last {
     padding-top: clamp(5rem, 8.5vw, 8rem);
 }
 
-/* The featured categories on a dark ground */
 .rl-category-panel {
     --color-focus: var(--color-gold);
     position: relative;
     isolation: isolate;
-    padding-block: clamp(1rem, 2vw, 2rem);
     color: var(--color-cream);
     background: var(--color-forest);
 }
 
-.rl-category-panel .rl-category-group {
-    padding-block: clamp(4rem, 7vw, 6rem);
+.rl-category-panel .rl-texture {
+    opacity: 0.55;
 }
 
 .rl-category-panel .rl-category-subtitle,
@@ -51,9 +49,14 @@
 }
 
 .rl-category-panel .rl-treatment {
-    border-top-color: color-mix(in srgb, var(--color-sand) 30%, transparent);
+    border-top-color: color-mix(in srgb, var(--color-sand) 35%, transparent);
 }
 
 .rl-category-panel .rl-variant + .rl-variant {
     border-top-color: color-mix(in srgb, var(--color-sand) 22%, transparent);
+}
+
+.rl-category-panel .rl-category-group {
+    gap: clamp(4rem, 7vw, 6rem);
+    padding-block: clamp(3.5rem, 6vw, 5rem);
 }

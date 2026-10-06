@@ -1,5 +1,53 @@
+.rl-menu-intro .rl-page-intro-inner {
+    display: flex;
+    min-height: max(33rem, 53vh);
+    width: auto;
+    align-items: center;
+    margin-inline: 0;
+    padding: 9rem clamp(2rem, 4vw, 4rem) 4.5rem;
+}
+
+.rl-menu-intro-heading {
+    width: 56%;
+    max-width: 44rem;
+}
+
+.rl-menu-intro h1 {
+    font-size: clamp(3rem, 5vw, 4.75rem);
+}
+
+.rl-menu-intro .rl-page-intro-lead {
+    max-width: 30ch;
+    margin-top: 1.75rem;
+    font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+    line-height: 1.6;
+}
+
+.rl-menu-intro .rl-page-intro-texture {
+    z-index: -3;
+}
+
+.rl-menu-intro-picture {
+    position: absolute;
+    inset: 0 0 0 auto;
+    z-index: -2;
+    width: 68%;
+    mask-image: linear-gradient(90deg, transparent, #000 25%);
+}
+
+.rl-menu-intro-picture img {
+    object-position: 50% 75%;
+}
+
+.rl-menu-intro::after {
+    background-image: var(--rl-grain),
+        linear-gradient(180deg, color-mix(in srgb, var(--color-cream) 92%, transparent), transparent 30%),
+        linear-gradient(90deg, var(--color-cream) 26%, color-mix(in srgb, var(--color-cream) 96%, transparent) 40%, color-mix(in srgb, var(--color-cream) 55%, transparent) 56%, transparent 85%);
+    background-size: 160px 160px, cover, cover;
+}
+
 .rl-menu-index {
-    margin-top: 3.25rem;
+    margin-top: 2rem;
 }
 
 .rl-menu-index ol {
@@ -11,20 +59,20 @@
 .rl-menu-index a {
     display: flex;
     min-height: 3.5rem;
-    align-items: baseline;
-    gap: 0.875rem;
-    padding-block: 1rem;
-    border-top: 1px solid color-mix(in srgb, var(--color-terracotta) 22%, transparent);
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.875rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-terracotta) 22%, transparent);
     font-size: 0.9375rem;
-    line-height: 1.45;
+    line-height: 1.5;
     transition: color 160ms ease;
 }
 
 .rl-menu-index a span {
+    flex: none;
     color: var(--color-terracotta);
-    font-family: var(--font-display);
-    font-size: 0.8125rem;
-    letter-spacing: 0.12em;
+    font-size: 1.125rem;
 }
 
 .rl-menu-index a:hover {
@@ -38,17 +86,56 @@
 }
 
 @media (width < 48rem) {
-    .rl-menu-index {
-        margin-top: 2.25rem;
+    .rl-menu-intro .rl-page-intro-inner {
+        min-height: 0;
+        padding: 7rem 1.5rem 15rem;
+    }
+
+    .rl-menu-intro-heading {
+        width: 100%;
+    }
+
+    .rl-menu-intro h1 {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+
+    .rl-menu-intro .rl-page-intro-lead {
+        font-size: 1.1875rem;
+    }
+
+    .rl-menu-intro-picture {
+        inset: auto 0 0;
+        width: 100%;
+        height: 18rem;
+        mask-image: linear-gradient(180deg, transparent, #000 3rem);
+    }
+
+    .rl-menu-intro-picture img {
+        object-position: 50% 35%;
+    }
+
+    .rl-menu-intro::after {
+        background-image: var(--rl-grain), linear-gradient(180deg, var(--color-cream) 43%, color-mix(in srgb, var(--color-cream) 94%, transparent) 58%, transparent 82%);
+        background-size: 160px 160px, cover;
     }
 
     .rl-menu-index ol {
-        grid-template-columns: 1fr;
+        column-gap: 1.25rem;
     }
 
     .rl-menu-index a {
-        min-height: 3rem;
-        padding-block: 0.75rem;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .rl-menu-index li:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (width < 23rem) {
+    .rl-menu-index ol {
+        grid-template-columns: 1fr;
     }
 }
 

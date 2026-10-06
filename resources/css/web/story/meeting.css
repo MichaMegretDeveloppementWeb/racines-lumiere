@@ -52,7 +52,6 @@
 .rl-meeting-signature {
     margin-top: 2rem;
     color: var(--color-gold);
-    font-family: var(--font-display);
     font-size: clamp(1.75rem, 2.8vw, 2.375rem);
     line-height: 1.2;
 }

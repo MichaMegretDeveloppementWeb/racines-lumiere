@@ -1,5 +1,4 @@
 .rl-name {
-    --color-focus: var(--color-gold);
     position: relative;
     isolation: isolate;
     color: var(--color-cream);
@@ -7,51 +6,68 @@
 }
 
 .rl-name-inner {
-    padding-block: clamp(4.5rem, 8vw, 7.5rem);
-    text-align: center;
+    padding-block: clamp(4rem, 7vw, 6rem);
 }
 
 .rl-name h2 {
-    color: var(--color-gold);
-    font-size: 0.9375rem;
-    letter-spacing: 0.18em;
+    color: var(--color-sand);
+    font-size: 1.25rem;
+    text-align: center;
 }
 
-/* The name itself, its two words on either side of the ampersand. */
 .rl-name-words {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(1.5rem, 4vw, 4rem);
-    max-width: 62rem;
-    margin: clamp(2.5rem, 4.5vw, 3.75rem) auto 0;
+    gap: 1.5rem clamp(2rem, 4vw, 4rem);
+    margin-top: 3rem;
+}
+
+.rl-name-words > div {
+    display: contents;
 }
 
 .rl-name-words h3 {
-    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    grid-row: 1;
+    font-size: clamp(2.75rem, 5vw, 4.5rem);
     line-height: 1.15;
 }
 
 .rl-name-words p {
-    max-width: 32ch;
-    margin: 1.25rem auto 0;
+    grid-row: 2;
+    max-width: 36ch;
     color: var(--color-sand);
     font-size: 1.0625rem;
     line-height: 1.85;
 }
 
+.rl-name-words > div:first-child > * {
+    grid-column: 1;
+    justify-self: start;
+}
+
+.rl-name-words > div:last-child > * {
+    grid-column: 3;
+    justify-self: end;
+    text-align: right;
+}
+
 .rl-name-ampersand {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
     color: var(--color-gold);
     font-family: var(--font-display);
-    font-size: clamp(3.5rem, 6.5vw, 5.5rem);
-    line-height: 0.9;
+    font-size: 5rem;
+    line-height: 1;
 }
 
 .rl-name-between {
-    margin-top: clamp(3rem, 5.5vw, 4.5rem);
-    font-family: var(--font-display);
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-sand) 25%, transparent);
     font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-    line-height: 1.6;
+    line-height: 1.7;
+    text-align: center;
 }
 
 .rl-name-between span {
@@ -61,6 +77,28 @@
 @media (width < 48rem) {
     .rl-name-words {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
+        gap: 1rem;
+        margin-top: 2.5rem;
+    }
+
+    .rl-name-words > div:first-child > *,
+    .rl-name-words > div:last-child > * {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: start;
+        text-align: left;
+    }
+
+    .rl-name h2,
+    .rl-name-between {
+        text-align: left;
+    }
+
+    .rl-name-ampersand {
+        grid-column: 1;
+        grid-row: auto;
+        justify-self: center;
+        margin-block: 0.5rem;
+        font-size: 3.5rem;
     }
 }

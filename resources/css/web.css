@@ -14,11 +14,11 @@
 }
 
 @font-face {
-    font-family: 'Mulish';
+    font-family: 'Nunito';
     font-style: normal;
     font-weight: 400 700;
     font-display: swap;
-    src: url('../fonts/mulish-latin.woff2') format('woff2');
+    src: url('../fonts/nunito-latin.woff2') format('woff2');
 }
 
 /* Brand palette and typefaces. */
@@ -31,7 +31,7 @@
     --color-gold: #dd9b28;
 
     --font-display: 'Cinzel', 'Times New Roman', serif;
-    --font-sans: 'Mulish', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {

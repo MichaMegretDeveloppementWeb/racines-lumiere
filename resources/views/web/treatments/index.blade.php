@@ -24,7 +24,7 @@
             <x-web.media.texture />
             <div class="rl-wrap rl-category-group">
                 @foreach ($menu->featuredCategories as $category)
-                    @include('web.treatments.partials.category', ['category' => $category, 'isOnDarkGround' => true])
+                    @include('web.treatments.partials.category', ['category' => $category, 'isDetailedMenu' => true])
                 @endforeach
             </div>
         </div>

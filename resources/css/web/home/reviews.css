@@ -16,7 +16,6 @@
 .rl-review-summary span:first-child {
     display: block;
     color: var(--color-terracotta);
-    font-family: var(--font-display);
     font-size: 4.5rem;
     line-height: 1.1;
 }

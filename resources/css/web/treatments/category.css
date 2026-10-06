@@ -1,26 +1,23 @@
 .rl-category-name {
-    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+    font-size: clamp(1.875rem, 2.8vw, 2.5rem);
     line-height: 1.25;
     letter-spacing: 0;
     text-wrap: balance;
     overflow-wrap: break-word;
-    hyphens: auto;
 }
 
 .rl-category-subtitle {
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
     color: var(--color-terracotta);
-    font-family: var(--font-display);
     font-size: 1.0625rem;
-    letter-spacing: 0.04em;
 }
 
 .rl-category-description {
-    max-width: 62ch;
-    margin-top: 1.25rem;
+    max-width: 64ch;
+    margin-top: 1.5rem;
     color: var(--color-olive);
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: 1.85;
 }
 
 .rl-category-description p + p {
@@ -31,65 +28,134 @@
     margin-top: 1.5rem;
 }
 
-/* A featured category, beside its arch */
-.rl-category-pictured {
+.rl-category-pictured:not(.rl-category-menu) {
     display: grid;
-    grid-template-columns: 15rem minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(3rem, 6vw, 6rem);
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.8fr);
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 5rem);
+}
+
+.rl-category-pictured:not(.rl-category-menu):nth-child(even) {
+    grid-template-columns: minmax(0, 1.8fr) minmax(0, 0.78fr);
+}
+
+.rl-category-pictured:not(.rl-category-menu):nth-child(even) .rl-category-picture {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.rl-category-pictured:not(.rl-category-menu):nth-child(even) .rl-category-body {
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .rl-category-picture {
-    position: relative;
-    aspect-ratio: 320 / 469;
+    aspect-ratio: 4 / 5;
     overflow: hidden;
-    container-type: inline-size;
-    border-radius: 50cqi 50cqi 0.5rem 0.5rem;
-    background: linear-gradient(var(--color-cream), var(--color-sand));
+    border-radius: var(--rl-radius);
+    background: var(--color-sand);
 }
 
-.rl-category-picture::after {
-    position: absolute;
-    inset: auto 0 0;
-    height: 35%;
-    background: linear-gradient(transparent, color-mix(in srgb, var(--color-forest) 45%, transparent));
-    content: '';
+.rl-category-menu {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    grid-template-rows: min-content auto;
+    gap: 1.5rem clamp(3rem, 6vw, 6rem);
 }
 
-.rl-category-number {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    z-index: 1;
-    translate: -50% 0;
-    color: var(--color-cream);
-    font-family: var(--font-display);
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
+.rl-category-menu .rl-category-body {
+    display: contents;
 }
 
-/* A category without a picture, and the folded groups: each line carries its price beside its name */
+.rl-category-menu .rl-category-header {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: end;
+}
+
+.rl-category-menu .rl-category-description {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+}
+
+.rl-category-menu .rl-category-picture {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    min-height: 14rem;
+    max-height: 22rem;
+    aspect-ratio: 5 / 3;
+}
+
+.rl-category-menu .rl-treatment-list {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem clamp(3rem, 6vw, 6rem);
+    margin-top: 1rem;
+}
+
+.rl-category-menu .rl-treatment {
+    grid-row: span 2;
+    grid-template-columns: 1fr;
+    grid-template-rows: subgrid;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding-block: 1.75rem 0;
+}
+
+.rl-category-menu .rl-variants {
+    padding-top: 1rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-sand) 22%, transparent);
+}
+
+.rl-category-menu .rl-variant {
+    padding-bottom: 0;
+}
+
+.rl-category-menu .rl-variant + .rl-variant {
+    margin-top: 0.75rem;
+}
+
+.rl-category-menu .rl-treatment:only-child {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    grid-template-rows: auto;
+    gap: clamp(3rem, 6vw, 6rem);
+}
+
+.rl-category-menu .rl-treatment:only-child .rl-variants {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 2rem;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.rl-category-menu .rl-treatment:only-child .rl-variant {
+    align-items: start;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0;
+    padding-block: 0.25rem 0;
+    border-top: 0;
+}
+
+.rl-category-menu .rl-treatment-name {
+    font-size: 1.375rem;
+}
+
+.rl-category-menu .rl-category-booking {
+    grid-column: 1 / -1;
+    margin-top: 0;
+}
+
 .rl-category-compact .rl-treatment,
 .rl-treatment-group .rl-treatment {
-    display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    align-content: start;
-    align-items: baseline;
-    column-gap: 1.5rem;
-}
-
-.rl-category-compact .rl-treatment-name,
-.rl-treatment-group .rl-treatment-name {
-    grid-row: 1;
-    grid-column: 1;
-}
-
-.rl-category-compact .rl-variants,
-.rl-treatment-group .rl-variants {
-    grid-row: 1;
-    grid-column: 2;
-    margin: 0;
-    padding: 0;
+    gap: 1.5rem;
 }
 
 .rl-category-compact .rl-variant,
@@ -97,12 +163,11 @@
     padding: 0;
 }
 
-.rl-category-compact .rl-treatment-description {
-    grid-row: 2;
-    grid-column: 1 / -1;
+.rl-treatment-group .rl-variant-meta {
+    align-items: baseline;
+    flex-direction: row;
 }
 
-/* A category whose treatments fall into groups: an olive note, each group folded */
 .rl-category-folded {
     --color-focus: var(--color-gold);
     position: relative;
@@ -215,40 +280,61 @@
 }
 
 @media (width < 64rem) {
-    .rl-category-pictured {
-        grid-template-columns: 11rem minmax(0, 1fr);
-        gap: 3rem;
+    .rl-category-menu .rl-treatment-list {
+        column-gap: 2rem;
+    }
+
+    .rl-category-menu .rl-treatment:only-child {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
 
 @media (width < 48rem) {
     .rl-category-name {
-        font-size: 1.5rem;
+        font-size: 1.875rem;
     }
 
-    .rl-category-pictured {
-        grid-template-columns: minmax(0, 0.75fr) minmax(0, 1fr);
-        align-items: center;
-        gap: 0 1.5rem;
+    .rl-category-pictured:not(.rl-category-menu),
+    .rl-category-pictured:not(.rl-category-menu):nth-child(even),
+    .rl-category-menu {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+        gap: 2rem;
     }
 
-    .rl-category-pictured .rl-category-body {
-        display: contents;
+    .rl-category-picture,
+    .rl-category-menu .rl-category-picture {
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: 16 / 10;
     }
 
-    .rl-category-pictured .rl-category-header {
-        grid-row: 1;
-        grid-column: 2;
+    .rl-category-menu .rl-category-picture {
+        margin-inline: -1rem;
     }
 
-    .rl-category-pictured .rl-category-description,
-    .rl-category-pictured .rl-treatment-list,
-    .rl-category-pictured .rl-category-booking {
-        grid-column: 1 / -1;
+    .rl-category-pictured:not(.rl-category-menu):nth-child(even) .rl-category-picture,
+    .rl-category-pictured:not(.rl-category-menu):nth-child(even) .rl-category-body,
+    .rl-category-menu .rl-category-picture,
+    .rl-category-menu .rl-category-header,
+    .rl-category-menu .rl-category-description {
+        grid-column: auto;
+        grid-row: auto;
     }
 
-    .rl-category-number {
-        display: none;
+    .rl-category-menu .rl-treatment-list {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-top: 0;
+    }
+
+    .rl-category-menu .rl-treatment,
+    .rl-category-menu .rl-treatment:only-child {
+        grid-row: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 1.25rem;
     }
 
     .rl-category-folded {
@@ -261,16 +347,5 @@
 
     .rl-category-folded .rl-category-description {
         grid-row: auto;
-    }
-}
-
-@media (width < 25rem) {
-    .rl-category-pictured {
-        grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-        gap: 0 1.25rem;
-    }
-
-    .rl-category-name {
-        font-size: 1.25rem;
     }
 }

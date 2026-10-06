@@ -1,7 +1,5 @@
 .rl-portraits-intro {
-    max-width: 40rem;
-    margin-inline: auto;
-    text-align: center;
+    max-width: 42rem;
 }
 
 .rl-portraits-intro p {
@@ -11,67 +9,82 @@
     line-height: 1.8;
 }
 
-/* A two-page spread: the two founders side by side, a fine gold line between them. */
 .rl-portraits-spread {
-    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: clamp(3rem, 8vw, 7.5rem);
-    margin-top: clamp(3.5rem, 6vw, 5.5rem);
+    gap: clamp(5rem, 8vw, 8rem);
+    margin-top: clamp(3rem, 5vw, 4.5rem);
 }
 
-.rl-portraits-spread::before {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1px;
-    background: color-mix(in srgb, var(--color-gold) 45%, transparent);
-    content: '';
+.rl-portrait {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+    align-items: start;
+    gap: clamp(3rem, 6vw, 6rem);
+}
+
+.rl-portrait:nth-child(even) {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+}
+
+.rl-portrait-picture {
+    align-self: end;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--rl-radius);
+    background: var(--color-sand);
+}
+
+.rl-portrait:nth-child(even) .rl-portrait-picture {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.rl-portrait:nth-child(even) .rl-portrait-content {
+    grid-column: 1;
+    grid-row: 1;
 }
 
 .rl-portrait h3 {
+    color: var(--color-terracotta);
     font-size: clamp(2.75rem, 4.6vw, 4rem);
-    line-height: 1;
+    line-height: 1.1;
 }
 
 .rl-portrait-role {
-    margin-top: 0.875rem;
-    color: var(--color-terracotta);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    margin-top: 0.75rem;
+    color: var(--color-olive);
+    font-size: 0.9375rem;
 }
 
 .rl-portrait-quote {
-    max-width: 26ch;
-    margin-top: clamp(1.75rem, 3vw, 2.25rem);
-    padding-left: 1.25rem;
-    border-left: 2px solid var(--color-gold);
+    max-width: 32ch;
+    margin-top: 1.75rem;
     color: var(--color-terracotta);
-    font-family: var(--font-display);
-    font-size: clamp(1.1875rem, 1.6vw, 1.375rem);
-    line-height: 1.5;
+    font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+    line-height: 1.6;
+    text-wrap: balance;
 }
 
 .rl-portrait .rl-prose {
-    margin-top: clamp(1.75rem, 3vw, 2.25rem);
+    margin-top: 1.75rem;
 }
 
 @media (width < 48rem) {
-    .rl-portraits-spread {
+    .rl-portrait,
+    .rl-portrait:nth-child(even) {
         grid-template-columns: 1fr;
-        row-gap: 3.5rem;
+        gap: 2rem;
     }
 
-    .rl-portraits-spread::before {
-        display: none;
+    .rl-portrait-picture {
+        position: static;
+        aspect-ratio: 5 / 4;
     }
 
-    .rl-portrait + .rl-portrait {
-        padding-top: 3.5rem;
-        border-top: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
+    .rl-portrait:nth-child(even) .rl-portrait-picture,
+    .rl-portrait:nth-child(even) .rl-portrait-content {
+        grid-column: auto;
+        grid-row: auto;
     }
 
     .rl-portrait .rl-prose {

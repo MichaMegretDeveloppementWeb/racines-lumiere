@@ -1,13 +1,13 @@
 <section id="{{ $category->slug }}" aria-labelledby="{{ $category->slug }}-title" @class([
     'rl-category',
     'rl-category-pictured' => $category->isFeatured,
+    'rl-category-menu' => $isDetailedMenu ?? false,
     'rl-category-folded' => ! $category->isFeatured && $category->treatmentGroups !== [],
     'rl-category-compact' => ! $category->isFeatured && $category->treatmentGroups === [],
 ])>
     @if ($category->isFeatured)
         <div class="rl-category-picture" aria-hidden="true">
-            <x-web.media.picture :name="'treatments/'.$category->slug" :widths="[320, 640]" sizes="(min-width: 64rem) 240px, (min-width: 48rem) 176px, 42vw" alt="" :width="320" :height="469" class="size-full object-cover" />
-            <span class="rl-category-number">{{ sprintf('%02d', $category->number) }}</span>
+            <x-web.media.picture :name="'treatments/'.$category->slug" :widths="[320, 640]" sizes="(min-width: 80rem) 340px, (min-width: 48rem) 28vw, 90vw" alt="" :width="320" :height="469" class="size-full object-cover" />
         </div>
     @elseif ($category->treatmentGroups !== [])
         <x-web.media.texture sizes="(min-width: 80rem) 1216px, 90vw" />
@@ -50,7 +50,7 @@
             </ul>
         @endif
         <div class="rl-category-booking">
-            <x-web.booking.button :tone="($isOnDarkGround ?? false) || $category->treatmentGroups !== [] ? 'cream' : 'terracotta'">Réserver</x-web.booking.button>
+            <x-web.booking.button :tone="($isDetailedMenu ?? false) || $category->treatmentGroups !== [] ? 'cream' : 'terracotta'">Réserver</x-web.booking.button>
         </div>
     </div>
 </section>
