@@ -48,9 +48,13 @@ it('offers a products link only when configured and escapes editorial text', fun
 
     $brand->forceFill(['products_url' => 'https://booksy.com/fr-fr/brand-products'])->save();
 
-    $this->get(route('brands'))->assertOk()
+    $response = $this->get(route('brands'))->assertOk()
         ->assertSee('href="https://booksy.com/fr-fr/brand-products"', false)
         ->assertSee('Voir les produits sur Booksy');
+
+    $beforeDialog = explode('<dialog', $response->getContent(), 2)[0];
+
+    expect($beforeDialog)->toContain('href="https://booksy.com/fr-fr/brand-products"');
 });
 
 it('describes the same selection in structured data using the canonical site address', function (): void {

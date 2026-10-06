@@ -1,1 +1,0 @@
-import{n as e,t}from"./module.esm-0CgQOXf3.js";import{n,t as r}from"./site-menu-5Cs2E_8Z.js";function i(){return{isOpen:!1,toggle(){this.isOpen?this.close():this.isOpen=!0},close(e=!0){this.isOpen&&(this.isOpen=!1,e&&this.$refs.toggle.focus({preventScroll:!0}))}}}t.plugin(e),t.data(`siteMenu`,r),t.data(`scrollHeader`,n),t.data(`brandDisclosure`,i),t.start();

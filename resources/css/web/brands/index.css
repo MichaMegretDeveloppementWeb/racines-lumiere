@@ -1,8 +1,9 @@
 @import '../../components/web/layout/page-intro.css';
 @import '../../components/web/media/texture.css';
-@import './partials/opening.css';
-@import './partials/gallery.css';
-@import './partials/brand.css';
+@import './opening.css';
+@import './gallery.css';
+@import './brand.css';
+@import './brand-dialog.css';
 
 .rl-brands-eyebrow {
     margin-bottom: 1.25rem;

@@ -1,6 +1,6 @@
 .rl-brand-card {
     display: grid;
-    grid-row: span 6;
+    grid-row: span 5;
     grid-template-rows: subgrid;
     row-gap: 0;
     align-self: stretch;
@@ -51,7 +51,7 @@
     display: contents;
 }
 
-.rl-brand-card h3 {
+.rl-brand-copy > h3 {
     grid-row: 2;
     margin-top: 1.75rem;
     font-size: 1.375rem;
@@ -66,8 +66,7 @@
     line-height: 1.6;
 }
 
-.rl-brand-summary,
-.rl-brand-details {
+.rl-brand-summary {
     color: var(--color-olive);
     font-size: 1rem;
     line-height: 1.8;
@@ -78,79 +77,35 @@
     margin-top: 0.875rem;
 }
 
-.rl-brand-toggle {
+.rl-brand-actions {
     grid-row: 5;
+    margin-top: 1.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-olive) 25%, transparent);
+}
+
+.rl-brand-toggle,
+.rl-brand-products {
     display: flex;
     width: 100%;
     min-height: 3.25rem;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-top: 1.5rem;
     padding-block: 0.75rem;
-    border-top: 1px solid color-mix(in srgb, var(--color-olive) 25%, transparent);
     color: var(--color-forest);
     font-size: 0.9375rem;
     font-weight: 600;
     cursor: pointer;
 }
 
-.rl-brand-toggle:hover {
+.rl-brand-toggle:hover,
+.rl-brand-products {
     color: var(--color-terracotta);
 }
 
-.rl-brand-toggle-sign {
-    position: relative;
-    width: 1.125rem;
-    height: 1.125rem;
-    flex-shrink: 0;
-}
-
-.rl-brand-toggle-sign::before,
-.rl-brand-toggle-sign::after {
-    position: absolute;
-    inset: calc(50% - 0.5px) 0 auto;
-    height: 1px;
-    background: currentColor;
-    content: '';
-}
-
-.rl-brand-toggle-sign::after {
-    transform: rotate(90deg);
-    transition: transform 180ms ease;
-}
-
-.rl-brand-toggle[aria-expanded='true'] .rl-brand-toggle-sign::after {
-    transform: rotate(0);
-}
-
-.rl-brand-details-inner {
-    padding-block: 0.75rem 1.5rem;
-}
-
-.rl-brand-details {
-    grid-row: 6;
-}
-
-.rl-brand-details-inner > p + p {
-    margin-top: 1rem;
-}
-
-.rl-brand-role {
-    margin-top: 1.5rem;
-    padding-left: 1.25rem;
-    border-left: 2px solid var(--color-gold);
-}
-
-.rl-brand-role h4 {
-    margin-bottom: 0.625rem;
-    color: var(--color-terracotta);
-    font-family: var(--font-sans);
-    font-weight: 600;
-}
-
-.rl-brand-details .rl-text-link {
-    margin-top: 1.5rem;
+.rl-brand-products:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
 }
 
 @media (width < 600px) {
@@ -166,12 +121,5 @@
 
     .rl-brand-tagline {
         min-height: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .rl-brand-details,
-    .rl-brand-toggle-sign::after {
-        transition-duration: 0s !important;
     }
 }

@@ -1,6 +1,6 @@
 {
-  "_module.esm-0CgQOXf3.js": {
-    "file": "assets/module.esm-0CgQOXf3.js",
+  "_module.esm-CHZQYZeV.js": {
+    "file": "assets/module.esm-CHZQYZeV.js",
     "name": "module.esm"
   },
   "_site-menu-5Cs2E_8Z.js": {
@@ -66,7 +66,7 @@
     ]
   },
   "resources/css/web/brands/index.css": {
-    "file": "assets/index-CT3nD82U.css",
+    "file": "assets/index-BrsUDTw5.css",
     "name": "index",
     "names": [
       "index.css"
@@ -119,22 +119,22 @@
     "src": "resources/fonts/nunito-latin.woff2"
   },
   "resources/js/web.js": {
-    "file": "assets/web-BzsZi3VY.js",
+    "file": "assets/web-B4G9dEyj.js",
     "name": "web",
     "src": "resources/js/web.js",
     "isEntry": true,
     "imports": [
-      "_module.esm-0CgQOXf3.js",
+      "_module.esm-CHZQYZeV.js",
       "_site-menu-5Cs2E_8Z.js"
     ]
   },
   "resources/js/web/brands/index.js": {
-    "file": "assets/index-C8L01gCk.js",
+    "file": "assets/index-BRvJ56Sx.js",
     "name": "index",
     "src": "resources/js/web/brands/index.js",
     "isEntry": true,
     "imports": [
-      "_module.esm-0CgQOXf3.js",
+      "_module.esm-CHZQYZeV.js",
       "_site-menu-5Cs2E_8Z.js"
     ]
   },

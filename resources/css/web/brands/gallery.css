@@ -34,7 +34,7 @@
     overflow: hidden;
     display: flex;
     grid-column: span 2;
-    grid-row: span 6;
+    grid-row: span 5;
     align-self: stretch;
     flex-direction: column;
     justify-content: center;
