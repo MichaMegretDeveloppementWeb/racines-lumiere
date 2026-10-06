@@ -1,10 +1,8 @@
 .rl-menu-intro .rl-page-intro-inner {
     display: flex;
     min-height: max(33rem, 53vh);
-    width: auto;
     align-items: center;
-    margin-inline: 0;
-    padding: 9rem clamp(2rem, 4vw, 4rem) 4.5rem;
+    padding-block: 9rem 4.5rem;
 }
 
 .rl-menu-intro-heading {
@@ -88,6 +86,8 @@
 @media (width < 48rem) {
     .rl-menu-intro .rl-page-intro-inner {
         min-height: 0;
+        width: auto;
+        margin-inline: 0;
         padding: 7rem 1.5rem 15rem;
     }
 

@@ -1,10 +1,8 @@
 .rl-story-opening .rl-page-intro-inner {
     display: flex;
     min-height: max(33rem, 53vh);
-    width: auto;
     align-items: center;
-    margin-inline: 0;
-    padding: 9rem clamp(2rem, 4vw, 4rem) 4.5rem;
+    padding-block: 9rem 4.5rem;
 }
 
 .rl-story-opening-title {
@@ -35,10 +33,6 @@
     line-height: 1.6;
 }
 
-.rl-story-opening .rl-text-link {
-    margin-top: 1.5rem;
-}
-
 .rl-story-opening .rl-page-intro-texture {
     z-index: -3;
 }
@@ -65,6 +59,8 @@
 @media (width < 48rem) {
     .rl-story-opening .rl-page-intro-inner {
         min-height: 0;
+        width: auto;
+        margin-inline: 0;
         padding: 7rem 1.5rem 14rem;
     }
 
