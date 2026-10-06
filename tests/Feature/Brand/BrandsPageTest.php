@@ -31,7 +31,8 @@ it('presents only visible brands in their editorial order with their complete te
         ->and($brands[0]->paragraphs)->toBe(['First detailed paragraph.', 'Second detailed paragraph.']);
 });
 
-it('offers a products link only when configured and escapes editorial text', function (): void {
+it('uses the general Booksy link until brand products are available and escapes editorial text', function (): void {
+    config(['institute.booking_url' => 'https://booksy.com/fr-fr/institute']);
     $brand = Brand::factory()->create([
         'long_text' => '<script>alert("unsafe")</script>',
         'products_url' => null,
@@ -41,10 +42,14 @@ it('offers a products link only when configured and escapes editorial text', fun
         'tagline' => null,
     ]);
 
-    $this->get(route('brands'))->assertOk()
+    $response = $this->get(route('brands'))->assertOk()
         ->assertSee('<script>alert("unsafe")</script>')
         ->assertDontSee('<script>alert("unsafe")</script>', false)
-        ->assertDontSee('Voir les produits sur Booksy');
+        ->assertDontSee('Voir les produits sur Booksy')
+        ->assertSee('Retrouvez-nous sur Booksy');
+
+    expect(explode('<dialog', $response->getContent(), 2)[0])
+        ->toContain('class="rl-brand-products" href="https://booksy.com/fr-fr/institute"');
 
     $brand->forceFill(['products_url' => 'https://booksy.com/fr-fr/brand-products'])->save();
 

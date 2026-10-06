@@ -19,9 +19,7 @@
                 <span>Découvrir la marque<span class="sr-only"> {{ $brand->name }}</span></span>
                 <x-web.media.icon name="arrow-right" class="size-4" />
             </button>
-            @if ($brand->productsUrl !== null)
-                <a class="rl-brand-products" href="{{ $brand->productsUrl }}" target="_blank" rel="noopener noreferrer">Voir les produits sur Booksy<span class="sr-only"> de {{ $brand->name }} (nouvel onglet)</span> <x-web.media.icon name="arrow-right" class="size-4" /></a>
-            @endif
+            <a class="rl-brand-products" href="{{ $brand->productsUrl ?? $institute->bookingUrl }}" target="_blank" rel="noopener noreferrer">{{ $brand->productsUrl === null ? 'Retrouvez-nous sur Booksy' : 'Voir les produits sur Booksy' }}<span class="sr-only"> ({{ $brand->name }}, nouvel onglet)</span> <x-web.media.icon name="arrow-right" class="size-4" /></a>
         </div>
     </div>
     @include('web.brands.partials.brand-dialog', ['brand' => $brand])
