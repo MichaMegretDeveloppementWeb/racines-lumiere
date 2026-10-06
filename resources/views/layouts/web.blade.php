@@ -12,7 +12,13 @@
         <link rel="manifest" href="/site.webmanifest">
         <meta name="theme-color" content="#FCF8EC">
 
-        @vite(['resources/css/web.css', 'resources/css/components/web/layout/header.css', 'resources/css/components/web/layout/footer.css', 'resources/js/web.js'])
+        @vite(['resources/css/web.css', 'resources/css/components/web/layout/header.css', 'resources/css/components/web/layout/footer.css'])
+        @hasSection('scripts')
+            @yield('scripts')
+        @else
+            @vite('resources/js/web.js')
+        @endif
+        @yield('head')
         @yield('styles')
         <link rel="preload" href="{{ Vite::asset('resources/fonts/cinzel-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
 
@@ -28,5 +34,6 @@
         </main>
 
         <x-web.layout.footer />
+        @yield('body-end')
     </body>
 </html>

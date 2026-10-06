@@ -1,0 +1,13 @@
+@import '../../components/web/layout/page-intro.css';
+@import '../../components/web/media/texture.css';
+@import './opening.css';
+@import './visit.css';
+@import './write.css';
+@import './contact-form.css';
+
+.rl-contact-kicker {
+    margin-bottom: 1.25rem;
+    color: var(--color-terracotta);
+    font-size: 0.9375rem;
+    font-weight: 600;
+}

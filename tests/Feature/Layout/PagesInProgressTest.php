@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-it('renders each page still in preparation within the layout', function (string $route, string $title): void {
-    $this->get(route($route))
+it('renders each page within the layout and reflects its preparation status', function (string $route, string $title, bool $isPreparing): void {
+    $response = $this->get(route($route))
         ->assertOk()
         ->assertSee('<main id="content"', false)
         ->assertSee('<h1', false)
-        ->assertSee($title)
-        ->assertSee('Cette page est en préparation.');
+        ->assertSee($title);
+
+    $isPreparing ? $response->assertSee('Cette page est en préparation.') : $response->assertDontSee('Cette page est en préparation.');
 })->with([
-    'partner brands' => ['brands', 'Nos marques partenaires'],
-    'contact' => ['contact', 'Contact'],
-    'legal notice' => ['legal.notice', 'Mentions légales'],
-    'privacy policy' => ['legal.privacy', 'Politique de confidentialité'],
+    'partner brands' => ['brands', 'Nos marques partenaires', true],
+    'contact' => ['contact', 'Contact', false],
+    'legal notice' => ['legal.notice', 'Mentions légales', true],
+    'privacy policy' => ['legal.privacy', 'Politique de confidentialité', true],
 ]);
 
 it('serves the public pages at their French addresses', function (string $route, string $path): void {

@@ -1,4 +1,5 @@
 import { globSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
@@ -19,6 +20,11 @@ const entries = globSync(ENTRY_PATTERNS)
     .sort();
 
 export default defineConfig({
+    resolve: {
+        alias: {
+            '@livewire': fileURLToPath(new URL('./vendor/livewire/livewire/dist/livewire.esm.js', import.meta.url)),
+        },
+    },
     plugins: [
         laravel({
             input: entries,

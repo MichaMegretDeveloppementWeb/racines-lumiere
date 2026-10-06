@@ -37,6 +37,8 @@ class InstituteService
             accessNote: $this->config->get('institute.address.access_note'),
             hasTrustedCircle: $this->trustedCircle->hasVisiblePartners(),
             launchOffer: $this->launchOffer(),
+            latitude: $this->config->get('institute.geo.latitude'),
+            longitude: $this->config->get('institute.geo.longitude'),
         );
     }
 

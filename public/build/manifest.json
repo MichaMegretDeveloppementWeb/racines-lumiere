@@ -1,4 +1,8 @@
 {
+  "_site-menu-5Cs2E_8Z.js": {
+    "file": "assets/site-menu-5Cs2E_8Z.js",
+    "name": "site-menu"
+  },
   "resources/css/components/web/institute/launch-offer.css": {
     "file": "assets/launch-offer-BkBQXGcF.css",
     "name": "launch-offer",
@@ -45,7 +49,7 @@
     "isEntry": true
   },
   "resources/css/web.css": {
-    "file": "assets/web-tR-sgjiJ.css",
+    "file": "assets/web-D_mp1NAy.css",
     "name": "web",
     "names": [
       "web.css"
@@ -56,6 +60,15 @@
       "assets/cinzel-latin-DMUuCU8H.woff2",
       "assets/nunito-latin-BzFMHfZw.woff2"
     ]
+  },
+  "resources/css/web/contact/index.css": {
+    "file": "assets/index-CHkzaOhn.css",
+    "name": "index",
+    "names": [
+      "index.css"
+    ],
+    "src": "resources/css/web/contact/index.css",
+    "isEntry": true
   },
   "resources/css/web/home/index.css": {
     "file": "assets/index-6bS3LLVz.css",
@@ -93,9 +106,21 @@
     "src": "resources/fonts/nunito-latin.woff2"
   },
   "resources/js/web.js": {
-    "file": "assets/web-qFxIGsHf.js",
+    "file": "assets/web-B33hJtO4.js",
     "name": "web",
     "src": "resources/js/web.js",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_site-menu-5Cs2E_8Z.js"
+    ]
+  },
+  "resources/js/web/contact/index.js": {
+    "file": "assets/index-CTpRyWxQ.js",
+    "name": "index",
+    "src": "resources/js/web/contact/index.js",
+    "isEntry": true,
+    "imports": [
+      "_site-menu-5Cs2E_8Z.js"
+    ]
   }
 }

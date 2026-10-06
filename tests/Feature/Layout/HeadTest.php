@@ -50,7 +50,7 @@ it('writes one element per line in the head of every page, its structured data i
     $scriptStart = array_search('        <script type="application/ld+json">', $lines, true);
     $scriptEnd = array_search('        </script>', $lines, true);
     $jsonLines = array_slice($lines, $scriptStart + 1, $scriptEnd - $scriptStart - 1);
-    $elementLines = array_slice($lines, 0, $scriptStart);
+    $elementLines = array_filter(array_slice($lines, 0, $scriptStart), fn (string $line): bool => ! str_starts_with(trim($line), '<!--'));
 
     expect(array_filter($elementLines, fn (string $line): bool => $line !== '' && preg_match('#^ {8}<[a-z][^<]*(</[a-z]+>)?$#', $line) !== 1))->toBe([])
         ->and($scriptEnd)->toBe(count($lines) - 1)

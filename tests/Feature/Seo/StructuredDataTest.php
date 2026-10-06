@@ -153,7 +153,7 @@ it('describes each page as a page of the site, of its kind, with its title and d
     'home' => ['home', 'WebPage', 'https://racines-lumiere.fr/', 'Racines & Lumière · Institut de beauté holistique à Sciez'],
     'treatment menu' => ['treatments', 'WebPage', 'https://racines-lumiere.fr/nos-soins', 'Carte des soins et tarifs à Sciez · Racines & Lumière'],
     'story' => ['story', 'AboutPage', 'https://racines-lumiere.fr/notre-histoire', 'Aurore et Lorie, institut holistique à Sciez · Racines & Lumière'],
-    'a page in preparation' => ['contact', 'WebPage', 'https://racines-lumiere.fr/contact', 'Nous trouver et nous écrire à Sciez · Racines & Lumière'],
+    'contact' => ['contact', 'ContactPage', 'https://racines-lumiere.fr/contact', 'Nous trouver et nous écrire à Sciez · Racines & Lumière'],
 ]);
 
 it('places every inner page under the home page in the breadcrumb trail', function (string $route, string $name): void {

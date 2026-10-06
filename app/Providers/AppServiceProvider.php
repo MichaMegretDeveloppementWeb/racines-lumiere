@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict(! $this->app->isProduction());
 
         // Resolved once per request, and only when a page of the site is actually rendered.
-        View::composer(['layouts.web', 'components.web.*', 'web.*'], function (RenderedView $view): void {
+        View::composer(['layouts.web', 'components.web.*', 'web.*', 'livewire.web.*'], function (RenderedView $view): void {
             $view->with('institute', $this->app->make(InstituteData::class));
         });
     }

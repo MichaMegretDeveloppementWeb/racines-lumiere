@@ -23,5 +23,7 @@ final readonly class InstituteData
         public ?string $accessNote,
         public bool $hasTrustedCircle,
         public ?LaunchOfferData $launchOffer,
+        public ?float $latitude = null,
+        public ?float $longitude = null,
     ) {}
 }
