@@ -19,8 +19,9 @@
 
 @section('content')
     @include('web.contact.partials.opening')
-    @include('web.contact.partials.visit')
     @include('web.contact.partials.write')
+    @include('web.contact.partials.visit')
+    @include('web.contact.partials.booking')
 @endsection
 
 @section('body-end')

@@ -1,0 +1,26 @@
+.rl-contact-booking {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: clamp(4rem, 7vw, 6rem);
+}
+
+.rl-contact-booking .rl-title {
+    font-size: clamp(1.5rem, 2.7vw, 2rem);
+}
+
+.rl-contact-booking .rl-prose {
+    margin-top: 0.875rem;
+}
+
+.rl-contact-booking .rl-button {
+    flex-shrink: 0;
+}
+
+@media (width < 62rem) {
+    .rl-contact-booking {
+        align-items: start;
+        flex-direction: column;
+    }
+}
