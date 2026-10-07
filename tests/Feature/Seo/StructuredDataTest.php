@@ -202,7 +202,8 @@ it('places every inner page under the home page in the breadcrumb trail', functi
     Partner::factory()->create(['is_visible' => true]);
     $url = 'https://racines-lumiere.fr'.route($route, absolute: false);
 
-    $graph = structuredGraph($this->get(route($route))->assertOk());
+    $response = $this->get(route($route))->assertOk();
+    $graph = structuredGraph($response);
     [$trail] = nodesOfType($graph, 'BreadcrumbList');
     $page = pageNode($graph);
 
@@ -212,6 +213,11 @@ it('places every inner page under the home page in the breadcrumb trail', functi
             ['@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil', 'item' => 'https://racines-lumiere.fr/'],
             ['@type' => 'ListItem', 'position' => 2, 'name' => $name, 'item' => $url],
         ]);
+
+    if (in_array($route, ['contact', 'brands'], true)) {
+        $response->assertSee('aria-label="Fil d’Ariane"', false)
+            ->assertSee('<li aria-current="page">'.$name.'</li>', false);
+    }
 })->with([
     'treatment menu' => ['treatments', 'Nos soins'],
     'partner brands' => ['brands', 'Nos marques partenaires'],

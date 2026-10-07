@@ -172,7 +172,9 @@ class StructuredDataService
             'name' => $page->title,
             'description' => $page->description,
             'about' => $page->type === 'AboutPage' ? $this->instituteReference() : null,
-            'mainEntity' => $page->type === 'ContactPage' ? $this->instituteReference() : null,
+            'mainEntity' => $page->mainEntityFragment === null
+                ? ($page->type === 'ContactPage' ? $this->instituteReference() : null)
+                : ['@id' => $url.'#'.$page->mainEntityFragment],
             'isPartOf' => ['@id' => $this->siteUrl->urlFor('/#website')],
             'inLanguage' => self::LANGUAGE,
             'breadcrumb' => $trail,

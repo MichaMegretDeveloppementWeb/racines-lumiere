@@ -3,6 +3,7 @@
     'description' => 'Altearah Bio, Comfort Zone, Laboté, Gingerly, ILSE, Skin Diligent, Demain Beauty : les marques choisies par Racines & Lumière à Sciez.',
     'breadcrumb' => 'Nos marques partenaires',
     'pageType' => 'CollectionPage',
+    'mainEntityFragment' => 'brands',
 ])
 
 @section('styles')

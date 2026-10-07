@@ -74,6 +74,7 @@ it('describes the same selection in structured data using the canonical site add
     $list = collect($graph)->firstWhere('@type', 'ItemList');
 
     expect($page['url'])->toBe('https://racines-lumiere.fr/nos-marques-partenaires')
+        ->and($page['mainEntity'])->toBe(['@id' => 'https://racines-lumiere.fr/nos-marques-partenaires#brands'])
         ->and($list['mainEntityOfPage'])->toBe(['@id' => $page['@id']])
         ->and($list['numberOfItems'])->toBe(6)
         ->and(array_column($list['itemListElement'], 'position'))->toBe(range(1, 6))

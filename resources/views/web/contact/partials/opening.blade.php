@@ -1,7 +1,7 @@
 {{-- A welcome to Sciez --}}
 <x-web.layout.page-intro labelledby="contact-title" class="rl-contact-opening">
     <div class="rl-contact-opening-copy">
-        <p class="rl-contact-opening-label">Contact</p>
+        <x-web.layout.breadcrumb current="Contact" />
         <h1 id="contact-title">Retrouvons-nous<br>à Sciez.</h1>
         <p class="rl-page-intro-lead">Un premier soin, une question, une envie de prendre du temps pour vous. Nous sommes à votre écoute.</p>
     </div>

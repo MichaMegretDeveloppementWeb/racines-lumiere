@@ -15,5 +15,6 @@ final readonly class WebPageData
         public string $title,
         public string $description,
         public ?string $breadcrumbName,
+        public ?string $mainEntityFragment = null,
     ) {}
 }

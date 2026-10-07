@@ -22,7 +22,7 @@
         @yield('styles')
         <link rel="preload" href="{{ Vite::asset('resources/fonts/cinzel-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
 
-        <x-web.seo.structured-data :page-type="$pageType ?? 'WebPage'" :title="$title" :description="$description" :breadcrumb="$breadcrumb ?? null" :nodes="$pageStructuredData ?? []" />
+        <x-web.seo.structured-data :page-type="$pageType ?? 'WebPage'" :title="$title" :description="$description" :breadcrumb="$breadcrumb ?? null" :nodes="$pageStructuredData ?? []" :main-entity-fragment="$mainEntityFragment ?? null" />
     </x-web.layout.head>
     <body class="antialiased">
         <x-web.media.icons />

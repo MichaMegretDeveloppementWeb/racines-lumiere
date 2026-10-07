@@ -1,0 +1,24 @@
+.rl-breadcrumb {
+    margin-bottom: 1.25rem;
+    color: var(--color-forest);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+}
+
+.rl-breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem 0.625rem;
+}
+
+.rl-breadcrumb a {
+    display: inline-block;
+    padding-block: 0.5rem;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.rl-breadcrumb a:hover {
+    color: var(--color-terracotta);
+}

@@ -16,6 +16,15 @@
     "src": "resources/css/components/web/institute/launch-offer.css",
     "isEntry": true
   },
+  "resources/css/components/web/layout/breadcrumb.css": {
+    "file": "assets/breadcrumb-Dy3rqaQA.css",
+    "name": "breadcrumb",
+    "names": [
+      "breadcrumb.css"
+    ],
+    "src": "resources/css/components/web/layout/breadcrumb.css",
+    "isEntry": true
+  },
   "resources/css/components/web/layout/footer.css": {
     "file": "assets/footer-VIsPzAgd.css",
     "name": "footer",
@@ -66,7 +75,7 @@
     ]
   },
   "resources/css/web/brands/index.css": {
-    "file": "assets/index-BrsUDTw5.css",
+    "file": "assets/index-nwNA6iHz.css",
     "name": "index",
     "names": [
       "index.css"
@@ -75,7 +84,7 @@
     "isEntry": true
   },
   "resources/css/web/contact/index.css": {
-    "file": "assets/index-sgZUHo3A.css",
+    "file": "assets/index-3vGEPIpD.css",
     "name": "index",
     "names": [
       "index.css"

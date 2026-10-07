@@ -1,5 +1,6 @@
 <x-web.layout.page-intro labelledby="brands-title" class="rl-brands-opening">
     <div class="rl-brands-opening-copy">
+        <x-web.layout.breadcrumb current="Nos marques partenaires" />
         <p class="rl-brands-eyebrow">La beauté, bien entourée</p>
         <h1 id="brands-title">Nos marques<br>partenaires.</h1>
         <p class="rl-page-intro-lead">Des savoir-faire singuliers, une même attention portée à vous.</p>

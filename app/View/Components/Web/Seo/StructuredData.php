@@ -25,6 +25,7 @@ class StructuredData extends Component
         private readonly string $description,
         private readonly ?string $breadcrumb = null,
         private readonly array $nodes = [],
+        private readonly ?string $mainEntityFragment = null,
     ) {}
 
     /**
@@ -32,7 +33,7 @@ class StructuredData extends Component
      */
     public function json(): string
     {
-        $page = new WebPageData($this->request->getPathInfo(), $this->pageType, $this->title, $this->description, $this->breadcrumb);
+        $page = new WebPageData($this->request->getPathInfo(), $this->pageType, $this->title, $this->description, $this->breadcrumb, $this->mainEntityFragment);
 
         return json_encode(
             $this->structuredData->graph($this->institute, $page, $this->nodes),
