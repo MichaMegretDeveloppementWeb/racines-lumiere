@@ -1,5 +1,4 @@
-<section class="rl-panel rl-panel-wide rl-circle-practitioners" aria-labelledby="practitioners-title">
-    <x-web.media.texture />
+<section class="rl-circle-practitioners" aria-labelledby="practitioners-title">
     <div class="rl-wrap">
         <div class="rl-circle-introduction">
             <h2 id="practitioners-title">Des rencontres<br>qui font du bien.</h2>
