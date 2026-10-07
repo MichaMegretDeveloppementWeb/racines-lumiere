@@ -70,6 +70,12 @@
     object-position: var(--rl-intro-image-position);
 }
 
+@media (width >= 80rem) {
+    .rl-page-intro-inner {
+        min-height: 29rem;
+    }
+}
+
 @media (width < 48rem) {
     .rl-page-intro-inner {
         min-height: 28rem;
