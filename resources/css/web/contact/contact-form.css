@@ -6,6 +6,7 @@
     background-color: var(--color-cream);
     background-image: var(--rl-grain);
     --color-focus: var(--color-terracotta);
+    --rl-contact-error-color: #b91c1c;
 }
 
 .rl-contact-form-heading h3 {
@@ -50,7 +51,7 @@
     border: 1px solid color-mix(in srgb, var(--color-olive) 55%, var(--color-cream));
     border-radius: 0.25rem;
     color: var(--color-forest);
-    background: color-mix(in srgb, var(--color-sand) 10%, var(--color-cream));
+    background: #fff;
     font-size: 1rem;
     line-height: 1.5;
 }
@@ -115,13 +116,14 @@
 
 .rl-contact-error {
     margin-top: 0.5rem;
-    color: var(--color-terracotta);
+    color: var(--rl-contact-error-color);
     font-size: 0.875rem;
     line-height: 1.6;
 }
 
-.rl-contact-field [aria-invalid] {
-    border-color: var(--color-terracotta);
+.rl-contact-field [aria-invalid="true"] {
+    border-color: var(--rl-contact-error-color);
+    --color-focus: var(--rl-contact-error-color);
 }
 
 .rl-contact-delivery-error a {
