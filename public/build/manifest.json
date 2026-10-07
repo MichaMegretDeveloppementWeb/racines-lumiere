@@ -7,6 +7,15 @@
     "file": "assets/site-menu-5Cs2E_8Z.js",
     "name": "site-menu"
   },
+  "resources/css/components/shared/layout/error-message.css": {
+    "file": "assets/error-message-CgxGb_yv.css",
+    "name": "error-message",
+    "names": [
+      "error-message.css"
+    ],
+    "src": "resources/css/components/shared/layout/error-message.css",
+    "isEntry": true
+  },
   "resources/css/components/web/institute/launch-offer.css": {
     "file": "assets/launch-offer-BkBQXGcF.css",
     "name": "launch-offer",
@@ -52,6 +61,17 @@
     "src": "resources/css/components/web/layout/page-intro.css",
     "isEntry": true
   },
+  "resources/css/components/web/legal/document.css": {
+    "file": "assets/document-mbAtrx4J.css",
+    "name": "index",
+    "names": [
+      "index.css",
+      "index.css",
+      "document.css"
+    ],
+    "src": "resources/css/components/web/legal/document.css",
+    "isEntry": true
+  },
   "resources/css/components/web/media/texture.css": {
     "file": "assets/texture-CQsJm2Bi.css",
     "name": "texture",
@@ -61,8 +81,17 @@
     "src": "resources/css/components/web/media/texture.css",
     "isEntry": true
   },
+  "resources/css/error.css": {
+    "file": "assets/error-DTa6MBA5.css",
+    "name": "error",
+    "names": [
+      "error.css"
+    ],
+    "src": "resources/css/error.css",
+    "isEntry": true
+  },
   "resources/css/web.css": {
-    "file": "assets/web-BNjXNS5H.css",
+    "file": "assets/web-BIpsTuo3.css",
     "name": "web",
     "names": [
       "web.css"
@@ -99,6 +128,28 @@
       "index.css"
     ],
     "src": "resources/css/web/home/index.css",
+    "isEntry": true
+  },
+  "resources/css/web/legal/notice/index.css": {
+    "file": "assets/document-mbAtrx4J.css",
+    "name": "index",
+    "names": [
+      "index.css",
+      "index.css",
+      "document.css"
+    ],
+    "src": "resources/css/components/web/legal/document.css",
+    "isEntry": true
+  },
+  "resources/css/web/legal/privacy/index.css": {
+    "file": "assets/document-mbAtrx4J.css",
+    "name": "index",
+    "names": [
+      "index.css",
+      "index.css",
+      "document.css"
+    ],
+    "src": "resources/css/components/web/legal/document.css",
     "isEntry": true
   },
   "resources/css/web/story/index.css": {

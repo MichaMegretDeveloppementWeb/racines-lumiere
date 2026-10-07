@@ -4,7 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <x-web.seo.metadata :title="$title" :description="$description" />
+        @if ($isErrorPage ?? false)
+            <title>{{ $title }}</title>
+            <meta name="robots" content="noindex, nofollow">
+        @else
+            <x-web.seo.metadata :title="$title" :description="$description" />
+        @endif
 
         <link rel="icon" href="/favicon.ico" sizes="32x32">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -22,7 +27,9 @@
         @yield('styles')
         <link rel="preload" href="{{ Vite::asset('resources/fonts/cinzel-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
 
-        <x-web.seo.structured-data :page-type="$pageType ?? 'WebPage'" :title="$title" :description="$description" :breadcrumb="$breadcrumb ?? null" :nodes="$pageStructuredData ?? []" :main-entity-fragment="$mainEntityFragment ?? null" />
+        @unless ($isErrorPage ?? false)
+            <x-web.seo.structured-data :page-type="$pageType ?? 'WebPage'" :title="$title" :description="$description" :breadcrumb="$breadcrumb ?? null" :nodes="$pageStructuredData ?? []" :main-entity-fragment="$mainEntityFragment ?? null" />
+        @endunless
     </x-web.layout.head>
     <body class="antialiased">
         <x-web.media.icons />

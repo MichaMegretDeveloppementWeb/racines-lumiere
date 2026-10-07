@@ -1,0 +1,30 @@
+/* This layout uses no site components: a database failure must not prevent the error from rendering. */
+.rl-error-header {
+    position: absolute;
+    inset: 2rem 2.5rem auto;
+    z-index: 1;
+}
+
+.rl-error-header a {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--color-terracotta);
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+}
+
+.rl-error-header img {
+    flex-shrink: 0;
+}
+
+@media (width < 30rem) {
+    .rl-error-header {
+        inset-inline: 2rem;
+    }
+
+    .rl-error-header a {
+        gap: 0.5rem;
+        font-size: 0.875rem;
+    }
+}

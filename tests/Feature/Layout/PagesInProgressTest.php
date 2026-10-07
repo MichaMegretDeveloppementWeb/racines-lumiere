@@ -13,8 +13,8 @@ it('renders each page within the layout and reflects its preparation status', fu
 })->with([
     'partner brands' => ['brands', 'Nos marques partenaires', false],
     'contact' => ['contact', 'Contact', false],
-    'legal notice' => ['legal.notice', 'Mentions légales', true],
-    'privacy policy' => ['legal.privacy', 'Politique de confidentialité', true],
+    'legal notice' => ['legal.notice', 'Mentions légales', false],
+    'privacy policy' => ['legal.privacy', 'Politique de confidentialité', false],
 ]);
 
 it('serves the public pages at their French addresses', function (string $route, string $path): void {

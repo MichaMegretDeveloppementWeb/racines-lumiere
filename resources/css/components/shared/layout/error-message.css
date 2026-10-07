@@ -1,0 +1,72 @@
+.rl-error-message {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    min-height: 75vh;
+    align-items: center;
+    margin-block: var(--rl-edge) clamp(3rem, 5vw, 5rem);
+    padding: 10rem clamp(1.5rem, 6vw, 6rem) 5rem;
+    background: color-mix(in srgb, var(--color-sand) 35%, var(--color-cream));
+}
+
+.rl-error-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask-image: linear-gradient(90deg, transparent, black);
+    opacity: 0.6;
+}
+
+.rl-error-copy {
+    width: min(100%, 76rem);
+    margin-inline: auto;
+}
+
+.rl-error-code {
+    margin-bottom: 1.5rem;
+    color: var(--color-olive);
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.rl-error-message h1 {
+    max-width: 22ch;
+    color: var(--color-terracotta);
+    font-size: clamp(2rem, 4.5vw, 4rem);
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.rl-error-description {
+    max-width: 54ch;
+    margin-top: 1.75rem;
+    color: var(--color-olive);
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.rl-error-description a {
+    color: var(--color-terracotta);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    overflow-wrap: anywhere;
+}
+
+.rl-error-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+    margin-top: 2.25rem;
+}
+
+@media (width < 48rem) {
+    .rl-error-message {
+        min-height: 65vh;
+        padding-block: 8rem 3rem;
+    }
+}
