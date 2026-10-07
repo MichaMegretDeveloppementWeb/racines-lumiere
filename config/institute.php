@@ -57,7 +57,7 @@ return [
 
     'contact' => [
         'email' => 'racinesetlumiere.rituels@gmail.com',
-        'form_recipient' => 'michamegret.dev@gmail.com',
+        'form_recipient' => 'racinesetlumiere.rituels@gmail.com',
         'phone' => null,
         'instagram_url' => 'https://www.instagram.com/racinesetlumiere.sciez/',
     ],
