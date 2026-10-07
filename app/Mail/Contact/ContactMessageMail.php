@@ -28,6 +28,9 @@ class ContactMessageMail extends Mailable implements ShouldQueue
 
     public function content(): Content
     {
-        return new Content(view: 'mail.contact.message');
+        return new Content(
+            view: 'mail.contact.message',
+            text: 'mail.contact.message-text',
+        );
     }
 }
