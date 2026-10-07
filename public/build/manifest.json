@@ -3,8 +3,8 @@
     "file": "assets/module.esm-CHZQYZeV.js",
     "name": "module.esm"
   },
-  "_site-menu-5Cs2E_8Z.js": {
-    "file": "assets/site-menu-5Cs2E_8Z.js",
+  "_site-menu-hCo0MqzO.js": {
+    "file": "assets/site-menu-hCo0MqzO.js",
     "name": "site-menu"
   },
   "resources/css/components/shared/layout/error-message.css": {
@@ -188,32 +188,32 @@
     "src": "resources/fonts/nunito-latin.woff2"
   },
   "resources/js/web.js": {
-    "file": "assets/web-B4G9dEyj.js",
+    "file": "assets/web-DS_Jo0Iy.js",
     "name": "web",
     "src": "resources/js/web.js",
     "isEntry": true,
     "imports": [
       "_module.esm-CHZQYZeV.js",
-      "_site-menu-5Cs2E_8Z.js"
+      "_site-menu-hCo0MqzO.js"
     ]
   },
   "resources/js/web/brands/index.js": {
-    "file": "assets/index-BRvJ56Sx.js",
+    "file": "assets/index-DPmeaeVR.js",
     "name": "index",
     "src": "resources/js/web/brands/index.js",
     "isEntry": true,
     "imports": [
       "_module.esm-CHZQYZeV.js",
-      "_site-menu-5Cs2E_8Z.js"
+      "_site-menu-hCo0MqzO.js"
     ]
   },
   "resources/js/web/contact/index.js": {
-    "file": "assets/index-CTpRyWxQ.js",
+    "file": "assets/index-Qj4QdL8-.js",
     "name": "index",
     "src": "resources/js/web/contact/index.js",
     "isEntry": true,
     "imports": [
-      "_site-menu-5Cs2E_8Z.js"
+      "_site-menu-hCo0MqzO.js"
     ]
   }
 }

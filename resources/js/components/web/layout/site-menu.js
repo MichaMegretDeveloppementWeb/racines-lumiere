@@ -6,6 +6,7 @@ const FOCUSABLE = 'a[href], button:not([disabled])';
  * @property {() => void} toggle
  * @property {() => void} open
  * @property {() => void} close
+ * @property {() => void} closeIfHidden
  * @property {(event: KeyboardEvent) => void} keepFocusInside
  * @property {() => void} destroy
  */
@@ -65,7 +66,15 @@ export function siteMenu() {
 
             this.isOpen = false;
             freezePageScroll(false);
-            this.$refs.toggle.focus();
+            if (this.$refs.toggle.getClientRects().length > 0) {
+                this.$refs.toggle.focus();
+            }
+        },
+
+        closeIfHidden() {
+            if (this.isOpen && this.$refs.toggle.getClientRects().length === 0) {
+                this.close();
+            }
         },
 
         keepFocusInside(event) {

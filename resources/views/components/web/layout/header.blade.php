@@ -8,7 +8,7 @@
             </span>
         </a>
 
-        <nav aria-label="Menu principal" class="rl-nav" x-data="siteMenu" @keydown.escape.window="close()" @keydown.tab="keepFocusInside($event)" @click.outside="close()">
+        <nav aria-label="Menu principal" class="rl-nav" x-data="siteMenu" @keydown.escape.window="close()" @keydown.tab="keepFocusInside($event)" @click.outside="close()" @resize.window="closeIfHidden()">
             <ul class="rl-nav-desktop">
                 @foreach ($links() as $link)
                     <li><a href="{{ $link['url'] }}" @if ($link['isCurrent']) aria-current="page" @endif>{{ $link['label'] }}</a></li>
