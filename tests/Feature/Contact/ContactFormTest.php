@@ -43,6 +43,22 @@ it('sends to the team synchronously without storing the message and prevents a s
     });
 });
 
+it('rejects an empty form before confirming regardless of submission speed', function (int $delay): void {
+    $form = Livewire::test(ContactForm::class);
+    $this->travel($delay)->seconds();
+
+    $form->call('send')
+        ->assertHasErrors(['name' => 'required', 'email' => 'required', 'message' => 'required', 'consent' => 'accepted'])
+        ->assertSet('isSent', false)
+        ->assertSee('Indiquez votre nom.')
+        ->assertSee('Indiquez votre adresse e-mail.')
+        ->assertSee('Écrivez votre message.')
+        ->assertSee('Cochez la case pour que nous puissions vous répondre.')
+        ->assertDontSee('votre message est bien parti');
+
+    Mail::assertNothingOutgoing();
+})->with([0, 2, 3, 10]);
+
 it('rejects invalid input and retains the message', function (string $field, string|bool $value, string $rule): void {
     $form = Livewire::test(ContactForm::class)->set([...contactFields(), $field => $value]);
     $this->travel(3)->seconds();

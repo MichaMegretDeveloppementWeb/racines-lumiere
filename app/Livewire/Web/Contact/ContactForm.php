@@ -46,17 +46,18 @@ class ContactForm extends Component
 
         $this->resetErrorBag('delivery');
 
+        $this->name = trim($this->name);
+        $this->email = trim($this->email);
+        $this->phone = trim($this->phone);
+        $this->message = trim($this->message);
+        $validated = $this->validate();
+
         if ($this->website !== '' || now()->getTimestamp() - $this->openedAt < 3) {
             $this->confirm();
 
             return;
         }
 
-        $this->name = trim($this->name);
-        $this->email = trim($this->email);
-        $this->phone = trim($this->phone);
-        $this->message = trim($this->message);
-        $validated = $this->validate();
         $rateKey = 'contact:'.hash('sha256', (string) request()->ip());
 
         if (RateLimiter::tooManyAttempts($rateKey, 3)) {
