@@ -28,9 +28,9 @@
 .rl-page-intro-inner {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    min-height: max(35rem, 53vh);
-    padding-block: 9rem 1.75rem;
+    gap: 2rem;
+    min-height: max(30rem, 45vh);
+    padding-block: 8rem 1.5rem;
 }
 
 .rl-page-intro-inner > .rl-breadcrumb {
@@ -81,7 +81,7 @@
 
     .rl-page-intro-copy {
         width: 100%;
-        padding-bottom: 14rem;
+        padding-bottom: 12rem;
     }
 
     .rl-page-intro h1 {
@@ -95,7 +95,7 @@
     .rl-page-intro-image {
         inset: auto 0 0;
         width: 100%;
-        height: 18rem;
+        height: 16rem;
         mask-image: linear-gradient(180deg, transparent, #000 25%);
     }
 
