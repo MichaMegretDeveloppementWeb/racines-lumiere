@@ -6,10 +6,10 @@
     </div>
     <div class="rl-wrap rl-page-intro-inner">
         <div class="rl-page-intro-copy">
-            <x-web.layout.breadcrumb :current="$breadcrumb" />
             <h1 id="{{ $labelledby }}">{{ $slot }}</h1>
             <p class="rl-page-intro-lead">{{ $lead }}</p>
         </div>
+        <x-web.layout.breadcrumb :current="$breadcrumb" />
     </div>
     <div class="rl-page-intro-image" aria-hidden="true">
         <x-web.media.picture :name="$imageName" :widths="$imageWidths" sizes="(min-width: 48rem) 66vw, 100vw" alt="" :width="$imageWidth" :height="$imageHeight" is-priority class="size-full object-cover" />
