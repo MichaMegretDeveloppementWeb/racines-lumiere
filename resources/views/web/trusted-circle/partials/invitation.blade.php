@@ -1,4 +1,4 @@
-<section class="rl-panel rl-panel-wide rl-circle-invitation" aria-labelledby="circle-invitation-title">
+<section class="rl-panel rl-circle-invitation" aria-labelledby="circle-invitation-title">
     <x-web.media.texture />
     <div class="rl-wrap rl-circle-invitation-inner">
         <h2 id="circle-invitation-title">La confiance commence<br>par un échange.</h2>

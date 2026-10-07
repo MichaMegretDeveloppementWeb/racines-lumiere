@@ -1,6 +1,8 @@
 .rl-circle-invitation {
     position: relative;
     isolation: isolate;
+    width: min(100% - 2 * var(--rl-edge) - 2 * var(--rl-gutter), 76rem);
+    margin-inline: auto;
     margin-block: clamp(1rem, 3vw, 3rem) clamp(4rem, 7vw, 7rem);
     padding-block: clamp(3rem, 5vw, 5rem);
     background: var(--color-sand);
@@ -36,6 +38,10 @@
 }
 
 @media (width < 37.5rem) {
+    .rl-circle-invitation {
+        width: calc(100% - 2 * var(--rl-edge));
+    }
+
     .rl-circle-invitation-inner {
         grid-template-columns: 1fr;
         gap: 2rem;
