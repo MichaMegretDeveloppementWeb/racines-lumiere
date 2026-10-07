@@ -1,0 +1,35 @@
+.rl-circle-invitation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    padding-block: clamp(4rem, 7vw, 7rem);
+}
+
+.rl-circle-invitation h2 {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    line-height: 1.4;
+}
+
+.rl-circle-invitation > div {
+    max-width: 42ch;
+    justify-self: end;
+}
+
+.rl-circle-invitation p {
+    margin-bottom: 1rem;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+@media (width < 37.5rem) {
+    .rl-circle-invitation {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding-inline: 0.75rem;
+    }
+
+    .rl-circle-invitation > div {
+        justify-self: start;
+    }
+}

@@ -9,11 +9,11 @@ it('tells the story of the house in the order of the brief, in both opening stat
         ->assertOk()
         ->assertViewIs('web.story.index')
         ->assertSeeInOrder([
-            '<h1 id="story-title">',
             'Notre histoire',
-            'Aurore <span class="rl-story-opening-ampersand">&amp;</span> Lorie',
+            '<h1 id="story-title">',
+            'Aurore &amp; Lorie',
             '</h1>',
-            'Une&nbsp;rencontre, une&nbsp;amitié, une&nbsp;même&nbsp;vision.',
+            'Une rencontre, une amitié, une même vision.',
             'Maison de beauté holistique à Sciez',
             'Bienvenue dans notre Maison du Mieux-Être&nbsp;!',
             'Ici, pas de carte à suivre à la lettre, pas de protocole répété.',

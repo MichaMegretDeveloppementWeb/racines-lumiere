@@ -214,7 +214,7 @@ it('places every inner page under the home page in the breadcrumb trail', functi
             ['@type' => 'ListItem', 'position' => 2, 'name' => $name, 'item' => $url],
         ]);
 
-    if (in_array($route, ['contact', 'brands'], true)) {
+    if (in_array($route, ['contact', 'brands', 'treatments', 'story', 'trusted-circle'], true)) {
         $response->assertSee('aria-label="Fil d’Ariane"', false)
             ->assertSee('<li aria-current="page">'.$name.'</li>', false);
     }

@@ -1,4 +1,5 @@
-/* The opening of an inner page: a cream panel over the linen of the home, its title in terracotta. */
+﻿@import './breadcrumb.css';
+
 .rl-page-intro {
     position: relative;
     isolation: isolate;
@@ -9,7 +10,7 @@
 .rl-page-intro-texture {
     position: absolute;
     inset: 0;
-    z-index: -1;
+    z-index: -3;
     opacity: 0.55;
     pointer-events: none;
 }
@@ -18,33 +19,83 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background-image: var(--rl-grain), linear-gradient(180deg, color-mix(in srgb, var(--color-cream) 70%, transparent), color-mix(in srgb, var(--color-cream) 35%, transparent));
-    background-size: 160px 160px, cover;
+    background-image: var(--rl-grain), linear-gradient(90deg, var(--color-cream) 7%, color-mix(in srgb, var(--color-cream) 93%, transparent) 30%, color-mix(in srgb, var(--color-cream) 65%, transparent) 47%, transparent 78%), linear-gradient(180deg, color-mix(in srgb, var(--color-cream) 85%, transparent), transparent 35%);
+    background-size: 160px 160px, cover, cover;
     content: '';
     pointer-events: none;
 }
 
 .rl-page-intro-inner {
-    padding-block: 9.5rem 3.5rem;
+    min-height: max(35rem, 53vh);
+    padding-block: 9rem 4.5rem;
+}
+
+.rl-page-intro-copy {
+    width: 55%;
+    max-width: 38rem;
 }
 
 .rl-page-intro h1 {
     color: var(--color-terracotta);
-    font-size: clamp(2.5rem, 4.4vw, 3.75rem);
-    line-height: 1.1;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 1.17;
     letter-spacing: -0.015em;
+    text-wrap: balance;
 }
 
 .rl-page-intro-lead {
     max-width: 34ch;
-    margin-top: 1.25rem;
-    font-size: clamp(1.125rem, 1.6vw, 1.375rem);
-    line-height: 1.5;
-    text-wrap: balance;
+    margin-top: 1.5rem;
+    font-size: 1.1875rem;
+    line-height: 1.7;
+    text-wrap: pretty;
+}
+
+.rl-page-intro-image {
+    position: absolute;
+    inset: 0 0 0 auto;
+    z-index: -2;
+    width: 66%;
+    mask-image: linear-gradient(90deg, transparent, #000 30%);
+}
+
+.rl-page-intro-image img {
+    object-position: var(--rl-intro-image-position);
 }
 
 @media (width < 48rem) {
     .rl-page-intro-inner {
-        padding-block: 7.5rem 2.5rem;
+        min-height: 0;
+        width: auto;
+        margin-inline: 0;
+        padding: 7rem 1.5rem 15rem;
+    }
+
+    .rl-page-intro-copy {
+        width: 100%;
+    }
+
+    .rl-page-intro h1 {
+        font-size: clamp(1.75rem, 7vw, 3rem);
+    }
+
+    .rl-page-intro-lead {
+        font-size: 1.0625rem;
+    }
+
+    .rl-page-intro-image {
+        inset: auto 0 0;
+        width: 100%;
+        height: 18rem;
+        mask-image: linear-gradient(180deg, transparent, #000 25%);
+    }
+
+    .rl-page-intro-image img {
+        object-position: var(--rl-intro-mobile-image-position);
+    }
+
+    .rl-page-intro::after {
+        background-image: var(--rl-grain), linear-gradient(180deg, var(--color-cream) 43%, color-mix(in srgb, var(--color-cream) 90%, transparent) 64%, transparent 88%);
+        background-size: 160px 160px, cover;
     }
 }

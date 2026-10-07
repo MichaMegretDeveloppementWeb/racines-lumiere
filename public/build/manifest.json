@@ -44,7 +44,7 @@
     "isEntry": true
   },
   "resources/css/components/web/layout/page-intro.css": {
-    "file": "assets/page-intro-C1PLW1sT.css",
+    "file": "assets/page-intro-C3SMWJRy.css",
     "name": "page-intro",
     "names": [
       "page-intro.css"
@@ -75,7 +75,7 @@
     ]
   },
   "resources/css/web/brands/index.css": {
-    "file": "assets/index-nwNA6iHz.css",
+    "file": "assets/index-1bx9Ww4S.css",
     "name": "index",
     "names": [
       "index.css"
@@ -84,7 +84,7 @@
     "isEntry": true
   },
   "resources/css/web/contact/index.css": {
-    "file": "assets/index-3vGEPIpD.css",
+    "file": "assets/index-DHG-oPwC.css",
     "name": "index",
     "names": [
       "index.css"
@@ -102,7 +102,7 @@
     "isEntry": true
   },
   "resources/css/web/story/index.css": {
-    "file": "assets/index-DhzlMA93.css",
+    "file": "assets/index-6wiPDXka.css",
     "name": "index",
     "names": [
       "index.css"
@@ -111,12 +111,21 @@
     "isEntry": true
   },
   "resources/css/web/treatments/index.css": {
-    "file": "assets/index-CrHDh-Hg.css",
+    "file": "assets/index-CBzv8cwr.css",
     "name": "index",
     "names": [
       "index.css"
     ],
     "src": "resources/css/web/treatments/index.css",
+    "isEntry": true
+  },
+  "resources/css/web/trusted-circle/index.css": {
+    "file": "assets/index-D3gAulkU.css",
+    "name": "index",
+    "names": [
+      "index.css"
+    ],
+    "src": "resources/css/web/trusted-circle/index.css",
     "isEntry": true
   },
   "resources/fonts/cinzel-latin.woff2": {
