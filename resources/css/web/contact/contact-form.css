@@ -48,7 +48,7 @@
     width: 100%;
     min-height: 2.875rem;
     padding: 0.625rem 0.75rem;
-    border: 1px solid color-mix(in srgb, var(--color-olive) 55%, var(--color-cream));
+    border: 1px solid color-mix(in srgb, var(--color-olive) 70%, var(--color-cream));
     border-radius: 0.25rem;
     color: var(--color-forest);
     background: #fff;
