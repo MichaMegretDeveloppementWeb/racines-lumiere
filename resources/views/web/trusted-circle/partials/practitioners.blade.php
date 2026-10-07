@@ -1,4 +1,4 @@
-<section class="rl-panel rl-circle-practitioners" aria-labelledby="practitioners-title">
+<section class="rl-panel rl-panel-wide rl-circle-practitioners" aria-labelledby="practitioners-title">
     <x-web.media.texture />
     <div class="rl-wrap">
         <div class="rl-circle-introduction">

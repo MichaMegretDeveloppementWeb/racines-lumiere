@@ -24,23 +24,24 @@ function syntheticPartners(string $prefix, int $count): array
     ], range(1, $count));
 }
 
-it('seeds the five practitioners of annex D, all hidden until they agree', function (): void {
+it('publishes the five practitioners of annex D whose consent is confirmed', function (): void {
     $this->seed(PartnerSeeder::class);
 
     expect(Partner::query()->orderBy('position')->pluck('slug')->all())->toBe([
         'alice-peillex', 'julie-deage-martinez', 'camille-gouyon', 'marie-christine-gosetto', 'joelle-plantaz',
     ])
-        ->and(Partner::query()->where('is_visible', true)->exists())->toBeFalse()
+        ->and(Partner::query()->where('is_visible', true)->count())->toBe(5)
         ->and(Partner::query()->where('slug', 'joelle-plantaz')->value('organization_name'))->toBe('Jojo les Bas Bleus');
 });
 
 it('replays the partners without duplicates and restores altered values', function (): void {
     $this->seed(PartnerSeeder::class);
-    Partner::query()->where('slug', 'alice-peillex')->update(['specialty' => 'Altered']);
+    Partner::query()->where('slug', 'alice-peillex')->update(['specialty' => 'Altered', 'is_visible' => false]);
 
     $this->seed(PartnerSeeder::class);
 
     expect(Partner::query()->count())->toBe(5)
+        ->and(Partner::query()->where('is_visible', true)->count())->toBe(5)
         ->and(Partner::query()->where('slug', 'alice-peillex')->value('specialty'))->toBe('Kinésiologue');
 });
 

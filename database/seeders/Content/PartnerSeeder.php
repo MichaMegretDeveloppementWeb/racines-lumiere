@@ -8,7 +8,7 @@ use App\Models\Partner;
 use Illuminate\Database\Seeder;
 
 /**
- * The trusted circle. Each practitioner stays hidden until their written agreement is received.
+ * The trusted circle. Publication consent for all five practitioners was confirmed on 2026-10-07.
  *
  * @phpstan-type PartnerRow array{slug: string, name: string, organization_name: ?string, specialty: string, town: ?string, website_url: ?string, position: int, is_visible: bool}
  */
@@ -72,7 +72,7 @@ class PartnerSeeder extends Seeder
             'town' => $town,
             'website_url' => $websiteUrl,
             'position' => $position,
-            'is_visible' => false,
+            'is_visible' => true,
         ];
     }
 }
