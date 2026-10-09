@@ -56,8 +56,8 @@ return [
     */
 
     'contact' => [
-        'email' => 'racinesetlumiere.rituels@gmail.com',
-        'form_recipient' => 'racinesetlumiere.rituels@gmail.com',
+        'email' => 'contact@racines-lumiere.fr',
+        'form_recipient' => 'contact@racines-lumiere.fr',
         'phone' => null,
         'instagram_url' => 'https://www.instagram.com/racinesetlumiere.sciez/',
     ],
