@@ -42,6 +42,7 @@
             <div>
                 <p>Le site est hébergé par Hostinger.</p>
                 <p>Hostinger International Ltd<br>61 Lordou Vironos Street<br>6023 Larnaca, Chypre</p>
+                <p>Le serveur du site est situé en France. Les sauvegardes de l’hébergement sont conservées en Lituanie.</p>
                 <p><a href="https://www.hostinger.com/fr/contact" target="_blank" rel="noopener noreferrer">Contacter Hostinger<span class="sr-only"> (nouvel onglet)</span></a></p>
                 <p class="rl-legal-pending">Entité contractante à confirmer sur le contrat d’hébergement. Téléphone de l’hébergeur : à compléter.</p>
             </div>
