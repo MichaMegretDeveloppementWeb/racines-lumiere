@@ -46,8 +46,8 @@ class PartnerSeeder extends Seeder
         return [
             $this->partner(10, 'alice-peillex', 'Alice Peillex', 'Kinésiologue', 'Thonon-les-Bains', 'https://terapiz.com/kinesiologue/thonon-les-bains/alice-peillex'),
             $this->partner(20, 'julie-deage-martinez', 'Julie Déage-Martinez', 'Ostéopathe', 'Allinges', 'https://ame-s.co/'),
-            $this->partner(30, 'camille-gouyon', 'Camille Gouyon', 'Thérapeute énergétique, ostéo douce', 'Perrignier', 'https://www.osteodouce.fr/'),
-            $this->partner(40, 'marie-christine-gosetto', 'Marie-Christine Gosetto', 'Thérapeute intuitive', 'Perrignier', 'https://namaste-energie.fr/'),
+            $this->partner(30, 'camille-gouyon', 'Camille Gouyon', 'Énergéticienne · ostéo douce', 'Perrignier', 'https://www.osteodouce.fr/'),
+            $this->partner(40, 'marie-christine-gosetto', 'Marie-Christine Gosetto', 'Énergéticienne · médiumnité', 'Perrignier', 'https://namaste-energie.fr/'),
             $this->partner(50, 'joelle-plantaz', 'Joëlle Plantaz', 'Conseillère en image', 'Margencel', 'https://jojolesbasbleus.fr/', organizationName: 'Jojo les Bas Bleus'),
         ];
     }

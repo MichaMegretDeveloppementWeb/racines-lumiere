@@ -59,17 +59,17 @@ function visibleVariantCount(): int
         ->count();
 }
 
-it('seeds the treatment menu of annex B', function (): void {
+it('seeds the current treatment menu', function (): void {
     $this->seed(TreatmentMenuSeeder::class);
 
     expect(TreatmentCategory::query()->orderBy('position')->pluck('slug')->all())->toBe([
         'rituels-corps', 'rituel-visage-et-ame', 'rituels-complets', 'traitements-visage',
         'singuliers', 'supplements-d-ame', 'epilation',
     ])
-        ->and(Treatment::query()->count())->toBe(43)
-        ->and(TreatmentVariant::query()->count())->toBe(45)
-        ->and(visibleVariantCount())->toBe(45)
-        ->and(Treatment::query()->where('is_visible', true)->count())->toBe(43);
+        ->and(Treatment::query()->count())->toBe(66)
+        ->and(TreatmentVariant::query()->count())->toBe(68)
+        ->and(visibleVariantCount())->toBe(68)
+        ->and(Treatment::query()->where('is_visible', true)->count())->toBe(66);
 });
 
 it('gives every signature ritual exactly thirty more minutes than its care time', function (): void {
@@ -93,9 +93,9 @@ it('shows every waxing treatment in its group', function (): void {
     $waxingCategoryId = TreatmentCategory::query()->where('slug', 'epilation')->value('id');
     $waxing = Treatment::query()->where('treatment_category_id', $waxingCategoryId)->get();
 
-    expect($waxing)->toHaveCount(26)
+    expect($waxing)->toHaveCount(49)
         ->and($waxing->where('is_visible', false))->toBeEmpty()
-        ->and($waxing->countBy('group_label')->all())->toBe(['Épilations femmes' => 12, 'Forfaits femmes' => 7, 'Épilations hommes' => 7])
+        ->and($waxing->countBy('group_label')->all())->toBe(['Épilations femmes' => 15, 'Forfaits femmes' => 7, 'Épilations hommes' => 8, 'Épilations au fil' => 5, 'Épilations au sucre' => 14])
         ->and(TreatmentCategory::query()->where('slug', 'epilation')->value('is_visible'))->toBeTrue();
 });
 
@@ -131,8 +131,8 @@ it('replays without duplicates, restores altered values and deletes nothing', fu
     $this->seed(TreatmentMenuSeeder::class);
 
     expect(TreatmentCategory::query()->count())->toBe(8)
-        ->and(Treatment::query()->count())->toBe(43)
-        ->and(TreatmentVariant::query()->count())->toBe(45)
+        ->and(Treatment::query()->count())->toBe(66)
+        ->and(TreatmentVariant::query()->count())->toBe(68)
         ->and(Treatment::query()->where('slug', 'kobido')->value('name'))->toBe('Kobido')
         ->and(TreatmentVariant::query()->where('price_cents', 9500)->exists())->toBeTrue()
         ->and($unlisted->fresh())->not->toBeNull();

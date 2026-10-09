@@ -18,8 +18,8 @@ it('renders the main home in both opening states', function (bool $isOpen): void
         ->assertSee('<main id="content"', false)
         ->assertSee('href="mailto:'.config('institute.contact.email').'"', false)
         ->assertSeeTextInOrder([
-            'Vous ne choisissez pas votre soin.',
-            'Nous le créons avec vous.',
+            "Votre rituel n'est pas écrit,",
+            'nous le créons avec vous.',
             'maison de soin holistique à Sciez.',
             'Nos soins',
             'Une adresse confidentielle',
@@ -46,7 +46,7 @@ it('renders the main home in both opening states', function (bool $isOpen): void
 it('renders the featured categories and visible reviews from the database', function (): void {
     $this->get(route('home'))
         ->assertOk()
-        ->assertSeeInOrder(['Nos rituels corps', 'Notre rituel Visage &amp; Âme', 'Nos rituels complets Corps &amp; Visage', 'Nos traitements visage', 'Nos singuliers'], false)
+        ->assertSeeInOrder(['Nos rituels corps', 'Nos rituels visage', 'Nos rituels complets Corps &amp; Visage', 'Nos traitements visage', 'Nos singuliers'], false)
         ->assertDontSee('Les suppléments d&#039;Âme', false)
         ->assertSee(route('treatments').'#rituels-corps', false)
         ->assertSeeText('Sampaio')

@@ -20,7 +20,7 @@ it('renders the whole menu in both opening states', function (bool $isOpen): voi
             'Chez nous, un soin commence bien avant la cabine et se termine bien après.',
             'Deux rituels ne se ressemblent jamais',
             'Nos rituels corps',
-            'Notre rituel Visage &amp; Âme',
+            'Nos rituels visage',
             'Nos rituels complets Corps &amp; Visage',
             'Nos traitements visage',
             'Nos singuliers',
@@ -37,7 +37,7 @@ it('writes each price line with its total duration first, the care time within i
         ->assertSeeInOrder(['Kobido', '1h', "120\u{00A0}€", '1h30', 'avec soin visage', "150\u{00A0}€"])
         ->assertSeeInOrder(['Yeux', "10\u{00A0}€"]);
 
-    expect(substr_count($response->getContent(), '<li class="rl-variant">'))->toBe(45);
+    expect(substr_count($response->getContent(), '<li class="rl-variant">'))->toBe(68);
 });
 
 it('anchors every category, and lists them all at the top of the page', function (): void {
@@ -48,12 +48,12 @@ it('anchors every category, and lists them all at the top of the page', function
     }
 });
 
-it('lists the waxing prices in three folded groups, present in the page from the start', function (): void {
+it('lists the waxing prices in five folded groups, present in the page from the start', function (): void {
     $response = $this->get(route('treatments'))->assertOk();
 
-    expect(substr_count($response->getContent(), '<details class="rl-treatment-group">'))->toBe(3);
+    expect(substr_count($response->getContent(), '<details class="rl-treatment-group">'))->toBe(5);
     $response->assertSeeText('Retrouvez toutes nos épilations et leurs tarifs directement sur notre page de réservation en ligne.')
-        ->assertSeeInOrder(['Épilations femmes', 'Maillot brésilien', "20\u{00A0}min", "24\u{00A0}€", 'Forfaits femmes', 'Épilations hommes', 'Torse']);
+        ->assertSeeInOrder(['Épilations femmes', 'Maillot brésilien', "20\u{00A0}min", "25\u{00A0}€", 'Forfaits femmes', 'Épilations hommes', 'Torse', 'Épilations au fil', 'Visage complet', 'Épilations au sucre', 'Maillot intégral', "40\u{00A0}min"]);
 });
 
 it('opens Booksy in a new tab from every category', function (): void {

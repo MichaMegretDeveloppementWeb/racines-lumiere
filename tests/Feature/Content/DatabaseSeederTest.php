@@ -25,7 +25,7 @@ it('seeds the whole content in eight queries', function (): void {
 
     expect($count)->toBe(8)
         ->and(TreatmentCategory::query()->count())->toBe(7)
-        ->and(Treatment::query()->count())->toBe(43)
+        ->and(Treatment::query()->count())->toBe(66)
         ->and(Brand::query()->count())->toBe(7)
         ->and(Partner::query()->count())->toBe(5)
         ->and(Review::query()->count())->toBe(6);

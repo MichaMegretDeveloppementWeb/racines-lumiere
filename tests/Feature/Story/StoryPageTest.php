@@ -17,7 +17,7 @@ it('tells the story of the house in the order of the brief, in both opening stat
             'Maison de beauté holistique à Sciez',
             'Bienvenue dans notre Maison du Mieux-Être&nbsp;!',
             'Ici, pas de carte à suivre à la lettre, pas de protocole répété.',
-            'Vous repartez ancrée, apaisée, rechargée',
+            "Vous repartez avec un sentiment d'ancrage et d'apaisement, une énergie renouvelée",
             'Le sens de notre nom',
             '<h3>Racines</h3>',
             '<h3>Lumière</h3>',

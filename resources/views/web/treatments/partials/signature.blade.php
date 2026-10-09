@@ -21,6 +21,6 @@
             </div>
         </div>
         <p class="rl-signature-guide">Selon ce qui vous appelle, laissez-vous guider vers le corps avec <a href="#rituels-corps">Revenir à soi</a>, vers le visage avec <a href="#rituel-visage-et-ame">Aura Botanica</a>, ou vers les deux réunis, pour <a href="#rituels-complets">un rituel complet</a>.</p>
-        <p class="rl-signature-closing">Deux rituels ne se ressemblent jamais, parce que vous n'êtes jamais tout à fait la même d'un jour à l'autre.</p>
+        <p class="rl-signature-closing">Deux rituels ne se ressemblent jamais, parce que vous n'êtes pas la même personne d'un jour à l'autre.</p>
     </div>
 </section>

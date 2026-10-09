@@ -31,6 +31,8 @@ it('publishes the five practitioners of annex D whose consent is confirmed', fun
         'alice-peillex', 'julie-deage-martinez', 'camille-gouyon', 'marie-christine-gosetto', 'joelle-plantaz',
     ])
         ->and(Partner::query()->where('is_visible', true)->count())->toBe(5)
+        ->and(Partner::query()->where('slug', 'camille-gouyon')->value('specialty'))->toBe('Énergéticienne · ostéo douce')
+        ->and(Partner::query()->where('slug', 'marie-christine-gosetto')->value('specialty'))->toBe('Énergéticienne · médiumnité')
         ->and(Partner::query()->where('slug', 'joelle-plantaz')->value('organization_name'))->toBe('Jojo les Bas Bleus');
 });
 

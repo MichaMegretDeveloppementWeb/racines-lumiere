@@ -273,11 +273,11 @@ it('marks up the menu as a catalogue of its categories, treatments and price lin
         'mainEntityOfPage' => ['@id' => 'https://racines-lumiere.fr/nos-soins#webpage'],
     ])
         ->and(array_column($catalog['itemListElement'], 'name'))->toBe([
-            'Nos rituels corps', 'Notre rituel Visage & Âme', 'Nos rituels complets Corps & Visage',
+            'Nos rituels corps', 'Nos rituels visage', 'Nos rituels complets Corps & Visage',
             'Nos traitements visage', 'Nos singuliers', "Les suppléments d'Âme", "L'art de l'épilation",
         ])
-        ->and($services)->toHaveCount(43)
-        ->and(array_merge(...array_column($services, 'offers')))->toHaveCount(45)
+        ->and($services)->toHaveCount(66)
+        ->and(array_merge(...array_column($services, 'offers')))->toHaveCount(68)
         ->and($pause['listedUnder'])->toBe('Nos rituels corps')
         ->and($pause['provider'])->toBe(['@id' => 'https://racines-lumiere.fr/#institute'])
         ->and($pause['offers'][0])->toBe(['@type' => 'Offer', 'description' => "1h15 dont 45\u{00A0}min de soin", 'price' => '95.00', 'priceCurrency' => 'EUR'])
@@ -294,10 +294,10 @@ it('lists the waxing in its groups, as the menu folds them', function (): void {
     [$waxing] = array_values(array_filter($catalog['itemListElement'], fn (array $category): bool => $category['name'] === "L'art de l'épilation"));
     $underarms = array_values(array_filter(catalogServices($graph), fn (array $service): bool => $service['name'] === 'Aisselles'));
 
-    expect(array_column($waxing['itemListElement'], '@type'))->toBe(['OfferCatalog', 'OfferCatalog', 'OfferCatalog'])
-        ->and(array_column($waxing['itemListElement'], 'name'))->toBe(['Épilations femmes', 'Forfaits femmes', 'Épilations hommes'])
+    expect(array_column($waxing['itemListElement'], '@type'))->toBe(['OfferCatalog', 'OfferCatalog', 'OfferCatalog', 'OfferCatalog', 'OfferCatalog'])
+        ->and(array_column($waxing['itemListElement'], 'name'))->toBe(['Épilations femmes', 'Forfaits femmes', 'Épilations hommes', 'Épilations au fil', 'Épilations au sucre'])
         ->and(array_map(fn (array $service): array => [$service['listedUnder'], $service['offers'][0]['price']], $underarms))
-        ->toBe([['Épilations femmes', '15.00'], ['Épilations hommes', '18.00']]);
+        ->toBe([['Épilations femmes', '15.00'], ['Épilations hommes', '15.00'], ['Épilations au sucre', '18.00']]);
 });
 
 it('leaves out of the catalogue a category that has no visible treatment', function (): void {

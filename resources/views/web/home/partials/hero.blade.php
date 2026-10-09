@@ -1,6 +1,6 @@
 <section aria-labelledby="hero-title" class="rl-panel rl-panel-wide rl-hero">
     <div class="rl-hero-copy">
-        <h1 id="hero-title">Vous ne choisissez pas votre soin.<span>Nous le créons avec vous.</span></h1>
+        <h1 id="hero-title">Votre rituel n'est pas écrit, <span>nous le créons avec vous.</span></h1>
         <p class="rl-hero-description">Rituels holistiques pour le corps et le visage.</p>
         <x-web.booking.button>{{ $institute->isOpen ? 'Réserver mon rituel' : 'Réserver dès maintenant' }}</x-web.booking.button>
         <div class="rl-hero-meta">
