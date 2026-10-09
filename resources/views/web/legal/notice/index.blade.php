@@ -42,9 +42,11 @@
             <div>
                 <p>Le site est hébergé par Hostinger.</p>
                 <p>Hostinger International Ltd<br>61 Lordou Vironos Street<br>6023 Larnaca, Chypre</p>
+                <p>Les coordonnées de l’hébergeur sont indiquées dans les <a href="https://www.hostinger.com/fr/legal/termes-universels-de-contrat-de-service" target="_blank" rel="noopener noreferrer">conditions de service de Hostinger<span class="sr-only"> (nouvel onglet)</span></a>.</p>
                 <p>Le serveur du site est situé en France. Les sauvegardes de l’hébergement sont conservées en Lituanie.</p>
+                <p>Contact : <a href="mailto:support@hostinger.com">support@hostinger.com</a>. L’assistance pour l’hébergement est disponible en ligne.</p>
                 <p><a href="https://www.hostinger.com/fr/contact" target="_blank" rel="noopener noreferrer">Contacter Hostinger<span class="sr-only"> (nouvel onglet)</span></a></p>
-                <p class="rl-legal-pending">Entité contractante à confirmer sur le contrat d’hébergement. Téléphone de l’hébergeur : à compléter.</p>
+                <p>Hostinger publie également le numéro <a href="tel:+37064503378">+370 645 03378</a> pour son <a href="https://www.hostinger.com/fr/legal/informations-registraire" target="_blank" rel="noopener noreferrer">bureau d’enregistrement des noms de domaine, Hostinger operations, UAB<span class="sr-only"> (nouvel onglet)</span></a>. Ce numéro ne constitue pas une assistance téléphonique pour l’hébergement.</p>
             </div>
         </section>
         <section id="credits" class="rl-legal-section" aria-labelledby="credits-title">

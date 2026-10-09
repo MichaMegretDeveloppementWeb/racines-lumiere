@@ -36,7 +36,7 @@
                 <p>Les messages sont destinés aux personnes habilitées de l’institut. Hostinger assure l’hébergement du site. Le service Hostinger Email assure l’envoi des messages du formulaire et leur réception dans la boîte {{ $institute->email }}.</p>
                 <p>Le serveur du site est situé en France et les sauvegardes de l’hébergement sont conservées en Lituanie. Cette localisation ne préjuge pas de celle des serveurs de messagerie ni des autres traitements effectués par le prestataire.</p>
                 <p>Hostinger encadre ses traitements de données par un <a href="https://www.hostinger.com/fr/legal/dpa" target="_blank" rel="noopener noreferrer">accord de traitement des données<span class="sr-only"> (nouvel onglet)</span></a>. Cet accord prévoit notamment le recours aux clauses contractuelles types de la Commission européenne pour les transferts hors de l’Espace économique européen vers des pays ne bénéficiant pas d’une décision d’adéquation, lorsqu’elles sont applicables.</p>
-                <p class="rl-legal-pending">Localisation des données de messagerie et détail des éventuels transferts hors de l’Espace économique européen : à confirmer auprès du prestataire.</p>
+                <p>Les informations sur les sous-traitants de Hostinger et leurs localisations figurent dans cet accord.</p>
             </div>
         </section>
         <section id="conservation" class="rl-legal-section" aria-labelledby="retention-title">
