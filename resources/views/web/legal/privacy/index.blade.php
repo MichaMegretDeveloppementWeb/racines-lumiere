@@ -23,7 +23,7 @@
             <h2 id="controller-title">Qui utilise<br>vos informations ?</h2>
             <div>
                 <p>Racines &amp; Lumière utilise les informations transmises par le formulaire pour répondre à votre demande.</p>
-                <p class="rl-legal-pending">Identité juridique et siège du responsable du traitement : à compléter après confirmation des informations de la société.</p>
+                <p class="rl-legal-pending">Identité juridique et siège du responsable du traitement : à compléter.</p>
                 <p>Pour toute question relative à vos données : <a href="mailto:{{ $institute->email }}">{{ $institute->email }}</a>.</p>
             </div>
         </section>
@@ -45,7 +45,7 @@
                 <p>Le contenu des messages n’est pas enregistré dans la base de données du site. Il est transmis par e-mail à l’institut et conservé dans sa messagerie pour le suivi de votre demande.</p>
                 <p class="rl-legal-pending">Durée de conservation des échanges dans la messagerie : à compléter par l’institut.</p>
                 <p>Pour limiter les envois abusifs, une empreinte de l’adresse IP est utilisée pendant une heure. Cette protection repose sur l’intérêt légitime de l’institut à assurer la sécurité de son formulaire.</p>
-                <p>Des données techniques de connexion peuvent également figurer dans les journaux du serveur pour la sécurité et le diagnostic des incidents. Leur durée de conservation dépend des réglages de l’hébergement et reste à confirmer. Le contenu des messages n’est pas ajouté aux journaux applicatifs d’échec d’envoi.</p>
+                <p>Des données techniques de connexion peuvent également figurer dans les journaux du serveur pour la sécurité et le diagnostic des incidents. Leur durée de conservation dépend des réglages de l’hébergement. Le contenu des messages n’est pas enregistré dans ces journaux.</p>
             </div>
         </section>
         <section id="cookies" class="rl-legal-section" aria-labelledby="cookies-title">

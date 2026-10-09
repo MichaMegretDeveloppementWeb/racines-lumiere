@@ -23,7 +23,6 @@
             <h2 id="publisher-title">L’éditeur du site</h2>
             <div>
                 <p>Ce site présente Racines &amp; Lumière, maison de beauté holistique située à {{ $institute->city }}.</p>
-                <p class="rl-legal-pending">Les informations d’identification de la société sont en cours de finalisation. Les mentions indiquées « à compléter » seront renseignées après leur confirmation.</p>
                 <dl>
                     <div><dt>Dénomination sociale</dt><dd>À compléter</dd></div>
                     <div><dt>Forme juridique et capital</dt><dd>À compléter</dd></div>
@@ -53,9 +52,8 @@
             <h2 id="credits-title">La conception<br>et les crédits</h2>
             <div>
                 <p>Conception et développement : Micha Megret · Développement Web.</p>
-                <p>Les textes, l’identité visuelle et les éléments graphiques de ce site appartiennent à leurs titulaires respectifs. Leur reproduction ou leur réutilisation est soumise aux autorisations requises, sauf exceptions prévues par la loi.</p>
+                <p>Les textes, les photographies, les illustrations, l’identité visuelle et les éléments graphiques de ce site appartiennent à leurs titulaires respectifs. Leur reproduction ou leur réutilisation est soumise aux autorisations requises, sauf exceptions prévues par la loi.</p>
                 <p>Les logos des marques partenaires restent la propriété de ces marques.</p>
-                <p>Les images d’ambiance sont des illustrations provisoires, issues notamment d’Unsplash, de Pexels et de créations visuelles dédiées. Elles ne représentent pas nécessairement le lieu, les fondatrices ou les professionnels du Cercle de confiance. Les crédits des photographies définitives seront précisés lors de leur intégration.</p>
                 <p>La carte de localisation utilise des données <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors<span class="sr-only"> (nouvel onglet)</span></a>, sous licence ODbL.</p>
             </div>
         </section>
