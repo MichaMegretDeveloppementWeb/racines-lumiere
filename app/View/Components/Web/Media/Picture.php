@@ -59,7 +59,7 @@ class Picture extends Component
         [$name, $widths] = $isPortrait ? [$this->portraitName, $this->portraitWidths] : [$this->name, $this->widths];
 
         return implode(', ', array_map(
-            fn (int $width): string => asset("images/{$name}-{$width}w.{$format}")." {$width}w",
+            fn (int $width): string => $this->versionedUrlFor($name, $width, $format)." {$width}w",
             $widths,
         ));
     }
@@ -81,7 +81,16 @@ class Picture extends Component
      */
     public function fallbackUrl(): string
     {
-        return asset("images/{$this->name}-{$this->widths[0]}w.{$this->fallback}");
+        return $this->versionedUrlFor($this->name, $this->widths[0], $this->fallback);
+    }
+
+    private function versionedUrlFor(string $name, int $width, string $format): string
+    {
+        $relativePath = "images/{$name}-{$width}w.{$format}";
+        $url = asset($relativePath);
+        $path = public_path($relativePath);
+
+        return is_file($path) ? $url.'?v='.filemtime($path) : $url;
     }
 
     public function render(): View

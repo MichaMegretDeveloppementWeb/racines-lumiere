@@ -60,7 +60,7 @@ it('presents the featured categories as aligned arches, each with its photo and 
     $expected = [];
     foreach ($slugs as $slug) {
         $expected[] = 'href="'.route('treatments').'#'.$slug.'"';
-        $expected[] = 'src="'.asset("images/treatments/{$slug}-320w.jpg").'"';
+        $expected[] = 'src="'.asset("images/treatments/{$slug}-320w.jpg").'?v=';
     }
 
     $this->get(route('home'))
