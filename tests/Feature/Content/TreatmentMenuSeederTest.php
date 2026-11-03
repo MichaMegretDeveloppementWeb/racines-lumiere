@@ -66,10 +66,10 @@ it('seeds the current treatment menu', function (): void {
         'rituels-corps', 'rituel-visage-et-ame', 'rituels-complets', 'traitements-visage',
         'singuliers', 'supplements-d-ame', 'epilation',
     ])
-        ->and(Treatment::query()->count())->toBe(66)
-        ->and(TreatmentVariant::query()->count())->toBe(68)
-        ->and(visibleVariantCount())->toBe(68)
-        ->and(Treatment::query()->where('is_visible', true)->count())->toBe(66);
+        ->and(Treatment::query()->count())->toBe(67)
+        ->and(TreatmentVariant::query()->count())->toBe(69)
+        ->and(visibleVariantCount())->toBe(69)
+        ->and(Treatment::query()->where('is_visible', true)->count())->toBe(67);
 });
 
 it('gives every signature ritual exactly thirty more minutes than its care time', function (): void {
@@ -131,8 +131,8 @@ it('replays without duplicates, restores altered values and deletes nothing', fu
     $this->seed(TreatmentMenuSeeder::class);
 
     expect(TreatmentCategory::query()->count())->toBe(8)
-        ->and(Treatment::query()->count())->toBe(66)
-        ->and(TreatmentVariant::query()->count())->toBe(68)
+        ->and(Treatment::query()->count())->toBe(67)
+        ->and(TreatmentVariant::query()->count())->toBe(69)
         ->and(Treatment::query()->where('slug', 'kobido')->value('name'))->toBe('Kobido')
         ->and(TreatmentVariant::query()->where('price_cents', 9500)->exists())->toBeTrue()
         ->and($unlisted->fresh())->not->toBeNull();

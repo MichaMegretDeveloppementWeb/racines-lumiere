@@ -284,8 +284,8 @@ it('marks up the menu as a catalogue of its categories, treatments and price lin
             'Nos rituels corps', 'Nos rituels visage', 'Nos rituels complets Corps & Visage',
             'Nos traitements visage', 'Nos singuliers', "Les suppléments d'Âme", "L'art de l'épilation",
         ])
-        ->and($services)->toHaveCount(66)
-        ->and(array_merge(...array_column($services, 'offers')))->toHaveCount(68)
+        ->and($services)->toHaveCount(67)
+        ->and(array_merge(...array_column($services, 'offers')))->toHaveCount(69)
         ->and($pause['listedUnder'])->toBe('Nos rituels corps')
         ->and($pause['provider'])->toBe(['@id' => 'https://racines-lumiere.fr/#institute'])
         ->and($pause['offers'][0])->toBe(['@type' => 'Offer', 'description' => "1h15 dont 45\u{00A0}min de soin", 'price' => '95.00', 'priceCurrency' => 'EUR'])

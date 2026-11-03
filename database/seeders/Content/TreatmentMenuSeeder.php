@@ -172,6 +172,7 @@ class TreatmentMenuSeeder extends Seeder
                 $this->variant(10, 12500, 60),
                 $this->variant(20, 16000, 90),
             ], description: 'Un soin visage by [Comfort Zone] composé selon le diagnostic de votre peau.'),
+            $this->treatment('traitements-visage', 20, 'lecture-de-peau', 'Lecture de peau', [$this->variant(10, 5000)], description: "Une analyse approfondie de votre peau avec le Skin Test 2.0, éclairée par notre œil d'expert. Vous repartez avec des conseils personnalisés et une routine maison sûre et complète, pensée pour votre peau. Sans soin en cabine. Offerte pour l'achat de 3 produits ou plus."),
             $this->treatment('singuliers', 10, 'kobido', 'Kobido', [
                 $this->variant(10, 12000, 60),
                 $this->variant(20, 15000, 90, label: 'avec soin visage'),

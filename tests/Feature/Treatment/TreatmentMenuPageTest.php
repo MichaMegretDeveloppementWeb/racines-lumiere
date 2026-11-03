@@ -37,7 +37,7 @@ it('writes each price line with its total duration first, the care time within i
         ->assertSeeInOrder(['Kobido', '1h', "120\u{00A0}€", '1h30', 'avec soin visage', "150\u{00A0}€"])
         ->assertSeeInOrder(['Yeux', "10\u{00A0}€"]);
 
-    expect(substr_count($response->getContent(), '<li class="rl-variant">'))->toBe(68);
+    expect(substr_count($response->getContent(), '<li class="rl-variant">'))->toBe(69);
 });
 
 it('anchors every category, and lists them all at the top of the page', function (): void {
@@ -77,6 +77,19 @@ it('shows the launch offer only before the opening, once its discount is known',
         $response->assertSee('<h2>Offre de lancement</h2>', false)->assertSeeText('15 % de remise');
     }
 })->with(['before the opening' => false, 'after the opening' => true]);
+
+it('lists the skin reading after the visage treatments, as the printed menu does', function (): void {
+    $this->get(route('treatments'))->assertOk()->assertSeeInOrder([
+        'Nos traitements visage',
+        'The Joy of Beauty',
+        'Lecture de peau',
+        'Une analyse approfondie de votre peau avec le Skin Test 2.0',
+        'Sans soin en cabine.',
+        'Offerte pour',
+        "50\u{00A0}€",
+        'Nos singuliers',
+    ], false);
+});
 
 it('offers the menu as a PDF to download, at an address that follows the file', function (): void {
     $path = config('institute.brochure_path');
