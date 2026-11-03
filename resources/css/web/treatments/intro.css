@@ -2,6 +2,16 @@
     margin-top: 2rem;
 }
 
+.rl-menu-download {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.rl-menu-download a {
+    gap: 0.625rem;
+}
+
 .rl-menu-index ol {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));

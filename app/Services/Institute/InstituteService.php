@@ -39,7 +39,22 @@ class InstituteService
             launchOffer: $this->launchOffer(),
             latitude: $this->config->get('institute.geo.latitude'),
             longitude: $this->config->get('institute.geo.longitude'),
+            brochureUrl: $this->brochureUrl(),
         );
+    }
+
+    /**
+     * The address of the downloadable treatment menu, versioned by its file, or null while the file is missing.
+     */
+    private function brochureUrl(): ?string
+    {
+        $path = $this->config->get('institute.brochure_path');
+
+        if ($path === null || ! is_file(public_path($path))) {
+            return null;
+        }
+
+        return asset($path).'?v='.filemtime(public_path($path));
     }
 
     /**

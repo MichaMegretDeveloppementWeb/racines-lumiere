@@ -25,5 +25,6 @@ final readonly class InstituteData
         public ?LaunchOfferData $launchOffer,
         public ?float $latitude = null,
         public ?float $longitude = null,
+        public ?string $brochureUrl = null,
     ) {}
 }

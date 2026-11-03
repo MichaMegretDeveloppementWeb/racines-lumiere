@@ -95,6 +95,6 @@ return [
     |
     */
 
-    'brochure_path' => null,
+    'brochure_path' => 'documents/carte-des-rituels-racines-et-lumiere.pdf',
 
 ];

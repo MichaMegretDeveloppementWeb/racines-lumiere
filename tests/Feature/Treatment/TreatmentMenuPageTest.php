@@ -78,6 +78,31 @@ it('shows the launch offer only before the opening, once its discount is known',
     }
 })->with(['before the opening' => false, 'after the opening' => true]);
 
+it('offers the menu as a PDF to download, at an address that follows the file', function (): void {
+    $path = config('institute.brochure_path');
+
+    expect(public_path($path))->toBeFile()
+        ->and(file_get_contents(public_path($path), length: 5))->toBe('%PDF-');
+
+    $this->get(route('treatments'))->assertOk()
+        ->assertSee('href="'.asset($path).'?v='.filemtime(public_path($path)).'" download', false)
+        ->assertSeeText('Télécharger la carte (PDF)');
+});
+
+it('hides the download while the menu is missing', function (?string $path): void {
+    config(['institute.brochure_path' => $path]);
+
+    $this->get(route('treatments'))->assertOk()->assertDontSeeText('Télécharger la carte');
+})->with(['none declared' => [null], 'absent from the server' => ['documents/absent.pdf']]);
+
+it('keeps the downloadable menu light enough for a phone', function (): void {
+    // Most visitors come from Instagram on a mobile network: the print file weighs 10 MB, its web version under 2 MB.
+    $file = public_path(config('institute.brochure_path'));
+
+    expect($file)->toBeFile()
+        ->and(filesize($file))->toBeLessThan(2 * 1024 * 1024);
+});
+
 it('renders the menu in four queries', function (): void {
     // Trusted circle presence, then the menu: categories, treatments and price lines, one query each.
     expect(queryCount(fn () => $this->get(route('treatments'))->assertOk()))->toBe(4);

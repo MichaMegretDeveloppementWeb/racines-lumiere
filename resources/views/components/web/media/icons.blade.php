@@ -5,4 +5,7 @@
     <symbol id="icon-arrow-right" viewBox="0 0 24 24">
         <path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
     </symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24">
+        <path d="M12 4v11m-5-5 5 5 5-5M5 20h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </symbol>
 </svg>

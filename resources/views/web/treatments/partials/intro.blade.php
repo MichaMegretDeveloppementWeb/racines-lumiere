@@ -9,3 +9,8 @@
         @endforeach
     </ol>
 </nav>
+@if ($institute->brochureUrl !== null)
+    <p class="rl-wrap rl-menu-download">
+        <a href="{{ $institute->brochureUrl }}" download class="rl-button rl-button-forest">Télécharger la carte (PDF) <x-web.media.icon name="download" class="size-5" /></a>
+    </p>
+@endif
