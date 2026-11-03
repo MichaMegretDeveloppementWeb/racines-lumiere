@@ -44,6 +44,20 @@ it('only offers a telephone link when a number has been confirmed', function (?s
     }
 })->with([null, '04 50 00 00 00']);
 
+it('writes the name of the institute with its accent on the map', function (): void {
+    $map = file_get_contents(public_path('images/contact/map.svg'));
+
+    expect($map)->toContain('Racines &amp; Lumière')
+        ->and($map)->toContain('Carte issue des données OpenStreetMap')
+        ->and($map)->not->toContain('?');
+});
+
+it('versions the address of the map, so that a corrected map reaches browsers that kept the old one', function (): void {
+    $version = filemtime(public_path('images/contact/map.svg'));
+
+    $this->get(route('contact'))->assertOk()->assertSee('src="/images/contact/map.svg?v='.$version.'"', false);
+});
+
 it('gives the line of the institute', function (): void {
     $this->get(route('contact'))->assertOk()
         ->assertSee('href="tel:0480958509"', false)

@@ -19,7 +19,7 @@
     </div>
     <div class="rl-contact-location">
         <figure class="rl-contact-map">
-            <img src="/images/contact/map.svg" width="1200" height="800" loading="lazy" decoding="async" alt="Plan du quartier : Racines & Lumière, avenue des Charmes à Sciez, derrière le centre E.Leclerc.">
+            <img src="/images/contact/map.svg?v={{ filemtime(public_path('images/contact/map.svg')) }}" width="1200" height="800" loading="lazy" decoding="async" alt="Plan du quartier : Racines & Lumière, avenue des Charmes à Sciez, derrière le centre E.Leclerc.">
             <figcaption><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© les contributeurs d’OpenStreetMap<span class="sr-only"> (nouvel onglet)</span></a></figcaption>
         </figure>
         <nav class="rl-contact-directions" aria-label="Choisir une application pour l’itinéraire">
