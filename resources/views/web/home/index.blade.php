@@ -11,9 +11,7 @@
 
 @section('content')
     @include('web.home.partials.hero')
-    @unless ($institute->isOpen)
-        @include('web.home.partials.opening')
-    @endunless
+    @include('web.home.partials.opening')
     @include('web.home.partials.concept')
     @include('web.home.partials.ritual')
     @include('web.home.partials.treatments')

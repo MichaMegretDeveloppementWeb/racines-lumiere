@@ -32,6 +32,11 @@ it('renders the main home in both opening states', function (bool $isOpen): void
     if ($isOpen) {
         $response->assertSeeText('Réserver mon rituel')
             ->assertSeeText('Sur rendez-vous, du lundi au samedi')
+            ->assertSeeTextInOrder([
+                'Notre Maison du Mieux-Être a enfin ouvert ses portes',
+                'Racines & Lumière a ouvert ses portes à Sciez ce mardi 3 novembre 2026',
+                'Réservez votre rituel au plus vite',
+            ])
             ->assertDontSeeText('Prochainement')
             ->assertDontSeeText('Réserver dès maintenant')
             ->assertDontSeeText('Ouverture le mardi 3 novembre');
@@ -39,6 +44,8 @@ it('renders the main home in both opening states', function (bool $isOpen): void
         $response->assertSeeText("Prochainement, l'ouverture de notre Maison du Mieux-Être", false)
             ->assertSeeText('Réserver dès maintenant')
             ->assertSeeText('Ouverture le mardi 3 novembre')
+            ->assertDontSeeText('a enfin ouvert ses portes')
+            ->assertDontSeeText('Réservez votre rituel au plus vite')
             ->assertDontSeeText('Réserver mon rituel');
     }
 })->with(['before the opening' => false, 'after the opening' => true]);
