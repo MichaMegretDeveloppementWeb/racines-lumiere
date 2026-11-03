@@ -236,6 +236,7 @@ it('gives the home page no breadcrumb trail', function (): void {
 });
 
 it('gives the telephone only once the line is active', function (): void {
+    config(['institute.contact.phone' => null]);
     [$withoutLine] = nodesOfType(structuredGraph($this->get(route('story'))), 'BeautySalon');
 
     config(['institute.contact.phone' => '04 50 00 00 00']);
@@ -244,6 +245,13 @@ it('gives the telephone only once the line is active', function (): void {
 
     expect($withoutLine)->not->toHaveKey('telephone')
         ->and($withLine['telephone'])->toBe('+33 4 50 00 00 00');
+});
+
+it('gives the line of the institute in its international form', function (): void {
+    [$institute] = nodesOfType(structuredGraph($this->get(route('story'))), 'BeautySalon');
+
+    expect($institute['telephone'])->toBe('+33 4 80 95 85 09')
+        ->and($institute['contactPoint']['telephone'])->toBe('+33 4 80 95 85 09');
 });
 
 it('never marks up the reviews', function (): void {

@@ -29,6 +29,11 @@ it('identifies missing company information without reusing the former business i
         ->assertDontSee('852 797 414')->assertDontSee('AP INSTITUT');
 });
 
+it('gives the line of the institute in the legal notice', function (): void {
+    $this->get(route('legal.notice'))->assertOk()
+        ->assertSee('<dt>Téléphone</dt><dd>04 80 95 85 09</dd>', false);
+});
+
 it('describes the contact data flow and uses the configured public contact and session lifetime', function (): void {
     config(['institute.contact.email' => 'privacy@example.com', 'session.lifetime' => 45]);
 

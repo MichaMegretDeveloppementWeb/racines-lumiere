@@ -8,7 +8,7 @@
             <p>Vous hésitez entre deux soins, souhaitez offrir un rituel ou avez une question&nbsp;? Prenez le temps de nous en parler.</p>
             <p class="rl-contact-signature">Aurore &amp; Lorie</p>
             <div class="rl-contact-direct">
-                <p>Vous préférez nous écrire directement&nbsp;?</p>
+                <p>{{ $institute->phone === null ? 'Vous préférez nous écrire directement' : 'Vous préférez nous écrire ou nous appeler directement' }}&nbsp;?</p>
                 <a href="mailto:{{ $institute->email }}">{{ $institute->email }}</a>
                 @if ($institute->phone !== null)
                     <a href="tel:{{ str_replace(' ', '', $institute->phone) }}">{{ $institute->phone }}</a>

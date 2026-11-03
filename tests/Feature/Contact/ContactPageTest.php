@@ -35,8 +35,17 @@ it('only offers a telephone link when a number has been confirmed', function (?s
     $response = $this->get(route('contact'))->assertOk();
 
     if ($phone === null) {
-        $response->assertDontSee('href="tel:', false);
+        $response->assertDontSee('href="tel:', false)
+            ->assertSee('Vous préférez nous écrire directement')
+            ->assertDontSee('nous appeler');
     } else {
-        $response->assertSee('href="tel:0450000000"', false);
+        $response->assertSee('href="tel:0450000000"', false)
+            ->assertSee('Vous préférez nous écrire ou nous appeler directement');
     }
 })->with([null, '04 50 00 00 00']);
+
+it('gives the line of the institute', function (): void {
+    $this->get(route('contact'))->assertOk()
+        ->assertSee('href="tel:0480958509"', false)
+        ->assertSee('04 80 95 85 09');
+});

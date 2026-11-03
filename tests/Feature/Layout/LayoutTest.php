@@ -57,6 +57,8 @@ it('declares the favicons', function (): void {
 });
 
 it('leaves the phone number out until the line is active', function (): void {
+    config(['institute.contact.phone' => null]);
+
     $this->get(route('story'))->assertOk()->assertDontSee('href="tel:', false);
 });
 

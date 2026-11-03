@@ -58,7 +58,7 @@ return [
     'contact' => [
         'email' => 'contact@racines-lumiere.fr',
         'form_recipient' => 'contact@racines-lumiere.fr',
-        'phone' => null,
+        'phone' => '04 80 95 85 09',
         'instagram_url' => 'https://www.instagram.com/racinesetlumiere.sciez/',
     ],
 
