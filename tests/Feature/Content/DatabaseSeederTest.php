@@ -27,7 +27,7 @@ it('seeds the whole content in eight queries', function (): void {
         ->and(TreatmentCategory::query()->count())->toBe(7)
         ->and(Treatment::query()->count())->toBe(67)
         ->and(Brand::query()->count())->toBe(7)
-        ->and(Partner::query()->count())->toBe(5)
+        ->and(Partner::query()->count())->toBe(6)
         ->and(Review::query()->count())->toBe(6);
 });
 

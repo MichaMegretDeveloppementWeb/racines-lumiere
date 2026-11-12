@@ -24,13 +24,17 @@ function syntheticPartners(string $prefix, int $count): array
     ], range(1, $count));
 }
 
-it('publishes the five practitioners of annex D whose consent is confirmed', function (): void {
+it('publishes the six practitioners whose consent is confirmed', function (): void {
     $this->seed(PartnerSeeder::class);
 
     expect(Partner::query()->orderBy('position')->pluck('slug')->all())->toBe([
-        'alice-peillex', 'julie-deage-martinez', 'camille-gouyon', 'marie-christine-gosetto', 'joelle-plantaz',
+        'alice-peillex', 'julie-deage-martinez', 'camille-gouyon', 'marie-christine-gosetto', 'joelle-plantaz', 'anne-baud',
     ])
-        ->and(Partner::query()->where('is_visible', true)->count())->toBe(5)
+        ->and(Partner::query()->where('is_visible', true)->count())->toBe(6)
+        ->and(Partner::query()->where('slug', 'anne-baud')->first(['specialty', 'town', 'website_url'])->toArray())->toBe([
+            'specialty' => 'Acupunctrice', 'town' => 'Allinges', 'website_url' => 'https://ame-s.co/team/anne/',
+        ])
+        ->and(Partner::query()->where('slug', 'julie-deage-martinez')->value('website_url'))->toBe('https://ame-s.co/team/julie/')
         ->and(Partner::query()->where('slug', 'camille-gouyon')->value('specialty'))->toBe('Énergéticienne · ostéo douce')
         ->and(Partner::query()->where('slug', 'marie-christine-gosetto')->value('specialty'))->toBe('Énergéticienne · médiumnité')
         ->and(Partner::query()->where('slug', 'joelle-plantaz')->value('organization_name'))->toBe('Jojo les Bas Bleus');
@@ -42,8 +46,8 @@ it('replays the partners without duplicates and restores altered values', functi
 
     $this->seed(PartnerSeeder::class);
 
-    expect(Partner::query()->count())->toBe(5)
-        ->and(Partner::query()->where('is_visible', true)->count())->toBe(5)
+    expect(Partner::query()->count())->toBe(6)
+        ->and(Partner::query()->where('is_visible', true)->count())->toBe(6)
         ->and(Partner::query()->where('slug', 'alice-peillex')->value('specialty'))->toBe('Kinésiologue');
 });
 

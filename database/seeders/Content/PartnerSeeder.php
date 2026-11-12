@@ -8,7 +8,7 @@ use App\Models\Partner;
 use Illuminate\Database\Seeder;
 
 /**
- * The trusted circle. Publication consent for all five practitioners was confirmed on 2026-10-07.
+ * The trusted circle. Each practitioner is published only once their consent is confirmed.
  *
  * @phpstan-type PartnerRow array{slug: string, name: string, organization_name: ?string, specialty: string, town: ?string, website_url: ?string, position: int, is_visible: bool}
  */
@@ -45,10 +45,11 @@ class PartnerSeeder extends Seeder
     {
         return [
             $this->partner(10, 'alice-peillex', 'Alice Peillex', 'Kinésiologue', 'Thonon-les-Bains', 'https://terapiz.com/kinesiologue/thonon-les-bains/alice-peillex'),
-            $this->partner(20, 'julie-deage-martinez', 'Julie Déage-Martinez', 'Ostéopathe', 'Allinges', 'https://ame-s.co/'),
+            $this->partner(20, 'julie-deage-martinez', 'Julie Déage-Martinez', 'Ostéopathe', 'Allinges', 'https://ame-s.co/team/julie/'),
             $this->partner(30, 'camille-gouyon', 'Camille Gouyon', 'Énergéticienne · ostéo douce', 'Perrignier', 'https://www.osteodouce.fr/'),
             $this->partner(40, 'marie-christine-gosetto', 'Marie-Christine Gosetto', 'Énergéticienne · médiumnité', 'Perrignier', 'https://namaste-energie.fr/'),
             $this->partner(50, 'joelle-plantaz', 'Joëlle Plantaz', 'Conseillère en image', 'Margencel', 'https://jojolesbasbleus.fr/', organizationName: 'Jojo les Bas Bleus'),
+            $this->partner(60, 'anne-baud', 'Anne Baud', 'Acupunctrice', 'Allinges', 'https://ame-s.co/team/anne/'),
         ];
     }
 
